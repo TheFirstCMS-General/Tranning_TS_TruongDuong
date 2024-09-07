@@ -1,4 +1,4 @@
-export class Grade {
+export class GradeDto {
     private id: number;
     private code: string;
     private name: string;

@@ -3,8 +3,10 @@ function renderGrade(){
     then(data => {
         const tableData = document.getElementById('listTable');
         tableData.innerHTML = ''; 
-        for (const grade in data) {
-          let row = `  <tr>
+        for (const grade of data) {
+          console.log(grade)
+          let row =`<tr>
+          <td>${grade.id}</td>
           <td>${grade.code}</td>
           <td>${grade.name}</td>
           <td>
@@ -15,4 +17,4 @@ function renderGrade(){
         }
     });
 }
-renderGrade()
+window.onload = renderGrade;
