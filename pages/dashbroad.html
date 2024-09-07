@@ -1,11 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title> Responsive Sidebar Menu  | CodingLab </title>
+    <link rel="stylesheet" href="http://127.0.0.1:5500/css/style.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
 <body>
-    
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus icon'></i>
+        <div class="logo_name">CodingLab</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+          <i class='bx bx-search' ></i>
+         <input type="text" placeholder="Search...">
+         <span class="tooltip">Search</span>
+      </li>
+      <li>
+        <a href="dashbroad.html">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+         <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+       <a href="grade.html">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Lớp</span>
+       </a>
+       <span class="tooltip">Lớp</span>
+     </li>
+     <li>
+       <a href="../pages/attendance/list_attendance.html">
+         <i class='bx bx-chat' ></i>
+         <span class="links_name">Điểm danh</span>
+       </a>
+       <span class="tooltip">Điểm danh</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-pie-chart-alt-2' ></i>
+         <span class="links_name">Analytics</span>
+       </a>
+       <span class="tooltip">Analytics</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">File Manager</span>
+       </a>
+       <span class="tooltip">Files</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cart-alt' ></i>
+         <span class="links_name">Order</span>
+       </a>
+       <span class="tooltip">Order</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-heart' ></i>
+         <span class="links_name">Saved</span>
+       </a>
+       <span class="tooltip">Saved</span>
+     </li>
+     <li>
+       <a href="#">
+         <i class='bx bx-cog' ></i>
+         <span class="links_name">Setting</span>
+       </a>
+       <span class="tooltip">Setting</span>
+     </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <h1>Dự án thực hiện bởi</h1>
+    <table class="project-table">
+      <tbody>
+        <tr>
+          <td>Đinh Xuân Trường</td>
+        </tr>
+        <tr>
+          <td>Lê Thái Dương</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <script>
+  let sidebar = document.querySelector(".sidebar");
+  let closeBtn = document.querySelector("#btn");
+  let searchBtn = document.querySelector(".bx-search");
+
+  closeBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("open");
+    menuBtnChange();//calling the function(optional)
+  });
+
+  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+    sidebar.classList.toggle("open");
+    menuBtnChange(); //calling the function(optional)
+  });
+
+  // following are the code to change sidebar button(optional)
+  function menuBtnChange() {
+   if(sidebar.classList.contains("open")){
+     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+   }else {
+     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+   }
+  }
+  </script>
+  <style>
+    .home-section {
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      
+      .project-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      
+      .project-table th, .project-table td {
+        border: 1px solid #dee2e6;
+        padding: 12px;
+        text-align: left;
+      }
+      
+      .project-table thead {
+        background-color: #007bff;
+        color: white;
+      }
+      
+      .project-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      
+      .project-table tbody tr:hover {
+        background-color: #e9ecef;
+      }
+      
+      .project-table th {
+        font-size: 18px;
+      }
+      
+      .project-table td {
+        font-size: 16px;
+      }
+      
+</style>  
 </body>
 </html>

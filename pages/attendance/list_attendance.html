@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <title> Responsive Sidebar Menu  | CodingLab </title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -25,14 +25,14 @@
          <span class="tooltip">Search</span>
       </li>
       <li>
-        <a href="dashbroad.html">
+        <a href="../dashbroad.html">
           <i class='bx bx-grid-alt'></i>
           <span class="links_name">Dashboard</span>
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="grade.html">
+        <a href="../grade.html">
           <i class='bx bx-user' ></i>
           <span class="links_name">Lớp</span>
         </a>
@@ -84,42 +84,50 @@
   </div>
   <section class="home-section">
    <div class="container-fluid">
-    <h1>Danh sách lớp học</h1>
+    <h1>Danh sách điểm danh</h1>
+    <a href="create_attendance.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Thêm điểm danh</a>
+    <!-- <a href="create_student.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Điểm danh</a> -->
     <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Mã lớp học</th>
-            <th scope="col">Tên lớp học</th>
+            <th scope="col">STT</th>
+            <th scope="col">Tên lớp</th>
+            <th scope="col">Ngày</th>
+            <th scope="col">Phiên</th>
             <th scope="col">Chức năng</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>IT1</td>
-            <td>DH11C10</td>
-            <td>
-                  <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>IT2</td>
-            <td>DH11C9</td>
-            <td>
-                  <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>IT3</td>
-            <td>DH11C8</td>
-            <td>
-                <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-        </tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>DH11C10</td>
+              <td>01/01/2024</td>
+              <td>Buổi sáng</td>
+              <td>
+                <a href="../attendance/detail_attendance.html" type="button" class="btn btn-secondary">Chi tiết</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>DH11C9</td>
+              <td>15/05/2024</td>
+              <td>Buổi chiều</td>
+              
+              <td>
+                <a href="../attendance/detail_attendance.html" type="button" class="btn btn-secondary">Chi tiết</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>DH11C8</td>
+              <td>20/10/2024</td>
+              <td>Buổi Sáng</td>
+             
+              <td>
+                <a href="../attendance/detail_attendance.html" type="button" class="btn btn-secondary">Chi tiết</a>
+              </td>
+            </tr>
+          </tbody>
       </table>
    </div>
   </section>

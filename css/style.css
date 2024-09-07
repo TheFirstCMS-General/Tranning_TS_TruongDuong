@@ -364,3 +364,23 @@ h1.my-4 {
 
 }
 
+.card {
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin: 0;
+}

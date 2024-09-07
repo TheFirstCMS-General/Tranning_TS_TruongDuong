@@ -84,9 +84,52 @@
   </div>
   <section class="home-section">
    <div class="container-fluid">
-    <h1>Danh sách học sinh</h1>
-    <a href="create_student.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Thêm học sinh</a>
-    <!-- <a href="create_student.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Điểm danh</a> -->
+    <h1>Điểm danh lớp C10</h1>
+    <div class="row mb-4">
+        <div class="col-md-2">
+          <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Sĩ số</div>
+            <div class="card-body">
+              <h5 class="card-title" id="total-students">50</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card text-white bg-success mb-3">
+            <div class="card-header">Có mặt</div>
+            <div class="card-body">
+              <h5 class="card-title" id="present-count">50</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card text-white bg-info mb-3">
+            <div class="card-header">Có phép</div>
+            <div class="card-body">
+              <h5 class="card-title" id="excused-count">50</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Muộn</div>
+            <div class="card-body">
+              <h5 class="card-title" id="late-count">50</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Không phép</div>
+            <div class="card-body">
+              <h5 class="card-title" id="absent-count">50</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    <button class="btn btn-primary" style="margin-bottom: 20px;">Xác nhận</button>
+    <button class="btn btn-primary" style="margin-bottom: 20px;">Xuất excel</button>
+    <button class="btn btn-primary" style="margin-bottom: 20px;">Nhập excel</button>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -94,9 +137,8 @@
             <th scope="col">Tên học sinh</th>
             <th scope="col">Ngày sinh</th>
             <th scope="col">Giới tính</th>
-            <th scope="col">Địa chỉ</th>
-            <th scope="col">Số điện thoại</th>
-            <th scope="col">Chức năng</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Lý do</th>
           </tr>
         </thead>
         <tbody>
@@ -105,36 +147,54 @@
               <td>Nguyễn Văn A</td>
               <td>01/01/2000</td>
               <td>Nam</td>
-              <td>Hà Nội</td>
-              <td>0123456789</td>
               <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
+                <select class="form-control" id="gender" name="gender">
+                    <option>Có mặt</option>
+                    <option>Có phép</option>
+                    <option>Muộn</option>
+                    <option>Không phép</option>
+                  </select>
               </td>
+              <td>
+                <input type="text"  class="form-control">
+              </td>
+        
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>Trần Thị B</td>
               <td>15/05/2001</td>
               <td>Nữ</td>
-              <td>TP.HCM</td>
-              <td>0987654321</td>
               <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
+                <select class="form-control" id="gender" name="gender">
+                    <option>Có mặt</option>
+                    <option>Có phép</option>
+                    <option>Muộn</option>
+                    <option>Không phép</option>
+                  </select>
               </td>
+              <td>
+                <input type="text"  class="form-control">
+              </td>
+             
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Phạm Văn C</td>
               <td>20/10/2002</td>
               <td>Nam</td>
-              <td>Đà Nẵng</td>
-              <td>0912345678</td>
               <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
+                <select class="form-control" id="gender" name="gender">
+                    <option>Có mặt</option>
+                    <option>Có phép</option>
+                    <option>Muộn</option>
+                    <option>Không phép</option>
+                  </select>
               </td>
+              <td>
+                <input type="text"  class="form-control">
+              </td>
+             
             </tr>
           </tbody>
       </table>
@@ -166,5 +226,6 @@
    }
   }
   </script>
+  
 </body>
 </html>

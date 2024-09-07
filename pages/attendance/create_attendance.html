@@ -5,7 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <title> Responsive Sidebar Menu  | CodingLab </title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -32,7 +32,7 @@
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="grade.html">
+        <a href="../grade.html">
           <i class='bx bx-user' ></i>
           <span class="links_name">Lớp</span>
         </a>
@@ -83,46 +83,29 @@
     </ul>
   </div>
   <section class="home-section">
-   <div class="container-fluid">
-    <h1>Danh sách lớp học</h1>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Mã lớp học</th>
-            <th scope="col">Tên lớp học</th>
-            <th scope="col">Chức năng</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>IT1</td>
-            <td>DH11C10</td>
-            <td>
-                  <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>IT2</td>
-            <td>DH11C9</td>
-            <td>
-                  <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>IT3</td>
-            <td>DH11C8</td>
-            <td>
-                <a href="../pages/student/student_class.html" type="button" class="btn btn-primary">Xem</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-   </div>
+    <div class="container-fluid">
+      <h1>Thêm điểm danh</h1>
+      <form>
+        <div class="form-group">
+          <label>Tên lớp</label>
+          <select class="form-control" id="grade" name="grade">
+            <option>Lớp 1</option>
+            <option>Lớp 2</option>
+            <option>Lớp 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gender">Phiên</label>
+          <select class="form-control" id="gender" name="gender">
+            <option>Buổi sáng</option>
+            <option>Buổi chiều</option>
+          </select>
+        </div>
+        <a href="detail_attendance.html" type="submit" class="btn btn-primary">Tạo điểm danh</a>
+      </form>
+    </div>
   </section>
+ 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
   <script>
