@@ -7,6 +7,8 @@ class GradeDto {
         this.code = code;
         this.name = name;
     }
+    abc() {
+    }
     getId() {
         return this.id;
     }

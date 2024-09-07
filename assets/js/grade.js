@@ -4,7 +4,6 @@ function renderGrade(){
         const tableData = document.getElementById('listTable');
         tableData.innerHTML = ''; 
         for (const grade of data) {
-          console.log(grade)
           let row =`<tr>
           <td>${grade.id}</td>
           <td>${grade.code}</td>
