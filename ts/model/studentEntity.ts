@@ -1,19 +1,22 @@
-import { Gender } from '../model/enum/gender_enum';
-class Student {
+import { Gender } from './enum/gender_enum';
+import { GradeEntity } from './gradeEntity';
+export class StudentEntity {
     public id: number;
     public name: string;
     public dob: Date;
     public gender: Gender; 
     public address: string;
     public phone: string;
+    public grade: GradeEntity;
   
-    constructor(id: number, name: string, dob: Date, gender: Gender, address: string, phone: string) {
+    constructor(id: number, name: string, dob: Date, gender: Gender, address: string, phone: string,grade: GradeEntity) {
       this.id = id;
       this.name = name;
       this.dob = dob;
       this.gender = gender;
       this.address = address;
       this.phone = phone;
+      this.grade = grade;
     }
     public getId(): number {
       return this.id;
@@ -65,5 +68,14 @@ class Student {
   public setPhone(phone: string): void {
       this.phone = phone;
   }
+
+  public getgrade(): GradeEntity {
+    return this.grade;
+}
+
+
+public setgrade(grade: GradeEntity): void {
+    this.grade = grade;
+}
 }
   

@@ -1,0 +1,13 @@
+[
+    {
+      "id": 1,
+      "code": "G01",
+      "name": "Grade 1"
+    },
+    {
+      "id": 2,
+      "code": "G02",
+      "name": "Grade 2"
+    }
+  ]
+  
