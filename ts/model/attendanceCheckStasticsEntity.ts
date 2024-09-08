@@ -1,9 +1,9 @@
 import { AttendanceCheckEntity } from "./attendanceCheckEntity";
-class AttendanceCheckStasticsEntity {
-    public id: number;
-    public quantity: number;
-    public attendanceCheck: AttendanceCheckEntity;
-    public status: string; 
+export class AttendanceCheckStasticsEntity {
+    private id: number;
+    private quantity: number;
+    private attendanceCheck: AttendanceCheckEntity;
+    private status: string;
 
     constructor(id: number, quantity: number, attendanceCheck: AttendanceCheckEntity, status: string) {
         this.id = id;

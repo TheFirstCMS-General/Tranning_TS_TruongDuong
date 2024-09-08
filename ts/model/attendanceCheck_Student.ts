@@ -1,10 +1,10 @@
 import { StudentEntity } from "./studentEntity";
 import { AttendanceCheckEntity } from "./attendanceCheckEntity";
-class AttendanceCheckStudentEntity {
-    public id: number;
-    public student: StudentEntity;
-    public attendanceCheck: AttendanceCheckEntity;
-    public status: string; 
+export class AttendanceCheckStudentEntity {
+    private id: number;
+    private student: StudentEntity;
+    private attendanceCheck: AttendanceCheckEntity;
+    private status: string;
 
     constructor(id: number, student: StudentEntity, attendanceCheck: AttendanceCheckEntity, status: string) {
         this.id = id;

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "createdAt": "2024-09-01T08:00:00Z",
+    "section": "Buổi sáng",
+    "gradeId": 1
+  },
+  {
+    "id": 2,
+    "createdAt": "2024-09-01T14:00:00Z",
+    "section": "Buổi chiều",
+    "gradeId":2
+  },
+  {
+    "id": 3,
+    "createdAt": "2024-09-02T08:00:00Z",
+    "section": "Buổi sáng",
+    "gradeId": 2
+  },
+  {
+    "id": 4,
+    "createdAt": "2024-09-02T14:00:00Z",
+    "section": "Buổi chiều",
+    "gradeId": 1
+  },
+  {
+    "id": 5,
+    "createdAt": "2024-09-03T08:00:00Z",
+    "section": "Buổi sáng",
+    "gradeId": 1
+  }
+]

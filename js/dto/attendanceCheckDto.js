@@ -1,24 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AttendanceCheckEntity = void 0;
-class AttendanceCheckEntity {
-    constructor(id, grade, createdAt, section) {
+exports.AttendanceCheckDto = void 0;
+class AttendanceCheckDto {
+    constructor(id, createdAt, section, gradeId) {
         this._id = id;
-        this._grade = grade;
         this._createdAt = createdAt;
         this._section = section;
+        this._gradeId = gradeId;
     }
     get id() {
         return this._id;
     }
     set id(value) {
         this._id = value;
-    }
-    get grade() {
-        return this._grade;
-    }
-    set grade(value) {
-        this._grade = value;
     }
     get createdAt() {
         return this._createdAt;
@@ -32,5 +26,11 @@ class AttendanceCheckEntity {
     set section(value) {
         this._section = value;
     }
+    get gradeId() {
+        return this._gradeId;
+    }
+    set gradeId(value) {
+        this._gradeId = value;
+    }
 }
-exports.AttendanceCheckEntity = AttendanceCheckEntity;
+exports.AttendanceCheckDto = AttendanceCheckDto;

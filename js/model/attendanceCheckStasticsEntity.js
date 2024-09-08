@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AttendanceCheckStasticsEntity = void 0;
 class AttendanceCheckStasticsEntity {
     constructor(id, quantity, attendanceCheck, status) {
         this.id = id;
@@ -32,3 +33,4 @@ class AttendanceCheckStasticsEntity {
         this.status = value;
     }
 }
+exports.AttendanceCheckStasticsEntity = AttendanceCheckStasticsEntity;

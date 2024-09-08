@@ -10,9 +10,6 @@ export class GradeDto {
         this.name = name
     }
 
-    abc() {
-    }
-
     public getId(): number {
         return this.id;
     }

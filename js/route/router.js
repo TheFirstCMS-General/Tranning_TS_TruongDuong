@@ -87,6 +87,7 @@ app.post('/createStudent', (req, res) => {
         console.error('Error creating student:', error);
     }
 });
+//
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

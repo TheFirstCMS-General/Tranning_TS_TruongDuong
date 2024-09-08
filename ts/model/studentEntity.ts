@@ -1,13 +1,13 @@
 import { Gender } from './enum/gender_enum';
 import { GradeEntity } from './gradeEntity';
 export class StudentEntity {
-    public id: number;
-    public name: string;
-    public dob: Date;
-    public gender: Gender; 
-    public address: string;
-    public phone: string;
-    public grade: GradeEntity;
+    private id: number;
+    private name: string;
+    private dob: Date;
+    private gender: Gender;
+    private address: string;
+    private phone: string;
+    private grade: GradeEntity;
   
     constructor(id: number, name: string, dob: Date, gender: Gender, address: string, phone: string,grade: GradeEntity) {
       this.id = id;
