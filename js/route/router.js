@@ -17,7 +17,11 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 const gradeService = new IGradeServiceImpl_1.default();
+
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
+
+const studentService = new IStudentServiceImpl_1.default();
+
 app.get('/grade/showAll', (req, res) => {
     try {
         const grades = gradeService.showAll();
@@ -28,10 +32,19 @@ app.get('/grade/showAll', (req, res) => {
         res.status(500).send('Lỗi khi đọc dữ liệu JSON');
     }
 });
-app.get('/grade/:id', (req, res) => {
+app.get('/grade/findById/:gradeId', (req, res) => {
     try {
-        const gradeId = parseInt(req.params.id, 10);
-        const studentService = new IStudentServiceImpl_1.default();
+        const gradeId = parseInt(req.params.gradeId, 10);
+        const grade = gradeService.findById(gradeId);
+        res.json(grade);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.get('/student/showAll/:gradeId', (req, res) => {
+    try {
+        const gradeId = parseInt(req.params.gradeId, 10);
         const students = studentService.showAll(gradeId);
         res.json(students);
     }
@@ -43,7 +56,6 @@ app.put('/updateStudent/:id', (req, res) => {
     try {
         const updatedStudent = req.body;
         const id = parseInt(req.params.id, 10);
-        const studentService = new IStudentServiceImpl_1.default();
         const updated = studentService.update(id, updatedStudent);
         if (updated) {
             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
@@ -76,7 +88,6 @@ app.delete('/deleteStudent/:id', (req, res) => {
 app.post('/createStudent', (req, res) => {
     try {
         const student = req.body;
-        const studentService = new IStudentServiceImpl_1.default();
         const createdStudent = studentService.addStudent(student);
         if (createdStudent) {
             res.status(200).json({ message: 'Thêm học sinh thành công!', student: createdStudent });
