@@ -2,15 +2,31 @@ import { IStudentService } from "../IStudentService";
 import { StudentDto } from "../../dto/studentDto";
 import fs from 'fs';
 import path from 'path';
+import {GradeDto} from "../../dto/gradeDto";
+import {IGradeService} from "../IGradeService";
+import IGradeServiceImpl from "./IGradeServiceImpl";
+import {GradeEntity} from "../../model/gradeEntity";
 
 const pathJson = path.join(__dirname, "../../../dao/student.json");
 
 export class IStudentServiceImpl implements IStudentService {
+    private IGradeService: IGradeService = new IGradeServiceImpl();
+
     showAll(gradeId: number): Array<StudentDto> {
         const fileData = fs.readFileSync(pathJson, 'utf-8');
-        const students: Array<StudentDto> = JSON.parse(fileData);
-        const studentFilter = students.filter(student => student.grade_id === gradeId);
-        return studentFilter;
+        const jsonData = JSON.parse(fileData);
+        const listStudent: Array<StudentDto> = [];
+        const gradeDto = this.IGradeService.findById(gradeId);
+
+        for (const item of jsonData) {
+            if (item.grade_id === gradeId && gradeDto != null) {
+                const student = new StudentDto(item.id, item.code, item.name,item.dob,
+                    item.gender,item.address, item.phone,item.grade_id,gradeDto.name);
+                listStudent.push(student);
+            }
+        }
+
+        return listStudent;
     }
     update(id: number, updatedStudent: StudentDto): StudentDto {
         const fileData = fs.readFileSync(pathJson, 'utf-8');
