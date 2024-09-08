@@ -1,93 +1,110 @@
 [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "dob": "2005-05-12",
-      "gender": "MALE",
-      "address": "123 Main St, New York, NY",
-      "phone": "123-456-7890",
-      "grade_id": 1
-    },
-    {
-      "id": 2,
-      "name": "Jane Smith",
-      "dob": "2006-08-25",
-      "gender": "FEMALE",
-      "address": "456 Elm St, Los Angeles, CA",
-      "phone": "987-654-3210",
-      "grade_id": 1
-    },
-    {
-      "id": 3,
-      "name": "Michael Johnson",
-      "dob": "2005-11-10",
-      "gender": "MALE",
-      "address": "789 Maple St, Chicago, IL",
-      "phone": "321-654-9870",
-      "grade_id": 1
-    },
-    {
-      "id": 4,
-      "name": "Emily Davis",
-      "dob": "2005-03-22",
-      "gender": "FEMALE",
-      "address": "101 Oak St, Boston, MA",
-      "phone": "654-987-3210",
-      "grade_id": 1
-    },
-    {
-      "id": 5,
-      "name": "Robert Brown",
-      "dob": "2006-09-12",
-      "gender": "MALE",
-      "address": "202 Pine St, San Francisco, CA",
-      "phone": "789-321-6540",
-      "grade_id": 1
-    },
-    {
-      "id": 6,
-      "name": "Sophia Wilson",
-      "dob": "2006-01-15",
-      "gender": "FEMALE",
-      "address": "303 Cedar St, Miami, FL",
-      "phone": "321-456-7890",
-      "grade_id": 2
-    },
-    {
-      "id": 7,
-      "name": "James Taylor",
-      "dob": "2006-07-20",
-      "gender": "MALE",
-      "address": "404 Birch St, Seattle, WA",
-      "phone": "654-321-9870",
-      "grade_id": 2
-    },
-    {
-      "id": 8,
-      "name": "Isabella Martinez",
-      "dob": "2005-04-05",
-      "gender": "FEMALE",
-      "address": "505 Spruce St, Dallas, TX",
-      "phone": "789-654-1230",
-      "grade_id": 2
-    },
-    {
-      "id": 9,
-      "name": "Liam Anderson",
-      "dob": "2005-11-30",
-      "gender": "MALE",
-      "address": "606 Redwood St, Denver, CO",
-      "phone": "123-789-4560",
-      "grade_id": 2
-    },
-    {
-      "id": 10,
-      "name": "Olivia Thomas",
-      "dob": "2006-06-18",
-      "gender": "FEMALE",
-      "address": "707 Magnolia St, Houston, TX",
-      "phone": "321-987-6540",
-      "grade_id": 2
-    }
-  ]
-    
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "dob": "2006-08-25",
+    "gender": "FEMALE",
+    "address": "456 Elm St, Los Angeles, CA",
+    "phone": "987-654-3210",
+    "grade_id": 1
+  },
+  {
+    "id": 3,
+    "name": "Michael Johnson",
+    "dob": "2005-11-10",
+    "gender": "MALE",
+    "address": "789 Maple St, Chicago, IL",
+    "phone": "321-654-9870",
+    "grade_id": 1
+  },
+  {
+    "id": 4,
+    "name": "Emily Davis",
+    "dob": "2005-03-22",
+    "gender": "FEMALE",
+    "address": "101 Oak St, Boston, MA",
+    "phone": "654-987-3210",
+    "grade_id": 1
+  },
+  {
+    "id": 5,
+    "name": "Robert Brown",
+    "dob": "2006-09-12",
+    "gender": "MALE",
+    "address": "202 Pine St, San Francisco, CA",
+    "phone": "789-321-6540",
+    "grade_id": 1
+  },
+  {
+    "id": 6,
+    "name": "Sophia Wilson",
+    "dob": "2006-01-15",
+    "gender": "FEMALE",
+    "address": "303 Cedar St, Miami, FL",
+    "phone": "321-456-7890",
+    "grade_id": 2
+  },
+  {
+    "id": 7,
+    "name": "James Taylor",
+    "dob": "2006-07-20",
+    "gender": "MALE",
+    "address": "404 Birch St, Seattle, WA",
+    "phone": "654-321-9870",
+    "grade_id": 2
+  },
+  {
+    "id": 8,
+    "name": "Isabella Martinez",
+    "dob": "2005-04-05",
+    "gender": "FEMALE",
+    "address": "505 Spruce St, Dallas, TX",
+    "phone": "789-654-1230",
+    "grade_id": 2
+  },
+  {
+    "id": 9,
+    "name": "Liam Anderson",
+    "dob": "2005-11-30",
+    "gender": "MALE",
+    "address": "606 Redwood St, Denver, CO",
+    "phone": "123-789-4560",
+    "grade_id": 2
+  },
+  {
+    "id": 10,
+    "name": "Olivia Thomas",
+    "dob": "2006-06-18",
+    "gender": "FEMALE",
+    "address": "707 Magnolia St, Houston, TX",
+    "phone": "321-987-6540",
+    "grade_id": 2
+  },
+  {
+    "id": 1,
+    "name": "DXT",
+    "dob": "2005-05-12",
+    "gender": "MALE",
+    "address": "ninh Binh",
+    "phone": "0339205335",
+    "grade_id": 1
+  },
+  {
+    "id": 11,
+    "name": "DX1111T",
+    "dob": "2005-05-12",
+    "gender": "MALE",
+    "address": "ninh Binh",
+    "phone": "0339205335",
+    "grade_id": 1
+  },
+  {
+    "id": 12,
+    "name": "DX1111T",
+    "dob": "2005-05-12",
+    "gender": "MALE",
+    "address": "ninh Binh",
+    "phone": "0339205335",
+    "grade_id": 1
+  }
+]

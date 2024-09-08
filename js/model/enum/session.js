@@ -5,4 +5,4 @@ var Session;
 (function (Session) {
     Session["Morning"] = "Bu\u1ED5i s\u00E1ng";
     Session["Afternoon"] = "Bu\u1ED5i chi\u1EC1u";
-})(Session = exports.Session || (exports.Session = {}));
+})(Session || (exports.Session = Session = {}));
