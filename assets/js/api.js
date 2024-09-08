@@ -1,4 +1,4 @@
-function formToObject(formSelector){
+export function formToObject(formSelector){
     const form = document.querySelector(formSelector)
     const obj = {};
 
@@ -32,7 +32,7 @@ function formToObject(formSelector){
 }
 
 
-function get(path, params = {}){
+export function get(path, params = {}){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     const paramUrl = new URLSearchParams(params)
@@ -42,7 +42,7 @@ function get(path, params = {}){
     }).then(response => response.json())
 }
 
-function post(path,body){
+export function post(path,body){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     return fetch(path,{
@@ -55,7 +55,7 @@ function post(path,body){
         });
 }
 
-function put(path,body){
+export function put(path,body){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     return fetch(path,{
@@ -65,7 +65,7 @@ function put(path,body){
     }).then(response => response.json())
 }
 
-function deleteMapping(path){
+export function deleteMapping(path){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type","application/json");
     return fetch(path,{
@@ -76,7 +76,7 @@ function deleteMapping(path){
 
 
 const _$=$
-function showPagination({
+export function showPagination({
                     totalItems,
                     limit,
                     currentPage,
@@ -91,7 +91,7 @@ function showPagination({
             nextText: "&raquo;"
     })
 }
-function formatDate(date){
+export function formatDate(date){
     return date.toLocaleDateString('vi-VN', {
         day: '2-digit',
         month: '2-digit',
