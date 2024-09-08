@@ -3,27 +3,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GradeDto = void 0;
 class GradeDto {
     constructor(id, code, name) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
+        this._id = id;
+        this._code = code;
+        this._name = name;
     }
-    getId() {
-        return this.id;
+    get id() {
+        return this._id;
     }
-    setId(id) {
-        this.id = id;
+    set id(value) {
+        this._id = value;
     }
-    getCode() {
-        return this.code;
+    get code() {
+        return this._code;
     }
-    setCode(code) {
-        this.code = code;
+    set code(value) {
+        this._code = value;
     }
-    getName() {
-        return this.name;
+    get name() {
+        return this._name;
     }
-    setName(name) {
-        this.name = name;
+    set name(value) {
+        this._name = value;
     }
 }
 exports.GradeDto = GradeDto;

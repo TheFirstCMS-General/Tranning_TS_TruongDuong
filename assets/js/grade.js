@@ -9,11 +9,11 @@ function renderGrade(){
         tableData.innerHTML = ''; 
         for (const grade of data) {
           let row =`<tr>
-          <td>${grade.id}</td>
-          <td>${grade.code}</td>
-          <td>${grade.name}</td>
+          <td>${grade._id}</td>
+          <td>${grade._code}</td>
+          <td>${grade._name}</td>
           <td>
-                <a href="../pages/student/student_class.html?grade_id=${grade.id}&grade_name=${grade.name}" type="button" class="btn btn-primary">Xem</a>
+                <a href="../pages/student/student_class.html?grade_id=${grade._id}&grade_name=${grade._name}" type="button" class="btn btn-primary">Xem</a>
           </td>
         </tr>`
           tableData.innerHTML += row;

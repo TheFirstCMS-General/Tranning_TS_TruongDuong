@@ -7,4 +7,4 @@ var Status;
     Status["Licensed"] = "C\u00F3 ph\u00E9p";
     Status["Unlicensed"] = "Kh\u00F4ng ph\u00E9p";
     Status["Belate"] = "\u0110i mu\u1ED9n";
-})(Status || (exports.Status = Status = {}));
+})(Status = exports.Status || (exports.Status = {}));
