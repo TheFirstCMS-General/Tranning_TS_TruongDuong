@@ -4,27 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IStudentServiceImpl = void 0;
-const studentDto_1 = require("../../dto/studentDto");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const pathJson = path_1.default.join(__dirname, "../../../dao/student.json");
 class IStudentServiceImpl {
-    constructor() {
-        this.IGradeService = new IGradeServiceImpl_1.default();
-    }
     showAll(gradeId) {
         const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
-        const jsonData = JSON.parse(fileData);
-        const listStudent = [];
-        const gradeDto = this.IGradeService.findById(gradeId);
-        for (const item of jsonData) {
-            if (item.grade_id === gradeId && gradeDto != null) {
-                const student = new studentDto_1.StudentDto(item.id, item.code, item.name, item.dob, item.gender, item.address, item.phone, item.grade_id, gradeDto.name);
-                listStudent.push(student);
-            }
-        }
-        return listStudent;
+        const students = JSON.parse(fileData);
+        const studentFilter = students.filter(student => student.grade_id === gradeId);
+        return studentFilter;
     }
     update(id, updatedStudent) {
         const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
