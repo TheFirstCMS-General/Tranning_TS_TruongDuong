@@ -1,5 +1,6 @@
 import IGradeServiceImpl from "../service/impl/IGradeServiceImpl";
 import IStudentServiceImpl from "../service/impl/IStudentServiceImpl";
+import {IAttendanceCheckServiceImpl} from "../service/impl/IAttendanceCheckServiceImpl";
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 
 const gradeService = new IGradeServiceImpl()
+const iAttendanceCheck = new IAttendanceCheckServiceImpl();
 
 app.get('/grade/showAll', (req:any, res:any) => {
     try {
@@ -86,8 +88,31 @@ app.post('/createStudent', (req:any, res:any) => {
     }
 })
 
-//
+// attendanceCheck
 
+app.get('/attendanceCheck/showAll', (req: any, res: any) => {
+    try {
+        const attendanceCheckDtos = iAttendanceCheck.showAll();
+        res.json(attendanceCheckDtos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
+app.post('/created/attendance/:gradeId', (req:any, res:any) => {
+    try {
+        const attend = req.body;
+        const gradeId = parseInt(req.params.gradeId, 10);
+        const createdAttend = iAttendanceCheck.create(gradeId,attend);
+        if (createdAttend){
+            res.status(200).json({ message: 'Thêm điểm danh thành công!', student: createdAttend });
+        } else {
+            res.status(404).send('Thêm điểm danh thất bại.');
+        }
+    }catch (error) {
+        console.error('Error creating student:', error);
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
