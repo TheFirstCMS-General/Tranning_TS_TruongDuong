@@ -25,6 +25,21 @@ class IGradeServiceImpl {
             throw err;
         }
     }
+    findById(id) {
+        try {
+            const data = fs_1.default.readFileSync(pathJson, 'utf8');
+            const listGradeEntity = JSON.parse(data);
+            const gradeEntity = listGradeEntity.find((grade) => grade.id === id);
+            if (gradeEntity != undefined) {
+                return new gradeDto_1.GradeDto(gradeEntity.id, gradeEntity.code, gradeEntity.name);
+            }
+            return null;
+        }
+        catch (err) {
+            console.error('Error reading or parsing file:', err);
+            throw err;
+        }
+    }
 }
 exports.IGradeServiceImpl = IGradeServiceImpl;
 exports.default = IGradeServiceImpl;
