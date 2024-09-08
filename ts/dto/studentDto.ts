@@ -1,17 +1,15 @@
-import {Gender} from "../model/enum/gender_enum";
-
 export class StudentDto {
     private _id: number;
     private _code: string;
     private _name: string;
     private _dob: string;
-    private _gender: Gender;
+    private _gender: string;
     private _address: string;
     private _phone: string;
     private _grade_id: number;
     private _grade_name: string;
 
-    constructor(id: number, code: string, name: string, dob: string, gender: Gender, address: string, phone: string, grade_id: number, grade_name: string) {
+    constructor(id: number, code: string, name: string, dob: string, gender: string, address: string, phone: string, grade_id: number, grade_name: string) {
         this._id = id;
         this._code = code;
         this._name = name;
@@ -55,11 +53,11 @@ export class StudentDto {
         this._dob = value;
     }
 
-    get gender(): Gender {
+    get gender(): string {
         return this._gender;
     }
 
-    set gender(value: Gender) {
+    set gender(value: string) {
         this._gender = value;
     }
 

@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 
 
 const gradeService = new IGradeServiceImpl()
-const studentService = new IStudentServiceImpl();
 
 app.get('/grade/showAll', (req:any, res:any) => {
     try {
@@ -29,21 +28,10 @@ app.get('/grade/showAll', (req:any, res:any) => {
     }
 });
 
-
-app.get('/grade/findById/:gradeId', (req: any, res: any) => {
+app.get('/grade/:id', (req: any, res: any) => {
     try {
-        const gradeId = parseInt(req.params.gradeId, 10);
-        const grade = gradeService.findById(gradeId);
-
-        res.json(grade);
-    } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
-    }
-});
-
-app.get('/student/showAll/:gradeId', (req: any, res: any) => {
-    try {
-        const gradeId = parseInt(req.params.gradeId, 10);
+        const gradeId = parseInt(req.params.id, 10);
+        const studentService = new IStudentServiceImpl();
         const students = studentService.showAll(gradeId);
 
         res.json(students);
@@ -56,6 +44,7 @@ app.put('/updateStudent/:id', (req: any, res: any) => {
     try {
         const updatedStudent = req.body;
         const id = parseInt(req.params.id, 10);
+        const studentService = new IStudentServiceImpl();
         const updated = studentService.update(id, updatedStudent);
         if (updated) {
             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
@@ -85,6 +74,7 @@ app.delete('/deleteStudent/:id', (req:any, res:any) => {
 app.post('/createStudent', (req:any, res:any) => {
     try {
         const student = req.body;
+        const studentService = new IStudentServiceImpl();
         const createdStudent = studentService.addStudent(student);
         if (createdStudent){
             res.status(200).json({ message: 'Thêm học sinh thành công!', student: createdStudent });

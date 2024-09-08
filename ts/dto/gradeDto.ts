@@ -1,37 +1,36 @@
 export class GradeDto {
-    private _id: number;
-    private _code: string;
-    private _name: string;
+    private id: number;
+    private code: string;
+    private name: string;
 
 
     constructor(id: number, code: string, name: string) {
-        this._id = id;
-        this._code = code;
-        this._name = name
+        this.id = id;
+        this.code = code;
+        this.name = name
     }
 
-
-    get id(): number {
-        return this._id;
+    public getId(): number {
+        return this.id;
     }
 
-    set id(value: number) {
-        this._id = value;
+    public setId(id: number): void {
+        this.id = id;
     }
 
-    get code(): string {
-        return this._code;
+    public getCode(): string {
+        return this.code;
     }
 
-    set code(value: string) {
-        this._code = value;
+    public setCode(code: string): void {
+        this.code = code;
     }
 
-    get name(): string {
-        return this._name;
+    public getName(): string {
+        return this.name;
     }
 
-    set name(value: string) {
-        this._name = value;
+    public setName(name: string): void {
+        this.name = name;
     }
 }
