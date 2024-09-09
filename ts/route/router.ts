@@ -44,6 +44,15 @@ app.get('/grade/findById/:gradeId', (req: any, res: any) => {
     }
 });
 
+app.get('/student/findStudentDonHaveGrade', (req: any, res: any) => {
+    try {
+        const students = studentService.findStudentDonHaveGrade();
+
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
 app.get('/student/showAll/:gradeId', (req: any, res: any) => {
     try {
         const gradeId = parseInt(req.params.gradeId, 10);

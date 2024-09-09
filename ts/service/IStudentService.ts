@@ -5,4 +5,5 @@ export interface IStudentService {
     update(id: number, updatedStudent: StudentDto): StudentDto;
     delete(id: number): StudentDto;
     addStudent(studentDto: StudentDto): StudentDto;
+    findStudentDonHaveGrade(): Array<StudentDto>;
 }

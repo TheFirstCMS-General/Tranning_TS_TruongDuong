@@ -17,11 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 const gradeService = new IGradeServiceImpl_1.default();
-
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
-
 const studentService = new IStudentServiceImpl_1.default();
-
 app.get('/grade/showAll', (req, res) => {
     try {
         const grades = gradeService.showAll();
@@ -40,6 +37,15 @@ app.get('/grade/findById/:gradeId', (req, res) => {
     }
     catch (error) {
         res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.get('/student/findStudentDonHaveGrade', (req, res) => {
+    try {
+        const students = studentService.findStudentDonHaveGrade();
+        res.json(students);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
     }
 });
 app.get('/student/showAll/:gradeId', (req, res) => {

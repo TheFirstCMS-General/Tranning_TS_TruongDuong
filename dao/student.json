@@ -106,5 +106,59 @@
     "address": "ninh Binh",
     "phone": "0339205335",
     "grade_id": 1
+  },
+  {
+    "id": 15,
+    "name": "DXT",
+    "dob": "2005-05-12",
+    "gender": "MALE",
+    "address": "Ninh Binh",
+    "phone": "0339205335",
+    "grade_id": 1
+  },
+  {
+    "id": 16,
+    "name": "Alex",
+    "dob": "2005-07-23",
+    "gender": "FEMALE",
+    "address": "Hanoi",
+    "phone": "0123456789",
+    "grade_id": ""
+  },
+  {
+    "id": 17,
+    "name": "Jordan",
+    "dob": "2005-09-15",
+    "gender": "MALE",
+    "address": "Ho Chi Minh City",
+    "phone": "0987654321",
+    "grade_id": ""
+  },
+  {
+    "id": 18,
+    "name": "Taylor",
+    "dob": "2005-11-01",
+    "gender": "NON_BINARY",
+    "address": "Da Nang",
+    "phone": "0234567890",
+    "grade_id": ""
+  },
+  {
+    "id": 19,
+    "name": "Morgan",
+    "dob": "2005-03-30",
+    "gender": "FEMALE",
+    "address": "Hue",
+    "phone": "0345678901",
+    "grade_id": ""
+  },
+  {
+    "id": 20,
+    "name": "Sam",
+    "dob": "2005-06-14",
+    "gender": "MALE",
+    "address": "Can Tho",
+    "phone": "0456789012",
+    "grade_id": ""
   }
 ]

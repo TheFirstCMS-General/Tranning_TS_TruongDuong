@@ -4,9 +4,9 @@ export class GradeEntity {
     private _id: number;
     private _code: string;
     private _name: string;
-    private _students: StudentEntity[]=[];
+    private _students: number[] = [];
 
-    constructor(id: number, code: string, name: string, students: StudentEntity[] = []) {
+    constructor(id: number, code: string, name: string, students: number[] = []) {
         this._id = id;
         this._code = code;
         this._name = name;
@@ -38,11 +38,11 @@ export class GradeEntity {
         this._name = value;
     }
 
-    get students(): StudentEntity[] {
+    get students(): number[] {
         return this._students;
     }
 
-    set students(value: StudentEntity[]) {
+    set students(value: number[]) {
         this._students = value;
     }
 }

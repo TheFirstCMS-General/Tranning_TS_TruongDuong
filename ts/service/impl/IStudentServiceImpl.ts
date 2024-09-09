@@ -65,7 +65,22 @@ export class IStudentServiceImpl implements IStudentService {
         fs.writeFileSync(pathJson, JSON.stringify(students, null, 2));
         return studentDto;
     }
-}
 
+    findStudentDonHaveGrade(): Array<StudentDto> {
+        const fileData = fs.readFileSync(pathJson, 'utf-8');
+        const jsonData = JSON.parse(fileData);
+        const listStudent: Array<StudentDto> = [];
+
+        for (const item of jsonData) {
+            if (item.grade_id == "") {
+                const student = new StudentDto(item.id, item.code, item.name,item.dob,
+                    item.gender,item.address, item.phone,item.grade_id,"Chưa có lớp");
+                listStudent.push(student);
+            }
+        }
+
+        return listStudent;
+    }
+}
 
 export default IStudentServiceImpl;

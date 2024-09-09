@@ -65,6 +65,18 @@ class IStudentServiceImpl {
         fs_1.default.writeFileSync(pathJson, JSON.stringify(students, null, 2));
         return studentDto;
     }
+    findStudentDonHaveGrade() {
+        const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+        const jsonData = JSON.parse(fileData);
+        const listStudent = [];
+        for (const item of jsonData) {
+            if (item.grade_id == "") {
+                const student = new studentDto_1.StudentDto(item.id, item.code, item.name, item.dob, item.gender, item.address, item.phone, item.grade_id, "Chưa có lớp");
+                listStudent.push(student);
+            }
+        }
+        return listStudent;
+    }
 }
 exports.IStudentServiceImpl = IStudentServiceImpl;
 exports.default = IStudentServiceImpl;
