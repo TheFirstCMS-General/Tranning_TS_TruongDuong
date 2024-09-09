@@ -6,6 +6,7 @@ import {GradeDto} from "../../dto/gradeDto";
 import {IGradeService} from "../IGradeService";
 import IGradeServiceImpl from "./IGradeServiceImpl";
 import {GradeEntity} from "../../model/gradeEntity";
+import {StudentEntity} from "../../model/studentEntity";
 
 const pathJson = path.join(__dirname, "../../../dao/student.json");
 
@@ -20,7 +21,7 @@ export class IStudentServiceImpl implements IStudentService {
 
         for (const item of jsonData) {
             if (item.grade_id === gradeId && gradeDto != null) {
-                const student = new StudentDto(item.id, item.code, item.name,item.dob,
+                const student = new StudentDto(item.id, item.name,item.dob,
                     item.gender,item.address, item.phone,item.grade_id,gradeDto.name);
                 listStudent.push(student);
             }
@@ -73,13 +74,36 @@ export class IStudentServiceImpl implements IStudentService {
 
         for (const item of jsonData) {
             if (item.grade_id == "") {
-                const student = new StudentDto(item.id, item.code, item.name,item.dob,
+                const student = new StudentDto(item.id, item.name,item.dob,
                     item.gender,item.address, item.phone,item.grade_id,"Chưa có lớp");
                 listStudent.push(student);
             }
         }
 
         return listStudent;
+    }
+
+    findById(studentId: number): StudentDto | null {
+        try {
+            const data = fs.readFileSync(pathJson, 'utf8');
+            const listStudentEntity: Array<StudentEntity> = JSON.parse(data);
+            const studentEntity = listStudentEntity.find((student: StudentEntity) => student.id === studentId);
+
+            if (studentEntity != undefined) {
+
+                const gradeDto = this.IGradeService.findById(studentEntity.grade_id);
+                // const grade = studentEntity.grade || {};
+                if (gradeDto != null){
+                    return new StudentDto(studentEntity.id, studentEntity.name, studentEntity.dob, studentEntity.gender, studentEntity.address, studentEntity.phone, gradeDto.id, gradeDto.name);
+                }
+            }
+
+            return null;
+
+        } catch (err) {
+            console.error('Error reading or parsing file:', err);
+            throw err;
+        }
     }
 }
 

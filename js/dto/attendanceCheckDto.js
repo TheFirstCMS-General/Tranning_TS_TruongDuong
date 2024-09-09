@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceCheckDto = void 0;
 class AttendanceCheckDto {
-    constructor(id, createdAt, section, gradeId) {
+    constructor(id, createdAt, section, gradeId, gradeName) {
         this._id = id;
         this._createdAt = createdAt;
         this._section = section;
         this._gradeId = gradeId;
+        this._gradeName = gradeName;
     }
     get id() {
         return this._id;
@@ -31,6 +32,12 @@ class AttendanceCheckDto {
     }
     set gradeId(value) {
         this._gradeId = value;
+    }
+    get gradeName() {
+        return this._gradeName;
+    }
+    set gradeName(value) {
+        this._gradeName = value;
     }
 }
 exports.AttendanceCheckDto = AttendanceCheckDto;

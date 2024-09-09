@@ -20,7 +20,7 @@ class IStudentServiceImpl {
         const gradeDto = this.IGradeService.findById(gradeId);
         for (const item of jsonData) {
             if (item.grade_id === gradeId && gradeDto != null) {
-                const student = new studentDto_1.StudentDto(item.id, item.code, item.name, item.dob, item.gender, item.address, item.phone, item.grade_id, gradeDto.name);
+                const student = new studentDto_1.StudentDto(item.id, item.name, item.dob, item.gender, item.address, item.phone, item.grade_id, gradeDto.name);
                 listStudent.push(student);
             }
         }
@@ -65,6 +65,7 @@ class IStudentServiceImpl {
         fs_1.default.writeFileSync(pathJson, JSON.stringify(students, null, 2));
         return studentDto;
     }
+<<<<<<< HEAD
     findStudentDonHaveGrade() {
         const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
         const jsonData = JSON.parse(fileData);
@@ -76,6 +77,24 @@ class IStudentServiceImpl {
             }
         }
         return listStudent;
+=======
+    findById(studentId) {
+        try {
+            const data = fs_1.default.readFileSync(pathJson, 'utf8');
+            const listStudentEntity = JSON.parse(data);
+            const studentEntity = listStudentEntity.find((student) => student.id === studentId);
+            if (studentEntity != undefined) {
+                // const gradeDto = this.IGradeService.findById(studentEntity.grade_id);
+                const grade = studentEntity.grade || {};
+                return new studentDto_1.StudentDto(studentEntity.id, studentEntity.name, studentEntity.dob, studentEntity.gender, studentEntity.address, studentEntity.phone, grade.id, grade.name);
+            }
+            return null;
+        }
+        catch (err) {
+            console.error('Error reading or parsing file:', err);
+            throw err;
+        }
+>>>>>>> 75511c177be150b2e76b934d8c726a20211e6534
     }
 }
 exports.IStudentServiceImpl = IStudentServiceImpl;

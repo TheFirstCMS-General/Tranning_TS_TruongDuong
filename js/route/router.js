@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const IGradeServiceImpl_1 = __importDefault(require("../service/impl/IGradeServiceImpl"));
 const IStudentServiceImpl_1 = __importDefault(require("../service/impl/IStudentServiceImpl"));
 const IAttendanceCheckServiceImpl_1 = require("../service/impl/IAttendanceCheckServiceImpl");
+const IAttendanceCheck_StudentServiceImpl_1 = require("../service/impl/IAttendanceCheck_StudentServiceImpl");
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -19,6 +20,10 @@ app.use(bodyParser.json());
 const gradeService = new IGradeServiceImpl_1.default();
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
 const studentService = new IStudentServiceImpl_1.default();
+<<<<<<< HEAD
+=======
+const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
+>>>>>>> 75511c177be150b2e76b934d8c726a20211e6534
 app.get('/grade/showAll', (req, res) => {
     try {
         const grades = gradeService.showAll();
@@ -106,6 +111,16 @@ app.post('/createStudent', (req, res) => {
         console.error('Error creating student:', error);
     }
 });
+app.get('/student/findById/:studentId', (req, res) => {
+    try {
+        const studentId = parseInt(req.params.studentId, 10);
+        const student = studentService.findById(studentId);
+        res.json(student);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
 // attendanceCheck
 app.get('/attendanceCheck/showAll', (req, res) => {
     try {
@@ -131,6 +146,17 @@ app.post('/created/attendance/:gradeId', (req, res) => {
     }
     catch (error) {
         console.error('Error creating student:', error);
+    }
+});
+//IAttendanceCheck_Student
+app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req, res) => {
+    try {
+        const attendCheckId = parseInt(req.params.attendaceCheckId, 10);
+        const attendanceCheckStudentDtos = iAttendanceCheck_Student.showAll(attendCheckId);
+        res.json(attendanceCheckStudentDtos);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
     }
 });
 app.listen(PORT, () => {

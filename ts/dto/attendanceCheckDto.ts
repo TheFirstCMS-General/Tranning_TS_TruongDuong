@@ -5,12 +5,14 @@ export class AttendanceCheckDto {
     private _createdAt: Date;
     private _section: string;
     private _gradeId: number;
+    private _gradeName: string;
 
-    constructor(id: number, createdAt: Date, section: string, gradeId: number) {
+    constructor(id: number, createdAt: Date, section: string, gradeId: number,gradeName: string) {
         this._id = id;
         this._createdAt = createdAt;
         this._section = section;
         this._gradeId = gradeId;
+        this._gradeName = gradeName;
     }
 
 
@@ -44,5 +46,13 @@ export class AttendanceCheckDto {
 
     set gradeId(value: number) {
         this._gradeId = value;
+    }
+
+    get gradeName(): string {
+        return this._gradeName;
+    }
+
+    set gradeName(value: string) {
+        this._gradeName = value;
     }
 }

@@ -20,7 +20,6 @@ export class StudentEntity {
         this._grade_id = grade_id;
     }
 
-
     get id(): number {
         return this._id;
     }

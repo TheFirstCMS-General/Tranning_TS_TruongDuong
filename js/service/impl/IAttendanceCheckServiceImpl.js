@@ -7,16 +7,23 @@ exports.IAttendanceCheckServiceImpl = void 0;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const attendanceCheckDto_1 = require("../../dto/attendanceCheckDto");
+const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck.json");
 class IAttendanceCheckServiceImpl {
+    constructor() {
+        this.IGradeService = new IGradeServiceImpl_1.default();
+    }
     showAll() {
         try {
             const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
             const jsonData = JSON.parse(fileData);
             const listAttend = [];
             for (const item of jsonData) {
-                const attend = new attendanceCheckDto_1.AttendanceCheckDto(item.id, new Date(item.createdAt), item.section, item.gradeId);
-                listAttend.push(attend);
+                const gradeDto = this.IGradeService.findById(item.gradeId);
+                if (gradeDto != null) {
+                    const attend = new attendanceCheckDto_1.AttendanceCheckDto(item.id, new Date(item.createdAt), item.section, item.gradeId, gradeDto.name);
+                    listAttend.push(attend);
+                }
             }
             return listAttend;
         }
@@ -31,9 +38,9 @@ class IAttendanceCheckServiceImpl {
         const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data) => data.id)) + 1 : 1;
         attendanceCheckDto.id = newId;
         attendanceCheckDto.gradeId = gradeId;
-        const idGrade = jsonData.find((grade) => grade.id === gradeId);
+        const idGrade = jsonData.find((grade) => grade.gradeId === gradeId);
         if (!idGrade) {
-            console.log("Lỗi");
+            console.log("Lỗi: Không tìm thấy gradeId");
             return null;
         }
         jsonData.push(attendanceCheckDto);

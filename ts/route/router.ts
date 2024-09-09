@@ -1,6 +1,7 @@
 import IGradeServiceImpl from "../service/impl/IGradeServiceImpl";
 import IStudentServiceImpl from "../service/impl/IStudentServiceImpl";
 import {IAttendanceCheckServiceImpl} from "../service/impl/IAttendanceCheckServiceImpl";
+import {IAttendanceCheck_StudentServiceImpl} from "../service/impl/IAttendanceCheck_StudentServiceImpl";
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -20,7 +21,7 @@ app.use(bodyParser.json());
 const gradeService = new IGradeServiceImpl()
 const iAttendanceCheck = new IAttendanceCheckServiceImpl();
 const studentService = new IStudentServiceImpl();
-
+const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl()
 
 app.get('/grade/showAll', (req:any, res:any) => {
     try {
@@ -108,6 +109,16 @@ app.post('/createStudent', (req:any, res:any) => {
     }
 })
 
+app.get('/student/findById/:studentId', (req: any, res: any) => {
+    try {
+        const studentId = parseInt(req.params.studentId, 10);
+        const student = studentService.findById(studentId);
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
 // attendanceCheck
 
 app.get('/attendanceCheck/showAll', (req: any, res: any) => {
@@ -133,6 +144,20 @@ app.post('/created/attendance/:gradeId', (req:any, res:any) => {
         console.error('Error creating student:', error);
     }
 })
+
+
+//IAttendanceCheck_Student
+
+app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req: any, res: any) => {
+    try {
+        const attendCheckId = parseInt(req.params.attendaceCheckId, 10);
+        const attendanceCheckStudentDtos = iAttendanceCheck_Student.showAll(attendCheckId);
+
+        res.json(attendanceCheckStudentDtos);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

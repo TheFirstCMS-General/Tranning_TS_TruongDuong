@@ -35,7 +35,6 @@ export class IGradeServiceImpl implements IGradeService {
             if (gradeEntity != undefined) {
                 return new GradeDto(gradeEntity.id,gradeEntity.code,gradeEntity.name);
             }
-
             return null;
 
         } catch (err) {

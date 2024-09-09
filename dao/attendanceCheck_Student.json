@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "studentId": 1,
+    "attendanceCheckId": 1,
+    "status": "Có mặt"
+  },
+  {
+    "id": 2,
+    "studentId": 2,
+    "attendanceCheckId": 1,
+    "status": "Absent"
+  }
+]

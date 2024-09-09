@@ -1,19 +1,20 @@
-import {Status} from "../model/enum/status_enum";
+import {StudentDto} from "./studentDto";
 
 export class AttendanceCheck_StudentDto{
     private _id: number;
-    private _studentId: number;
     private _attendanceCheckId: number;
     private _status: string;
+    private _description: string;
+    private _stundentDto:StudentDto;
 
 
-    constructor(id: number, studentId: number, attendanceCheckId: number, status: string) {
+    constructor(id: number, attendanceCheckId: number, status: string, description: string, stundentDto: StudentDto) {
         this._id = id;
-        this._studentId = studentId;
         this._attendanceCheckId = attendanceCheckId;
         this._status = status;
+        this._description = description;
+        this._stundentDto = stundentDto;
     }
-
 
     get id(): number {
         return this._id;
@@ -21,14 +22,6 @@ export class AttendanceCheck_StudentDto{
 
     set id(value: number) {
         this._id = value;
-    }
-
-    get studentId(): number {
-        return this._studentId;
-    }
-
-    set studentId(value: number) {
-        this._studentId = value;
     }
 
     get attendanceCheckId(): number {
@@ -45,5 +38,21 @@ export class AttendanceCheck_StudentDto{
 
     set status(value: string) {
         this._status = value;
+    }
+
+    get description(): string {
+        return this._description;
+    }
+
+    set description(value: string) {
+        this._description = value;
+    }
+
+    get stundentDto(): StudentDto {
+        return this._stundentDto;
+    }
+
+    set stundentDto(value: StudentDto) {
+        this._stundentDto = value;
     }
 }
