@@ -1,47 +1,48 @@
 import { StudentEntity } from "./studentEntity";
 import { AttendanceCheckEntity } from "./attendanceCheckEntity";
 export class AttendanceCheckStudentEntity {
-    private id: number;
-    private student: StudentEntity;
-    private attendanceCheck: AttendanceCheckEntity;
-    private status: string;
+    private _id: number;
+    private _attendanceCheck_Id: number;
+    private _status: string;
+    private _studentId: number;
 
-    constructor(id: number, student: StudentEntity, attendanceCheck: AttendanceCheckEntity, status: string) {
-        this.id = id;
-        this.student = student;
-        this.attendanceCheck = attendanceCheck;
-        this.status = status;
-    }
-    public getId(): number {
-        return this.id;
+
+    constructor(id: number, attendanceCheck_Id: number, status: string, studentId: number) {
+        this._id = id;
+        this._attendanceCheck_Id = attendanceCheck_Id;
+        this._status = status;
+        this._studentId = studentId;
     }
 
-    public getStudent(): StudentEntity {
-        return this.student;
+    get id(): number {
+        return this._id;
     }
 
-    public getAttendanceCheck(): AttendanceCheckEntity {
-        return this.attendanceCheck;
+    set id(value: number) {
+        this._id = value;
     }
 
-    public getStatus(): string {
-        return this.status;
+    get attendanceCheck_Id(): number {
+        return this._attendanceCheck_Id;
     }
 
-
-    public setId(value: number) {
-        this.id = value;
+    set attendanceCheck_Id(value: number) {
+        this._attendanceCheck_Id = value;
     }
 
-    public setStudent(value: StudentEntity) {
-        this.student = value;
+    get status(): string {
+        return this._status;
     }
 
-    public setAttendanceCheck(value: AttendanceCheckEntity) {
-        this.attendanceCheck = value;
+    set status(value: string) {
+        this._status = value;
     }
 
-    public setStatus(value: string) {
-        this.status = value;
+    get studentId(): number {
+        return this._studentId;
+    }
+
+    set studentId(value: number) {
+        this._studentId = value;
     }
 }

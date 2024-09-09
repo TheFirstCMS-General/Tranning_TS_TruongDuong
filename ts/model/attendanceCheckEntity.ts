@@ -2,16 +2,18 @@ import { GradeEntity } from "./gradeEntity";
 import {Section} from "./enum/section";
 export class AttendanceCheckEntity{
     private _id: number;
-    private _grade: GradeEntity;
+    private _grade_Id: number;
     private _createdAt: Date;
     private _section: Section;
 
-    constructor(id: number, grade: GradeEntity, createdAt: Date, section: Section) {
+
+    constructor(id: number, grade_Id: number, createdAt: Date, section: Section) {
         this._id = id;
-        this._grade = grade;
+        this._grade_Id = grade_Id;
         this._createdAt = createdAt;
         this._section = section;
     }
+
 
     get id(): number {
         return this._id;
@@ -21,12 +23,12 @@ export class AttendanceCheckEntity{
         this._id = value;
     }
 
-    get grade(): GradeEntity {
-        return this._grade;
+    get grade_Id(): number {
+        return this._grade_Id;
     }
 
-    set grade(value: GradeEntity) {
-        this._grade = value;
+    set grade_Id(value: number) {
+        this._grade_Id = value;
     }
 
     get createdAt(): Date {

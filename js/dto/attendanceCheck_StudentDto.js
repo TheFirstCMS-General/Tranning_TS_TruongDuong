@@ -2,23 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceCheck_StudentDto = void 0;
 class AttendanceCheck_StudentDto {
-    constructor(id, studentId, attendanceCheckId, status) {
+    constructor(id, attendanceCheckId, status, description, stundentDto) {
         this._id = id;
-        this._studentId = studentId;
         this._attendanceCheckId = attendanceCheckId;
         this._status = status;
+        this._description = description;
+        this._stundentDto = stundentDto;
     }
     get id() {
         return this._id;
     }
     set id(value) {
         this._id = value;
-    }
-    get studentId() {
-        return this._studentId;
-    }
-    set studentId(value) {
-        this._studentId = value;
     }
     get attendanceCheckId() {
         return this._attendanceCheckId;
@@ -31,6 +26,18 @@ class AttendanceCheck_StudentDto {
     }
     set status(value) {
         this._status = value;
+    }
+    get description() {
+        return this._description;
+    }
+    set description(value) {
+        this._description = value;
+    }
+    get stundentDto() {
+        return this._stundentDto;
+    }
+    set stundentDto(value) {
+        this._stundentDto = value;
     }
 }
 exports.AttendanceCheck_StudentDto = AttendanceCheck_StudentDto;

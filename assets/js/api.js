@@ -42,16 +42,24 @@ export function get(path, params = {}){
     }).then(response => response.json())
 }
 
-export function post(path,body){
+export function post(path, body) {
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type","application/json");
-    return fetch(path,{
+    myHeaders.append("Content-Type", "application/json");
+
+    return fetch(path, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: myHeaders,
-    }).then(response => response.json())
+            })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
         .catch(error => {
             console.error('Error:', error);
+            throw error;
         });
 }
 
@@ -91,10 +99,13 @@ export function showPagination({
             nextText: "&raquo;"
     })
 }
-export function formatDate(date){
-    return date.toLocaleDateString('vi-VN', {
+export function formatDateTime(date) {
+    return date.toLocaleString('vi-VN', {
         day: '2-digit',
         month: '2-digit',
-        year: 'numeric'
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
     });
 }
