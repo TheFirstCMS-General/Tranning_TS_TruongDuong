@@ -84,40 +84,34 @@
   </div>
   <section class="home-section">
     <div class="container-fluid">
-      <h1>Thêm học sinh</h1>
-      <form>
-        <div class="form-group">
-          <label for="fullname">Họ và tên</label>
-          <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Nhập họ và tên">
-        </div>
-        <div class="form-group">
-          <label for="birthdate">Ngày sinh</label>
-          <input type="date" class="form-control" id="dob" name="dob">
-        </div>
-        <div class="form-group">
-          <label for="gender">Giới tính</label>
-          <select class="form-control" id="gender" name="gender">
-            <option>Nam</option>
-            <option>Nữ</option>
-            <option>Khác</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="address">Địa chỉ</label>
-          <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ">
-        </div>
-        <div class="form-group">
-          <label for="phone">Số điện thoại</label>
-          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại">
-        </div>
-        <button type="submit" class="btn btn-primary">Thêm sinh viên</button>
-      </form>
+      <h1>Thêm học sinh vào <span class="title"></span> </h1>
+      <div class="col">
+          <button class="btn btn-primary createBtn">Thêm</button>
+          <button class="btn btn-success selectAllBtn">Chọn tất cả</button>
+          <button class="btn btn-success unSelectAllBtn">Bỏ chọn tất cả</button>
+      </div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên học sinh</th>
+          <th scope="col">Ngày sinh</th>
+          <th scope="col">Giới tính</th>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col" style="text-align: center">Thêm</th>
+        </tr>
+        </thead>
+        <tbody id="listTable">
+        </tbody>
+      </table>
     </div>
   </section>
  
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
   <script src="../../assets/js/sidebar.js"></script>
+  <script type="module" src="../../assets/js/create_student.js"></script>
 
 </body>
 </html>

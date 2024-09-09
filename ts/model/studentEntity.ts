@@ -1,81 +1,79 @@
 import { Gender } from './enum/gender_enum';
 import { GradeEntity } from './gradeEntity';
 export class StudentEntity {
-    private id: number;
-    private name: string;
-    private dob: Date;
-    private gender: Gender;
-    private address: string;
-    private phone: string;
-    private grade: GradeEntity;
-  
-    constructor(id: number, name: string, dob: Date, gender: Gender, address: string, phone: string,grade: GradeEntity) {
-      this.id = id;
-      this.name = name;
-      this.dob = dob;
-      this.gender = gender;
-      this.address = address;
-      this.phone = phone;
-      this.grade = grade;
+    private _id: number;
+    private _name: string;
+    private _dob: Date;
+    private _gender: Gender;
+    private _address: string;
+    private _phone: string;
+    private _grade_id: number;
+
+
+    constructor(id: number, name: string, dob: Date, gender: Gender, address: string, phone: string, grade_id: number) {
+        this._id = id;
+        this._name = name;
+        this._dob = dob;
+        this._gender = gender;
+        this._address = address;
+        this._phone = phone;
+        this._grade_id = grade_id;
     }
-    public getId(): number {
-      return this.id;
-  }
 
-  public setId(id: number): void {
-      this.id = id;
-  }
+    get id(): number {
+        return this._id;
+    }
 
-  public getName(): string {
-      return this.name;
-  }
+    set id(value: number) {
+        this._id = value;
+    }
 
-  public setName(name: string): void {
-      this.name = name;
-  }
+    get name(): string {
+        return this._name;
+    }
 
-  public getDob(): Date {
-      return this.dob;
-  }
+    set name(value: string) {
+        this._name = value;
+    }
 
+    get dob(): Date {
+        return this._dob;
+    }
 
-  public setDob(dob: Date): void {
-      this.dob = dob;
-  }
+    set dob(value: Date) {
+        this._dob = value;
+    }
 
+    get gender(): Gender {
+        return this._gender;
+    }
 
-  public getGender(): Gender {
-      return this.gender;
-  }
+    set gender(value: Gender) {
+        this._gender = value;
+    }
 
+    get address(): string {
+        return this._address;
+    }
 
-  public setGender(gender: Gender): void {
-      this.gender = gender;
-  }
+    set address(value: string) {
+        this._address = value;
+    }
 
-  public getAddress(): string {
-      return this.address;
-  }
+    get phone(): string {
+        return this._phone;
+    }
 
-  public setAddress(address: string): void {
-      this.address = address;
-  }
+    set phone(value: string) {
+        this._phone = value;
+    }
 
-  public getPhone(): string {
-      return this.phone;
-  }
+    get grade_id(): number {
+        return this._grade_id;
+    }
 
-  public setPhone(phone: string): void {
-      this.phone = phone;
-  }
-
-  public getgrade(): GradeEntity {
-    return this.grade;
-}
-
-
-public setgrade(grade: GradeEntity): void {
-    this.grade = grade;
-}
+    set grade_id(value: number) {
+        this._grade_id = value;
+    }
 }
   

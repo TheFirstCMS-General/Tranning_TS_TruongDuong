@@ -84,9 +84,8 @@
   </div>
   <section class="home-section">
    <div class="container-fluid">
-    <h1>Danh sách học sinh l</h1>
-    <a href="create_student.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Thêm học sinh</a>
-    <!-- <a href="create_student.html" style="margin-bottom: 20px;" type="button" class="btn btn-primary">Điểm danh</a> -->
+    <h1>Danh sách học sinh <span class="title"></span> </h1>
+    <a href="#" style="margin-bottom: 20px;" type="button" class="btn btn-primary redirectCreateStudent">Thêm học sinh vào lớp</a>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -99,43 +98,7 @@
             <th scope="col">Chức năng</th>
           </tr>
         </thead>
-        <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Nguyễn Văn A</td>
-              <td>01/01/2000</td>
-              <td>Nam</td>
-              <td>Hà Nội</td>
-              <td>0123456789</td>
-              <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Trần Thị B</td>
-              <td>15/05/2001</td>
-              <td>Nữ</td>
-              <td>TP.HCM</td>
-              <td>0987654321</td>
-              <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Phạm Văn C</td>
-              <td>20/10/2002</td>
-              <td>Nam</td>
-              <td>Đà Nẵng</td>
-              <td>0912345678</td>
-              <td>
-                <a href="update_student.html" type="button" class="btn btn-secondary">Cập nhật</a>
-                <button type="button" class="btn btn-danger">Xóa</button>
-              </td>
-            </tr>
+        <tbody id="listTable">
           </tbody>
       </table>
    </div>
@@ -143,7 +106,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
   <script src="../../assets/js/sidebar.js"></script>
-  <script src="../../assets/js/grade.js"></script>
+  <script type="module" src="../../assets/js/student_grade.js"></script>
 
 </body>
 </html>

@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceCheckEntity = void 0;
 class AttendanceCheckEntity {
-    constructor(id, grade, createdAt, section) {
+    constructor(id, grade_Id, createdAt, section) {
         this._id = id;
-        this._grade = grade;
+        this._grade_Id = grade_Id;
         this._createdAt = createdAt;
         this._section = section;
     }
@@ -14,11 +14,11 @@ class AttendanceCheckEntity {
     set id(value) {
         this._id = value;
     }
-    get grade() {
-        return this._grade;
+    get grade_Id() {
+        return this._grade_Id;
     }
-    set grade(value) {
-        this._grade = value;
+    set grade_Id(value) {
+        this._grade_Id = value;
     }
     get createdAt() {
         return this._createdAt;

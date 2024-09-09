@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentDto = void 0;
 class StudentDto {
-    constructor(id, code, name, dob, gender, address, phone, grade_id, grade_name) {
+    constructor(id, name, dob, gender, address, phone, grade_id, grade_name) {
         this._id = id;
-        this._code = code;
         this._name = name;
         this._dob = dob;
         this._gender = gender;
@@ -18,12 +17,6 @@ class StudentDto {
     }
     set id(value) {
         this._id = value;
-    }
-    get code() {
-        return this._code;
-    }
-    set code(value) {
-        this._code = value;
     }
     get name() {
         return this._name;

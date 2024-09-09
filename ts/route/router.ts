@@ -1,5 +1,7 @@
 import IGradeServiceImpl from "../service/impl/IGradeServiceImpl";
 import IStudentServiceImpl from "../service/impl/IStudentServiceImpl";
+import {IAttendanceCheckServiceImpl} from "../service/impl/IAttendanceCheckServiceImpl";
+import {IAttendanceCheck_StudentServiceImpl} from "../service/impl/IAttendanceCheck_StudentServiceImpl";
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -17,6 +19,9 @@ app.use(bodyParser.json());
 
 
 const gradeService = new IGradeServiceImpl()
+const iAttendanceCheck = new IAttendanceCheckServiceImpl();
+const studentService = new IStudentServiceImpl();
+const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl()
 
 app.get('/grade/showAll', (req:any, res:any) => {
     try {
@@ -28,10 +33,30 @@ app.get('/grade/showAll', (req:any, res:any) => {
     }
 });
 
-app.get('/grade/:id', (req: any, res: any) => {
+
+app.get('/grade/findById/:gradeId', (req: any, res: any) => {
     try {
-        const gradeId = parseInt(req.params.id, 10);
-        const studentService = new IStudentServiceImpl();
+        const gradeId = parseInt(req.params.gradeId, 10);
+        const grade = gradeService.findById(gradeId);
+
+        res.json(grade);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+
+app.get('/student/findStudentDonHaveGrade', (req: any, res: any) => {
+    try {
+        const students = studentService.findStudentDonHaveGrade();
+
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
+app.get('/student/showAll/:gradeId', (req: any, res: any) => {
+    try {
+        const gradeId = parseInt(req.params.gradeId, 10);
         const students = studentService.showAll(gradeId);
 
         res.json(students);
@@ -44,7 +69,6 @@ app.put('/updateStudent/:id', (req: any, res: any) => {
     try {
         const updatedStudent = req.body;
         const id = parseInt(req.params.id, 10);
-        const studentService = new IStudentServiceImpl();
         const updated = studentService.update(id, updatedStudent);
         if (updated) {
             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
@@ -74,7 +98,6 @@ app.delete('/deleteStudent/:id', (req:any, res:any) => {
 app.post('/createStudent', (req:any, res:any) => {
     try {
         const student = req.body;
-        const studentService = new IStudentServiceImpl();
         const createdStudent = studentService.addStudent(student);
         if (createdStudent){
             res.status(200).json({ message: 'Thêm học sinh thành công!', student: createdStudent });
@@ -86,8 +109,55 @@ app.post('/createStudent', (req:any, res:any) => {
     }
 })
 
-//
+app.get('/student/findById/:studentId', (req: any, res: any) => {
+    try {
+        const studentId = parseInt(req.params.studentId, 10);
+        const student = studentService.findById(studentId);
 
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+// attendanceCheck
+
+app.get('/attendanceCheck/showAll', (req: any, res: any) => {
+    try {
+        const attendanceCheckDtos = iAttendanceCheck.showAll();
+        res.json(attendanceCheckDtos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
+app.post('/created/attendance/:gradeId', (req:any, res:any) => {
+    try {
+        const attend = req.body;
+        const gradeId = parseInt(req.params.gradeId, 10);
+        const createdAttend = iAttendanceCheck.create(gradeId,attend);
+        if (createdAttend){
+            res.status(200).json({ message: 'Thêm điểm danh thành công!', student: createdAttend });
+        } else {
+            res.status(404).send('Thêm điểm danh thất bại.');
+        }
+    }catch (error) {
+        console.error('Error creating student:', error);
+    }
+})
+
+
+//IAttendanceCheck_Student
+
+app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req: any, res: any) => {
+    try {
+        const attendCheckId = parseInt(req.params.attendaceCheckId, 10);
+        const attendanceCheckStudentDtos = iAttendanceCheck_Student.showAll(attendCheckId);
+
+        res.json(attendanceCheckStudentDtos);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching students.' });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

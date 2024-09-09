@@ -2,35 +2,35 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceCheckStudentEntity = void 0;
 class AttendanceCheckStudentEntity {
-    constructor(id, student, attendanceCheck, status) {
-        this.id = id;
-        this.student = student;
-        this.attendanceCheck = attendanceCheck;
-        this.status = status;
+    constructor(id, attendanceCheck_Id, status, studentId) {
+        this._id = id;
+        this._attendanceCheck_Id = attendanceCheck_Id;
+        this._status = status;
+        this._studentId = studentId;
     }
-    getId() {
-        return this.id;
+    get id() {
+        return this._id;
     }
-    getStudent() {
-        return this.student;
+    set id(value) {
+        this._id = value;
     }
-    getAttendanceCheck() {
-        return this.attendanceCheck;
+    get attendanceCheck_Id() {
+        return this._attendanceCheck_Id;
     }
-    getStatus() {
-        return this.status;
+    set attendanceCheck_Id(value) {
+        this._attendanceCheck_Id = value;
     }
-    setId(value) {
-        this.id = value;
+    get status() {
+        return this._status;
     }
-    setStudent(value) {
-        this.student = value;
+    set status(value) {
+        this._status = value;
     }
-    setAttendanceCheck(value) {
-        this.attendanceCheck = value;
+    get studentId() {
+        return this._studentId;
     }
-    setStatus(value) {
-        this.status = value;
+    set studentId(value) {
+        this._studentId = value;
     }
 }
 exports.AttendanceCheckStudentEntity = AttendanceCheckStudentEntity;
