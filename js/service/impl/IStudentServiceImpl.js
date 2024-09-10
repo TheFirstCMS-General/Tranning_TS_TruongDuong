@@ -33,7 +33,6 @@ class IStudentServiceImpl {
         if (studentIndex !== -1) {
             students[studentIndex] = updatedStudent;
             fs_1.default.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
-            console.log("Cập nhật thành công");
             return students[studentIndex];
         }
         else {

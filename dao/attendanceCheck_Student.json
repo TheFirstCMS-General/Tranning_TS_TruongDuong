@@ -3,14 +3,14 @@
     "id": 1,
     "status": "Có mặt",
     "description": "",
-    "studentId": 2,
+    "studentId": 4,
     "attendanceCheckId": 1
   },
   {
     "id": 2,
     "status": "Có phép",
     "description": "",
-    "studentId": 3,
+    "studentId": 5,
     "attendanceCheckId": 1
   },
   {
@@ -26,33 +26,5 @@
     "description": "",
     "studentId": 19,
     "attendanceCheckId": 1
-  },
-  {
-    "id": 5,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 2,
-    "description": ""
-  },
-  {
-    "id": 6,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 3,
-    "description": ""
-  },
-  {
-    "id": 7,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 17,
-    "description": ""
-  },
-  {
-    "id": 8,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 19,
-    "description": ""
   }
 ]

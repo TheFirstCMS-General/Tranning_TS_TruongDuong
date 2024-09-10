@@ -1,3 +1,4 @@
+
 import {formatDateTime, get, put} from "../js/api.js";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -65,9 +66,9 @@ function updateAttendance() {
     });
     const confirms = confirm('Xác nhận lưu?');
     if (confirms) {
+        let attendanceId = parseInt(document.getElementById("attendId").value)
         put(`http://localhost:3000/attendanceCheck_Student/update/${attendanceId}`, updates)
             .then(response => {
-                console.log(response)
                 alert('Lưu thành công!');
             })
             .catch(error => {
@@ -83,6 +84,7 @@ function renderAttendanceCheckStastic(id) {
         .then(data => {
             const tableData = document.getElementById('listTable');
             tableData.innerHTML = '';
+            document.getElementById("attendId").value = data._attendanceCheckDto._id
             renderData(data._attendanceCheckDto._id)
 
 
@@ -99,7 +101,6 @@ function renderAttendanceCheckStastic(id) {
 }
 
 window.onload = function () {
-    // renderData();
     renderAttendanceCheckStastic(id);
     document.querySelector('#confirmSave').addEventListener('click', updateAttendance);
 };
