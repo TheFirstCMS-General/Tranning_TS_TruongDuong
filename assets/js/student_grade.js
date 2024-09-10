@@ -58,7 +58,6 @@ function deleteStudentToGrade() {
     }
 }
 
-
 window.onload = function () {
     renderStudent();
 

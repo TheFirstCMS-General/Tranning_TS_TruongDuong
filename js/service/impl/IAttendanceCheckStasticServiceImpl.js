@@ -59,5 +59,22 @@ class IAttendanceCheckStasticServiceImpl {
         jsonData.push(attendanceCheckStasticsEntity);
         fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
     }
+    countAttendanceCheck(attendId, data) {
+        const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+        const jsonData = JSON.parse(fileData);
+        const attendIndex = jsonData.findIndex((attend) => attend.id === attendId);
+        if (attendIndex !== -1) {
+            jsonData[attendIndex].present = data.present;
+            jsonData[attendIndex].excused = data.excused;
+            jsonData[attendIndex].late = data.late;
+            jsonData[attendIndex].unexcused = data.unexcused;
+            fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2), 'utf-8');
+            return jsonData[attendIndex];
+        }
+        else {
+            console.error('Lỗi không tìm thấy học sinh với id = ?');
+            throw new Error('Lỗi');
+        }
+    }
 }
 exports.IAttendanceCheckStasticServiceImpl = IAttendanceCheckStasticServiceImpl;

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "status": "Có phép",
+    "status": "Có mặt",
     "description": "r",
     "studentId": 4,
     "attendanceCheckId": 1
@@ -9,7 +9,7 @@
   {
     "id": 2,
     "status": "Có phép",
-    "description": "",
+    "description": "f",
     "studentId": 5,
     "attendanceCheckId": 1
   },
@@ -29,45 +29,45 @@
   },
   {
     "id": 5,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Có phép",
+    "description": "",
     "studentId": 7,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 6,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 8,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 7,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 9,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 8,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Có phép",
+    "description": "",
     "studentId": 10,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 9,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Muộn",
+    "description": "",
     "studentId": 15,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 10,
-    "attendanceCheckId": 2,
-    "status": "",
+    "status": "Không phép",
+    "description": "",
     "studentId": 20,
-    "description": ""
+    "attendanceCheckId": 2
   },
   {
     "id": 11,

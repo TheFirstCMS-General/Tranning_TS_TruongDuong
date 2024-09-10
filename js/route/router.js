@@ -208,6 +208,33 @@ app.get('/attendanceCheckStatics/findById/:id', (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching.' });
     }
 });
+app.get('/attendanceCheckStatics/update/:id', (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const student = iAttendanceCheckStatics.findById(id);
+        res.json(student);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.put('/attendanceCheckStatics/update/:attendId', (req, res) => {
+    try {
+        const attendanceCheckStastic = req.body;
+        const attendId = parseInt(req.params.attendId, 10);
+        const updated = iAttendanceCheckStatics.countAttendanceCheck(attendId, attendanceCheckStastic);
+        if (updated) {
+            res.status(200).json({ message: 'Cập nhật thành công!', stastics: updated });
+        }
+        else {
+            res.status(404).send('Không tìm thấy id với attendanceCheckId.');
+        }
+    }
+    catch (err) {
+        console.error('Error updating students:', err);
+        res.status(500).send('Có lỗi xảy ra khi cập nhật.');
+    }
+});
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
