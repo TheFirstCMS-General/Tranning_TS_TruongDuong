@@ -83,7 +83,7 @@
   </div>
   <section class="home-section">
    <div class="container-fluid">
-    <h1>Điểm danh lớp C10</h1>
+    <h1>Điểm danh lớp: <span id="gradeName">hi</span></h1>
     <div class="row mb-4">
         <div class="col-md-2">
           <div class="card text-white bg-primary mb-3">
@@ -126,7 +126,7 @@
           </div>
         </div>
       </div>
-    <button class="btn btn-primary" style="margin-bottom: 20px;">Xác nhận</button>
+    <button class="btn btn-primary" id="confirmSave" style="margin-bottom: 20px;">Xác nhận</button>
     <button class="btn btn-primary" style="margin-bottom: 20px;">Xuất excel</button>
     <button class="btn btn-primary" style="margin-bottom: 20px;">Nhập excel</button>
     <table class="table table-striped">
@@ -149,5 +149,9 @@
 
   <script src="../../assets/js/sidebar.js"></script>
   <script type="module" src="../../assets/js/attendanceCheck_Student.js"> </script>
+  <!-- Include SweetAlert CSS and JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 </body>
 </html>

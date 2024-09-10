@@ -158,6 +158,23 @@ app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req: any, res: an
         res.status(500).json({ error: 'An error occurred while fetching students.' });
     }
 });
+app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req: any, res: any) => {
+    try {
+        const attendanceCheckId = parseInt(req.params.attendanceCheckId, 10);
+        const attendanceCheckStudentDtos = req.body;
+
+        const updated = iAttendanceCheck_Student.updateByAttendanceCheckId(attendanceCheckId, attendanceCheckStudentDtos);
+
+        if (updated) {
+            res.status(200).json({ message: 'Cập nhật thành công!', students: updated });
+        } else {
+            res.status(404).send('Không tìm thấy id với attendanceCheckId.');
+        }
+    } catch (err) {
+        console.error('Error updating students:', err);
+        res.status(500).send('Có lỗi xảy ra khi cập nhật.');
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

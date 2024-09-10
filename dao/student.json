@@ -1,14 +1,5 @@
 [
   {
-    "id": 2,
-    "name": "Jane Smith",
-    "dob": "2006-08-25",
-    "gender": "Nữ",
-    "address": "456 Elm St, Los Angeles, CA",
-    "phone": "987-654-3210",
-    "grade_id": 1
-  },
-  {
     "id": 3,
     "name": "Michael Johnson",
     "dob": "2005-11-10",
