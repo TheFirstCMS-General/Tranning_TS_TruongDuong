@@ -2,7 +2,6 @@ import {Gender} from "../model/enum/gender_enum";
 
 export class StudentDto {
     private _id: number;
-
     private _name: string;
     private _dob: Date;
     private _gender: Gender;

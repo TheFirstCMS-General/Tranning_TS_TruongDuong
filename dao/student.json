@@ -1,30 +1,12 @@
 [
   {
-    "id": 2,
-    "name": "Jane Smith",
-    "dob": "2006-08-25",
-    "gender": "Nữ",
-    "address": "456 Elm St, Los Angeles, CA",
-    "phone": "0987654321",
-    "grade_id": 1
-  },
-  {
-    "id": 3,
-    "name": "Michael Johnson",
-    "dob": "2005-11-10",
-    "gender": "Nam",
-    "address": "789 Maple St, Chicago, IL",
-    "phone": "0987654321",
-    "grade_id": 1
-  },
-  {
     "id": 4,
     "name": "Emily Davis",
     "dob": "2005-03-22",
     "gender": "Nữ",
     "address": "101 Oak St, Boston, MA",
     "phone": "0987654321",
-    "grade_id": ""
+    "grade_id": 1
   },
   {
     "id": 5,
@@ -33,7 +15,7 @@
     "gender": "Nam",
     "address": "202 Pine St, San Francisco, CA",
     "phone": "0987654321",
-    "grade_id": ""
+    "grade_id": 1
   },
   {
     "id": 6,
@@ -120,7 +102,7 @@
     "id": 17,
     "name": "Jordan",
     "dob": "2005-09-15",
-    "gender": "Nam",
+    "gender": "Nữ",
     "address": "Ho Chi Minh City",
     "phone": "0987654321",
     "grade_id": 1
