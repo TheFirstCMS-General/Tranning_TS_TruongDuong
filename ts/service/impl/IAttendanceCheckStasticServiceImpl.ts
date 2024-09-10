@@ -10,16 +10,16 @@ import {AttendanceCheckStasticsEntity} from "../../model/attendanceCheckStastics
 const pathJson = path.join(__dirname, "../../../dao/attendaneCheckStastics.json");
 
 export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStasticService {
-    private IAttendanceCheckService : IAttendanceCheckService = new IAttendanceCheckServiceImpl();
 
     showAll(): Array<AttendanceCheckStasticsDto> {
         try {
             const fileData = fs.readFileSync(pathJson, 'utf-8');
             const jsonData = JSON.parse(fileData);
             const listAttendanceCheckStastics: Array<AttendanceCheckStasticsDto> = [];
+            const IAttendanceCheckService : IAttendanceCheckService = new IAttendanceCheckServiceImpl();
 
             for (const item of jsonData) {
-                const attendanceCheckDto = this.IAttendanceCheckService.findById(item.attendanceCheck_id);
+                const attendanceCheckDto = IAttendanceCheckService.findById(item.attendanceCheck_id);
                 if (attendanceCheckDto != null) {
                     const attendanceCheckStaticsDto = new AttendanceCheckStasticsDto(item.id, item.totalStudents, item.present, item.excused
                         , item.late, item.unexcused, attendanceCheckDto);
@@ -38,8 +38,10 @@ export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStast
             const fileData = fs.readFileSync(pathJson, 'utf-8');
             const jsonData = JSON.parse(fileData);
             const attendanceCheckEntity : AttendanceCheckStasticsEntity = jsonData.find((attendanceCheck : AttendanceCheckStasticsEntity) => attendanceCheck.id === id);
+            const IAttendanceCheckService : IAttendanceCheckService = new IAttendanceCheckServiceImpl();
+
             if (attendanceCheckEntity != null) {
-                const attendanceCheckDto = this.IAttendanceCheckService.findById(id);
+                const attendanceCheckDto = IAttendanceCheckService.findById(id);
                 if (attendanceCheckDto != null) {
                     const attendanceCheckStaticsDto: AttendanceCheckStasticsDto = new AttendanceCheckStasticsDto(attendanceCheckEntity.id, attendanceCheckEntity.totalStudents, attendanceCheckEntity.present, attendanceCheckEntity.excused
                                                     , attendanceCheckEntity.late, attendanceCheckEntity.unexcused, attendanceCheckDto);
@@ -51,5 +53,18 @@ export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStast
             console.error(err);
             return null;
         }
+    }
+
+    create(attendanceCheckStasticsto:AttendanceCheckStasticsDto):any {
+        const fileData = fs.readFileSync(pathJson, 'utf-8');
+        const jsonData: AttendanceCheckStasticsEntity[] = JSON.parse(fileData);
+
+
+        const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data: AttendanceCheckStasticsEntity) => data.id)) + 1 : 1;
+        const attendanceCheckStasticsEntity : AttendanceCheckStasticsEntity = new AttendanceCheckStasticsEntity(newId,attendanceCheckStasticsto.totalStudents,attendanceCheckStasticsto.present,
+                                                                                attendanceCheckStasticsto.excused,attendanceCheckStasticsto.late,attendanceCheckStasticsto.unexcused,attendanceCheckStasticsto.attendanceCheckDto.id)
+        jsonData.push(attendanceCheckStasticsEntity);
+        fs.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
+
     }
 }

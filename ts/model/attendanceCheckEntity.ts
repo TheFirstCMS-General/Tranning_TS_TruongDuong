@@ -23,11 +23,11 @@ export class AttendanceCheckEntity{
         this._id = value;
     }
 
-    get grade_Id(): number {
+    get gradeId(): number {
         return this._grade_Id;
     }
 
-    set grade_Id(value: number) {
+    set gradeId(value: number) {
         this._grade_Id = value;
     }
 

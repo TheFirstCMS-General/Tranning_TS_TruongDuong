@@ -10,12 +10,15 @@ const attendanceCheckDto_1 = require("../../dto/attendanceCheckDto");
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
 const IAttendanceCheck_StudentServiceImpl_1 = require("./IAttendanceCheck_StudentServiceImpl");
+const attendaneCheckStasticsDto_1 = require("../../dto/attendaneCheckStasticsDto");
+const IAttendanceCheckStasticServiceImpl_1 = require("./IAttendanceCheckStasticServiceImpl");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck.json");
 class IAttendanceCheckServiceImpl {
     constructor() {
         this.IGradeService = new IGradeServiceImpl_1.default();
         this.IStudent = new IStudentServiceImpl_1.default();
         this.IAttendanceCheckStudentService = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
+        this.IAttendanceCheckStasticsService = new IAttendanceCheckStasticServiceImpl_1.IAttendanceCheckStasticServiceImpl();
     }
     showAll() {
         try {
@@ -50,6 +53,8 @@ class IAttendanceCheckServiceImpl {
                 this.IAttendanceCheckStudentService.create(newId, item.id);
             }
         }
+        const attendanceCheckStasticsDto = new attendaneCheckStasticsDto_1.AttendanceCheckStasticsDto(1, listStudent.length, 0, 0, 0, 0, attendanceCheckDto);
+        this.IAttendanceCheckStasticsService.create(attendanceCheckStasticsDto);
         return attendanceCheckDto;
     }
     findById(id) {
@@ -58,9 +63,9 @@ class IAttendanceCheckServiceImpl {
             const jsonData = JSON.parse(fileData);
             const attendanceCheckEntity = jsonData.find((attendanceCheck) => attendanceCheck.id === id);
             if (attendanceCheckEntity != null) {
-                const gradeDto = this.IGradeService.findById(id);
+                const gradeDto = this.IGradeService.findById(attendanceCheckEntity.gradeId);
                 if (gradeDto != null) {
-                    const attendanceCheckDto = new attendanceCheckDto_1.AttendanceCheckDto(attendanceCheckEntity.id, attendanceCheckEntity.createdAt, attendanceCheckEntity.section, attendanceCheckEntity.grade_Id, gradeDto.name);
+                    const attendanceCheckDto = new attendanceCheckDto_1.AttendanceCheckDto(attendanceCheckEntity.id, attendanceCheckEntity.createdAt, attendanceCheckEntity.section, attendanceCheckEntity.gradeId, gradeDto.name);
                     return attendanceCheckDto;
                 }
             }

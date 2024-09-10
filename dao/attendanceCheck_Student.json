@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "status": "Có mặt",
-    "description": "",
+    "status": "Có phép",
+    "description": "r",
     "studentId": 4,
     "attendanceCheckId": 1
   },
@@ -26,5 +26,89 @@
     "description": "",
     "studentId": 19,
     "attendanceCheckId": 1
+  },
+  {
+    "id": 5,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 7,
+    "description": ""
+  },
+  {
+    "id": 6,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 8,
+    "description": ""
+  },
+  {
+    "id": 7,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 9,
+    "description": ""
+  },
+  {
+    "id": 8,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 10,
+    "description": ""
+  },
+  {
+    "id": 9,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 15,
+    "description": ""
+  },
+  {
+    "id": 10,
+    "attendanceCheckId": 2,
+    "status": "",
+    "studentId": 20,
+    "description": ""
+  },
+  {
+    "id": 11,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 7,
+    "description": ""
+  },
+  {
+    "id": 12,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 8,
+    "description": ""
+  },
+  {
+    "id": 13,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 9,
+    "description": ""
+  },
+  {
+    "id": 14,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 10,
+    "description": ""
+  },
+  {
+    "id": 15,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 15,
+    "description": ""
+  },
+  {
+    "id": 16,
+    "attendanceCheckId": 3,
+    "status": "",
+    "studentId": 20,
+    "description": ""
   }
 ]

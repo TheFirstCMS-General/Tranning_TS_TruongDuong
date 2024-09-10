@@ -4,5 +4,17 @@
     "section": "Buổi sáng",
     "gradeId": 1,
     "id": 1
+  },
+  {
+    "createdAt": "2024-09-10T11:19:10.640Z",
+    "section": "Buổi sáng",
+    "gradeId": 2,
+    "id": 2
+  },
+  {
+    "createdAt": "2024-09-10T11:30:37.591Z",
+    "section": "Buổi chiều",
+    "gradeId": 2,
+    "id": 3
   }
 ]
