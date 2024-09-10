@@ -36,7 +36,6 @@ export class IStudentServiceImpl implements IStudentService {
         if (studentIndex !== -1) {
             students[studentIndex] = updatedStudent;
             fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
-            console.log("Cập nhật thành công")
             return students[studentIndex];
         } else {
             console.error('Lỗi không tìm thấy học sinh với id = ?');

@@ -5,6 +5,7 @@ import {
 
 const urlParams = new URLSearchParams(window.location.search);
 const studentId = urlParams.get('id');
+const grade_name = decodeURIComponent(urlParams.get('grade_name'));
 
 function formatDateToISO(date) {
     const year = date.getFullYear();
@@ -36,24 +37,23 @@ function updateStudent() {
     };
     put(`http://localhost:3000/updateStudent/${studentId}`, updatedStudent)
         .then(data => {
-            console.log('student', data)
             const gradeId = parseInt(data._grade_id)
-            console.log('gradeId', gradeId)
-            window.location.href=`../../pages/student/student_class.html?grade_id=${data._grade_id}`
+            window.location.href=`./student_class.html?grade_id=${data.student.grade_id}&&grade_name=${encodeURI(grade_name)}`
         })
         .catch(error => {
             console.error('Error updating student:', error);
         });
 
 }
-document.getElementById('updateStudent').addEventListener('click', updateStudent);
+document.getElementById('updateStudent').addEventListener('click', (e) =>{
+    e.preventDefault()
+    updateStudent()
+});
 window.onload = function () {
     const studentId = urlParams.get('id');
-    console.log('ahahhaha', studentId)
     if (studentId) {
         get(`http://localhost:3000/student/findById/${studentId}`).then(data => {
             getStudent(data);
-            console.log('data', data);
         })
             .catch(error => {
                 console.error('Error fetching student data:', error);

@@ -24,7 +24,7 @@ function renderStudent() {
               <td>${student._address}</td>
               <td>${student._phone}</td>
               <td>
-                <a href="update_student.html?id=${student._id}" type="button" class="btn btn-secondary">Cập nhật</a>
+                <a href="update_student.html?id=${student._id}&grade_name=${encodeURI(grade_name)}" type="button" class="btn btn-secondary">Cập nhật</a>
                 <button type="button" class="btn btn-danger deleteStudent" data="${student._id}">Xóa</button>
               </td>
             </tr>`
