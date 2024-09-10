@@ -65,11 +65,54 @@ app.get('/student/showAll/:gradeId', (req: any, res: any) => {
     }
 });
 
-app.put('/updateStudent/:id', (req: any, res: any) => {
+// app.put('/updateStudent/:id', (req: any, res: any) => {
+//     try {
+//         const updatedStudent = req.body;
+//         const id = parseInt(req.params.id, 10);
+//         const updated = studentService.update(id, updatedStudent);
+//         if (updated) {
+//             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
+//         } else {
+//             res.status(404).send('Học sinh không tồn tại.');
+//         }
+//     } catch (err) {
+//         console.error('Error updating student:', err);
+//         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
+//     }
+// });
+// app.delete('/deleteStudent/:id', (req:any, res:any) => {
+//     try {
+//         const id = parseInt(req.params.id, 10);
+//         const studentService = new IStudentServiceImpl()
+//         const deleted = studentService.delete(id);
+//         if (deleted){
+//             res.status(200).json({ message: 'Xóa học sinh thành công!', student: deleted });
+//         } else {
+//             res.status(404).send('Học sinh không tồn tại.');
+//         }
+//     }catch (error) {
+//         console.error('Error deleting student:', error);
+//
+//     }
+// })
+// app.post('/createStudent', (req:any, res:any) => {
+//     try {
+//         const student = req.body;
+//         const createdStudent = studentService.addStudent(student);
+//         if (createdStudent){
+//             res.status(200).json({ message: 'Thêm học sinh thành công!', student: createdStudent });
+//         } else {
+//             res.status(404).send('Thêm học sinh thất bại.');
+//         }
+//     }catch (error) {
+//         console.error('Error creating student:', error);
+//     }
+// })
+
+app.put('/student/updateGradeForStudent', (req: any, res: any) => {
     try {
         const updatedStudent = req.body;
-        const id = parseInt(req.params.id, 10);
-        const updated = studentService.update(id, updatedStudent);
+        const updated = studentService.updateGradeForStudent(updatedStudent);
         if (updated) {
             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
         } else {
@@ -80,34 +123,6 @@ app.put('/updateStudent/:id', (req: any, res: any) => {
         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
     }
 });
-app.delete('/deleteStudent/:id', (req:any, res:any) => {
-    try {
-        const id = parseInt(req.params.id, 10);
-        const studentService = new IStudentServiceImpl()
-        const deleted = studentService.delete(id);
-        if (deleted){
-            res.status(200).json({ message: 'Xóa học sinh thành công!', student: deleted });
-        } else {
-            res.status(404).send('Học sinh không tồn tại.');
-        }
-    }catch (error) {
-        console.error('Error deleting student:', error);
-
-    }
-})
-app.post('/createStudent', (req:any, res:any) => {
-    try {
-        const student = req.body;
-        const createdStudent = studentService.addStudent(student);
-        if (createdStudent){
-            res.status(200).json({ message: 'Thêm học sinh thành công!', student: createdStudent });
-        } else {
-            res.status(404).send('Thêm học sinh thất bại.');
-        }
-    }catch (error) {
-        console.error('Error creating student:', error);
-    }
-})
 
 app.get('/student/findById/:studentId', (req: any, res: any) => {
     try {

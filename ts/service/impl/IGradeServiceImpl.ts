@@ -3,6 +3,7 @@ import { GradeDto } from "../../dto/gradeDto";
 import { GradeEntity } from "../../model/gradeEntity";
 import fs from 'fs';
 import path from 'path';
+import {StudentDto} from "../../dto/studentDto";
 
 const pathJson = path.join(__dirname, "../../../dao/grade.json");
 
@@ -42,7 +43,5 @@ export class IGradeServiceImpl implements IGradeService {
             throw err;
         }
     }
-
-
 }
 export default IGradeServiceImpl;

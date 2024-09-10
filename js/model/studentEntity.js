@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentEntity = void 0;
 class StudentEntity {
-    constructor(id, name, dob, gender, address, phone, grade) {
+    constructor(id, name, dob, gender, address, phone, grade_id) {
         this._id = id;
         this._name = name;
         this._dob = dob;
         this._gender = gender;
         this._address = address;
         this._phone = phone;
-        this._grade = grade;
+        this._grade_id = grade_id;
     }
     get id() {
         return this._id;
@@ -47,11 +47,11 @@ class StudentEntity {
     set phone(value) {
         this._phone = value;
     }
-    get grade() {
-        return this._grade;
+    get grade_id() {
+        return this._grade_id;
     }
-    set grade(value) {
-        this._grade = value;
+    set grade_id(value) {
+        this._grade_id = value;
     }
 }
 exports.StudentEntity = StudentEntity;

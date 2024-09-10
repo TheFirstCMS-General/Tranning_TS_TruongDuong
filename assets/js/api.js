@@ -109,3 +109,11 @@ export function formatDateTime(date) {
         second: '2-digit'
     });
 }
+
+export function formatDate(date){
+    return date.toLocaleDateString('vi-VN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+}

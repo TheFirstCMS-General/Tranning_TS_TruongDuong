@@ -2,8 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GradeEntity = void 0;
 class GradeEntity {
-    constructor(id, code, name, students = []) {
-        this._students = [];
+    constructor(id, code, name, students) {
         this._id = id;
         this._code = code;
         this._name = name;
