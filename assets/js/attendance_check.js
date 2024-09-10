@@ -15,7 +15,7 @@ function renderAttendanceCheck() {
                       <td>${formatDateTime(createdAtDate)}</td>
                       <td>${attend._section}</td>
                       <td>
-                        <a href="../attendance/detail_attendance.html" type="button" class="btn btn-secondary">Chi tiết</a>
+                        <a href="../attendance/detail_attendance.html?id=${attend._id}" type="button" class="btn btn-secondary">Chi tiết</a>
                       </td>
                     </tr>`;
                 tableData.innerHTML += row;
@@ -57,7 +57,7 @@ function createAttendanceCheck() {
     post(`http://localhost:3000/created/attendance/${gradeId}`, data)
         .then(reponse => {
             console.log('reponse:', reponse);
-            window.location.href='http://localhost:63342/project/pages/attendance/list_attendance.html'
+            window.location.href='./list_attendance.html'
         })
         .catch(error => {
             console.error('Error:', error);

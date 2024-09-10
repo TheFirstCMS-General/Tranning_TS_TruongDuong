@@ -82,7 +82,6 @@ class IStudentServiceImpl {
             const studentEntity = listStudentEntity.find((student) => student.id === studentId);
             if (studentEntity != undefined) {
                 const gradeDto = this.IGradeService.findById(studentEntity.grade_id);
-                // const grade = studentEntity.grade || {};
                 if (gradeDto != null) {
                     return new studentDto_1.StudentDto(studentEntity.id, studentEntity.name, studentEntity.dob, studentEntity.gender, studentEntity.address, studentEntity.phone, gradeDto.id, gradeDto.name);
                 }

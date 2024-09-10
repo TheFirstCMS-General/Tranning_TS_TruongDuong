@@ -9,6 +9,7 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
+const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
@@ -32,6 +33,48 @@ class IAttendanceCheck_StudentServiceImpl {
         catch (err) {
             console.error(err);
             return [];
+        }
+    }
+    create(attendanceId, studentId) {
+        try {
+            const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const newId = jsonData.length > 0 ? jsonData.length + 1 : 1;
+            const attendanceCheckStudentEntity = new attendanceCheck_Student_1.AttendanceCheckStudentEntity(newId, attendanceId, "", studentId, "");
+            jsonData.push(attendanceCheckStudentEntity);
+            fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
+        }
+        catch (err) {
+            console.error(err);
+            return [];
+        }
+    }
+    updateByAttendanceCheckId(attendanceCheckId, attendanceCheckStudentDtos) {
+        try {
+            const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const filterData = jsonData.filter(attend => attend.attendanceCheckId === attendanceCheckId);
+            if (filterData.length > 0) {
+                const updatedItems = [];
+                attendanceCheckStudentDtos.forEach(dto => {
+                    const index = jsonData.findIndex(attend => attend.id === dto.id && attend.attendanceCheckId === attendanceCheckId);
+                    if (index !== -1) {
+                        jsonData[index] = dto;
+                        updatedItems.push(jsonData[index]);
+                    }
+                });
+                fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2), 'utf-8');
+                console.log("Cập nhật thành công");
+                return updatedItems;
+            }
+            else {
+                console.error('Không tìm thấy id của attendanceCheckId = ' + attendanceCheckId);
+                throw new Error('Lỗi');
+            }
+        }
+        catch (e) {
+            console.error(e);
+            return null;
         }
     }
 }

@@ -92,7 +92,6 @@ export class IStudentServiceImpl implements IStudentService {
             if (studentEntity != undefined) {
 
                 const gradeDto = this.IGradeService.findById(studentEntity.grade_id);
-                // const grade = studentEntity.grade || {};
                 if (gradeDto != null){
                     return new StudentDto(studentEntity.id, studentEntity.name, studentEntity.dob, studentEntity.gender, studentEntity.address, studentEntity.phone, gradeDto.id, gradeDto.name);
                 }
