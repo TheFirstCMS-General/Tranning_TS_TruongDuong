@@ -7,6 +7,7 @@ const IGradeServiceImpl_1 = __importDefault(require("../service/impl/IGradeServi
 const IStudentServiceImpl_1 = __importDefault(require("../service/impl/IStudentServiceImpl"));
 const IAttendanceCheckServiceImpl_1 = require("../service/impl/IAttendanceCheckServiceImpl");
 const IAttendanceCheck_StudentServiceImpl_1 = require("../service/impl/IAttendanceCheck_StudentServiceImpl");
+const IAttendanceCheckStasticServiceImpl_1 = require("../service/impl/IAttendanceCheckStasticServiceImpl");
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -21,6 +22,7 @@ const gradeService = new IGradeServiceImpl_1.default();
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
 const studentService = new IStudentServiceImpl_1.default();
 const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
+const iAttendanceCheckStatics = new IAttendanceCheckStasticServiceImpl_1.IAttendanceCheckStasticServiceImpl();
 app.get('/grade/showAll', (req, res) => {
     try {
         const grades = gradeService.showAll();
@@ -182,6 +184,26 @@ app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req, res) => {
     catch (err) {
         console.error('Error updating students:', err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
+    }
+});
+//AttendanceCheckStatics
+app.get('/attendanceCheckStatics/showAll', (req, res) => {
+    try {
+        const attendance = iAttendanceCheckStatics.showAll();
+        res.json(attendance);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.get('/attendanceCheckStatics/findById/:id', (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const student = iAttendanceCheckStatics.findById(id);
+        res.json(student);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
     }
 });
 app.listen(PORT, () => {

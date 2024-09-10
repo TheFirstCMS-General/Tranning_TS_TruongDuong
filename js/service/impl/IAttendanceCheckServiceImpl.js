@@ -52,5 +52,24 @@ class IAttendanceCheckServiceImpl {
         }
         return attendanceCheckDto;
     }
+    findById(id) {
+        try {
+            const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const attendanceCheckEntity = jsonData.find((attendanceCheck) => attendanceCheck.id === id);
+            if (attendanceCheckEntity != null) {
+                const gradeDto = this.IGradeService.findById(id);
+                if (gradeDto != null) {
+                    const attendanceCheckDto = new attendanceCheckDto_1.AttendanceCheckDto(attendanceCheckEntity.id, attendanceCheckEntity.createdAt, attendanceCheckEntity.section, attendanceCheckEntity.grade_Id, gradeDto.name);
+                    return attendanceCheckDto;
+                }
+            }
+            return null;
+        }
+        catch (err) {
+            console.error(err);
+            return null;
+        }
+    }
 }
 exports.IAttendanceCheckServiceImpl = IAttendanceCheckServiceImpl;

@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "totalStudents": 4,
+    "present": 1,
+    "excused": 1,
+    "late": 1,
+    "unexcused": 1,
+    "attendanceCheck_id": 1
+  }
+]

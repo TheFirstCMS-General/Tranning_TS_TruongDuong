@@ -9,6 +9,7 @@ import {IStudentService} from "../IStudentService";
 import IStudentServiceImpl from "./IStudentServiceImpl";
 import {IAttendanceCheck_StudentService} from "../IAttendanceCheck_StudentService";
 import {IAttendanceCheck_StudentServiceImpl} from "./IAttendanceCheck_StudentServiceImpl";
+import {AttendanceCheckEntity} from "../../model/attendanceCheckEntity";
 
 const pathJson = path.join(__dirname, "../../../dao/attendanceCheck.json");
 
@@ -56,5 +57,22 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
 
         return attendanceCheckDto;
     }
-
+    findById(id: number): AttendanceCheckDto | null {
+        try {
+            const fileData = fs.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const attendanceCheckEntity : AttendanceCheckEntity = jsonData.find((attendanceCheck : AttendanceCheckEntity) => attendanceCheck.id === id);
+            if (attendanceCheckEntity != null) {
+                const gradeDto = this.IGradeService.findById(id);
+                if (gradeDto != null) {
+                    const attendanceCheckDto: AttendanceCheckDto = new AttendanceCheckDto(attendanceCheckEntity.id,attendanceCheckEntity.createdAt,attendanceCheckEntity.section,attendanceCheckEntity.grade_Id,gradeDto.name)
+                    return attendanceCheckDto;
+                }
+            }
+            return null;
+        } catch (err) {
+            console.error(err);
+            return null;
+        }
+    }
 }

@@ -1,17 +1,16 @@
-import {get, put} from "../js/api.js";
+import {formatDateTime, get, put} from "../js/api.js";
+
+const urlParams = new URLSearchParams(window.location.search);
+let id = JSON.parse(urlParams.get("id"))
 
 function getParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
 
-const attendanceId = getParam('id');
-console.log('id của attendanceCheck:', attendanceId);
-
-function renderData() {
+function renderData(attendanceId) {
     get(`http://localhost:3000/attendanceCheck_Student/showAll/${attendanceId}`)
         .then(data => {
-            console.log('Attendance details:', data);
             const tableData = document.getElementById('listTable');
             tableData.innerHTML = '';
 
@@ -76,12 +75,30 @@ function updateAttendance() {
     }else {
         alert('Xác nhận bị huỷ')
     }
-
-
 }
 
+function renderAttendanceCheckStastic(id) {
+    get(`http://localhost:3000/attendanceCheckStatics/findById/${id}`)
+        .then(data => {
+            const tableData = document.getElementById('listTable');
+            tableData.innerHTML = '';
+            renderData(data._attendanceCheckDto._id)
+
+
+            document.getElementById("gradeName").innerHTML= data._attendanceCheckDto._gradeName
+            document.getElementById("present-count").innerHTML= data._present
+            document.getElementById("excused-count").innerHTML= data._excused
+            document.getElementById("late-count").innerHTML= data._late
+            document.getElementById("absent-count").innerHTML= data._unexcused
+            document.getElementById("total-students").innerHTML= data._totalStudents
+        })
+        .catch(error => {
+            console.error("Error fetching attendance check:", error);
+        });
+}
 
 window.onload = function () {
-    renderData();
+    // renderData();
+    renderAttendanceCheckStastic(id);
     document.querySelector('#confirmSave').addEventListener('click', updateAttendance);
 };

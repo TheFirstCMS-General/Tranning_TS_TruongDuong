@@ -2,6 +2,7 @@ import IGradeServiceImpl from "../service/impl/IGradeServiceImpl";
 import IStudentServiceImpl from "../service/impl/IStudentServiceImpl";
 import {IAttendanceCheckServiceImpl} from "../service/impl/IAttendanceCheckServiceImpl";
 import {IAttendanceCheck_StudentServiceImpl} from "../service/impl/IAttendanceCheck_StudentServiceImpl";
+import {IAttendanceCheckStasticServiceImpl} from "../service/impl/IAttendanceCheckStasticServiceImpl";
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -22,6 +23,7 @@ const gradeService = new IGradeServiceImpl()
 const iAttendanceCheck = new IAttendanceCheckServiceImpl();
 const studentService = new IStudentServiceImpl();
 const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl()
+const iAttendanceCheckStatics = new IAttendanceCheckStasticServiceImpl()
 
 app.get('/grade/showAll', (req:any, res:any) => {
     try {
@@ -188,6 +190,27 @@ app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req: any, res: an
     } catch (err) {
         console.error('Error updating students:', err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
+    }
+});
+
+//AttendanceCheckStatics
+app.get('/attendanceCheckStatics/showAll', (req :any, res :any) => {
+    try {
+        const attendance = iAttendanceCheckStatics.showAll();
+        res.json(attendance);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.get('/attendanceCheckStatics/findById/:id', (req: any, res: any) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const student = iAttendanceCheckStatics.findById(id);
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
     }
 });
 

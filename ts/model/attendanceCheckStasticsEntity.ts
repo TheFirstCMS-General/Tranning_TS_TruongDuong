@@ -1,47 +1,76 @@
 import { AttendanceCheckEntity } from "./attendanceCheckEntity";
 export class AttendanceCheckStasticsEntity {
-    private id: number;
-    private quantity: number;
-    private attendanceCheck: AttendanceCheckEntity;
-    private status: string;
+    private _id: number;
+    private _totalStudents: number;
+    private _present: number;
+    private _excused: number;
+    private _late: number;
+    private _unexcused: number;
+    private _attendanceCheck_id:number;
 
-    constructor(id: number, quantity: number, attendanceCheck: AttendanceCheckEntity, status: string) {
-        this.id = id;
-        this.quantity = quantity;
-        this.attendanceCheck = attendanceCheck;
-        this.status = status;
+    constructor(id: number, totalStudents: number, present: number, excused: number, late: number, unexcused: number, attendanceCheckId:number) {
+        this._id = id;
+        this._totalStudents = totalStudents;
+        this._present = present;
+        this._excused = excused;
+        this._late = late;
+        this._unexcused = unexcused;
+        this._attendanceCheck_id =attendanceCheckId;
     }
 
-    public getId(): number {
-        return this.id;
+    get id(): number {
+        return this._id;
     }
 
-    public getQuantity(): number {
-        return this.quantity;
+    set id(value: number) {
+        this._id = value;
     }
 
-    public getAttendanceCheck(): AttendanceCheckEntity {
-        return this.attendanceCheck;
+    get totalStudents(): number {
+        return this._totalStudents;
     }
 
-    public getStatus(): string {
-        return this.status;
+    set totalStudents(value: number) {
+        this._totalStudents = value;
     }
 
-
-    public setId(value: number) {
-        this.id = value;
+    get present(): number {
+        return this._present;
     }
 
-    public setQuantity(value: number) {
-        this.quantity = value;
+    set present(value: number) {
+        this._present = value;
     }
 
-    public setAttendanceCheck(value: AttendanceCheckEntity) {
-        this.attendanceCheck = value;
+    get excused(): number {
+        return this._excused;
     }
 
-    public setStatus(value: string) {
-        this.status = value;
+    set excused(value: number) {
+        this._excused = value;
+    }
+
+    get late(): number {
+        return this._late;
+    }
+
+    set late(value: number) {
+        this._late = value;
+    }
+
+    get unexcused(): number {
+        return this._unexcused;
+    }
+
+    set unexcused(value: number) {
+        this._unexcused = value;
+    }
+
+    get attendanceCheck_id(): number {
+        return this._attendanceCheck_id;
+    }
+
+    set attendanceCheck_id(value: number) {
+        this._attendanceCheck_id = value;
     }
 }

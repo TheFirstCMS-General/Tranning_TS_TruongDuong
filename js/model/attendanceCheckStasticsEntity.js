@@ -2,35 +2,56 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceCheckStasticsEntity = void 0;
 class AttendanceCheckStasticsEntity {
-    constructor(id, quantity, attendanceCheck, status) {
-        this.id = id;
-        this.quantity = quantity;
-        this.attendanceCheck = attendanceCheck;
-        this.status = status;
+    constructor(id, totalStudents, present, excused, late, unexcused, attendanceCheckId) {
+        this._id = id;
+        this._totalStudents = totalStudents;
+        this._present = present;
+        this._excused = excused;
+        this._late = late;
+        this._unexcused = unexcused;
+        this._attendanceCheck_id = attendanceCheckId;
     }
-    getId() {
-        return this.id;
+    get id() {
+        return this._id;
     }
-    getQuantity() {
-        return this.quantity;
+    set id(value) {
+        this._id = value;
     }
-    getAttendanceCheck() {
-        return this.attendanceCheck;
+    get totalStudents() {
+        return this._totalStudents;
     }
-    getStatus() {
-        return this.status;
+    set totalStudents(value) {
+        this._totalStudents = value;
     }
-    setId(value) {
-        this.id = value;
+    get present() {
+        return this._present;
     }
-    setQuantity(value) {
-        this.quantity = value;
+    set present(value) {
+        this._present = value;
     }
-    setAttendanceCheck(value) {
-        this.attendanceCheck = value;
+    get excused() {
+        return this._excused;
     }
-    setStatus(value) {
-        this.status = value;
+    set excused(value) {
+        this._excused = value;
+    }
+    get late() {
+        return this._late;
+    }
+    set late(value) {
+        this._late = value;
+    }
+    get unexcused() {
+        return this._unexcused;
+    }
+    set unexcused(value) {
+        this._unexcused = value;
+    }
+    get attendanceCheck_id() {
+        return this._attendanceCheck_id;
+    }
+    set attendanceCheck_id(value) {
+        this._attendanceCheck_id = value;
     }
 }
 exports.AttendanceCheckStasticsEntity = AttendanceCheckStasticsEntity;
