@@ -29,43 +29,43 @@ export class IStudentServiceImpl implements IStudentService {
 
         return listStudent;
     }
-    update(id: number, updatedStudent: StudentDto): StudentDto {
-        const fileData = fs.readFileSync(pathJson, 'utf-8');
-        const students: Array<StudentDto> = JSON.parse(fileData);
-        const studentIndex = students.findIndex(student => student.id === id);
-        if (studentIndex !== -1) {
-            students[studentIndex] = updatedStudent;
-            fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
-            console.log("Cập nhật thành công")
-            return students[studentIndex];
-        } else {
-            console.error('Lỗi không tìm thấy học sinh với id = ?');
-            throw new Error('Lỗi');
-        }
-    }
-    delete(id: number): StudentDto {
-        const fileData = fs.readFileSync(pathJson, 'utf-8');
-        const students: Array<StudentDto> = JSON.parse(fileData);
-        const studentIndex = students.findIndex(student => student.id === id);
-        if (studentIndex !== -1) {
-            const [deletedStudent] = students.splice(studentIndex, 1);
-            fs.writeFileSync(pathJson, JSON.stringify(students, null, 2));
-            console.log('Xóa thành công');
-            return deletedStudent;
-        } else {
-            console.log("Lỗi không tìm thấy id");
-            throw new Error('Sinh viên không tồn tại');
-        }
-    }
-    addStudent(studentDto: StudentDto): StudentDto{
-        const fileData = fs.readFileSync(pathJson, 'utf-8');
-        const students: Array<StudentDto> = JSON.parse(fileData);
-        const newId = students.length > 0 ? Math.max(...students.map(student => student.id)) + 1 : 1;
-        studentDto.id = newId;
-        students.push(studentDto);
-        fs.writeFileSync(pathJson, JSON.stringify(students, null, 2));
-        return studentDto;
-    }
+    // update(id: number, updatedStudent: StudentDto): StudentDto {
+    //     const fileData = fs.readFileSync(pathJson, 'utf-8');
+    //     const students: Array<StudentDto> = JSON.parse(fileData);
+    //     const studentIndex = students.findIndex(student => student.id === id);
+    //     if (studentIndex !== -1) {
+    //         students[studentIndex] = updatedStudent;
+    //         fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
+    //         console.log("Cập nhật thành công")
+    //         return students[studentIndex];
+    //     } else {
+    //         console.error('Lỗi không tìm thấy học sinh với id = ?');
+    //         throw new Error('Lỗi');
+    //     }
+    // }
+    // delete(id: number): StudentDto {
+    //     const fileData = fs.readFileSync(pathJson, 'utf-8');
+    //     const students: Array<StudentDto> = JSON.parse(fileData);
+    //     const studentIndex = students.findIndex(student => student.id === id);
+    //     if (studentIndex !== -1) {
+    //         const [deletedStudent] = students.splice(studentIndex, 1);
+    //         fs.writeFileSync(pathJson, JSON.stringify(students, null, 2));
+    //         console.log('Xóa thành công');
+    //         return deletedStudent;
+    //     } else {
+    //         console.log("Lỗi không tìm thấy id");
+    //         throw new Error('Sinh viên không tồn tại');
+    //     }
+    // }
+    // addStudent(studentDto: StudentDto): StudentDto{
+    //     const fileData = fs.readFileSync(pathJson, 'utf-8');
+    //     const students: Array<StudentDto> = JSON.parse(fileData);
+    //     const newId = students.length > 0 ? Math.max(...students.map(student => student.id)) + 1 : 1;
+    //     studentDto.id = newId;
+    //     students.push(studentDto);
+    //     fs.writeFileSync(pathJson, JSON.stringify(students, null, 2));
+    //     return studentDto;
+    // }
 
     findStudentDonHaveGrade(): Array<StudentDto> {
         const fileData = fs.readFileSync(pathJson, 'utf-8');
@@ -92,7 +92,6 @@ export class IStudentServiceImpl implements IStudentService {
             if (studentEntity != undefined) {
 
                 const gradeDto = this.IGradeService.findById(studentEntity.grade_id);
-                // const grade = studentEntity.grade || {};
                 if (gradeDto != null){
                     return new StudentDto(studentEntity.id, studentEntity.name, studentEntity.dob, studentEntity.gender, studentEntity.address, studentEntity.phone, gradeDto.id, gradeDto.name);
                 }
@@ -103,6 +102,20 @@ export class IStudentServiceImpl implements IStudentService {
         } catch (err) {
             console.error('Error reading or parsing file:', err);
             throw err;
+        }
+    }
+
+    updateGradeForStudent(studentDto : StudentDto): any {
+        const fileData = fs.readFileSync(pathJson, 'utf-8');
+        const students: Array<StudentEntity> = JSON.parse(fileData);
+        const studentIndex = students.findIndex(student => student.id === studentDto.id);
+        if (studentIndex !== -1) {
+            students[studentIndex].grade_id = studentDto.grade_id;
+            fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
+            return true;
+        } else {
+            console.error('Lỗi không tìm thấy học sinh với id = ?');
+            throw new Error('Lỗi');
         }
     }
 }
