@@ -5,13 +5,14 @@ export class AttendanceCheckStudentEntity {
     private _attendanceCheck_Id: number;
     private _status: string;
     private _studentId: number;
+    private _description:string
 
-
-    constructor(id: number, attendanceCheck_Id: number, status: string, studentId: number) {
+    constructor(id: number, attendanceCheck_Id: number, status: string, studentId: number,description:string) {
         this._id = id;
         this._attendanceCheck_Id = attendanceCheck_Id;
         this._status = status;
         this._studentId = studentId;
+        this._description = description;
     }
 
     get id(): number {
@@ -20,6 +21,15 @@ export class AttendanceCheckStudentEntity {
 
     set id(value: number) {
         this._id = value;
+    }
+
+
+    get description(): string {
+        return this._description;
+    }
+
+    set description(value: string) {
+        this._description = value;
     }
 
     get attendanceCheck_Id(): number {

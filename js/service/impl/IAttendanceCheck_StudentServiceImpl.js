@@ -9,6 +9,7 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
+const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
@@ -28,6 +29,20 @@ class IAttendanceCheck_StudentServiceImpl {
                 }
             }
             return listAttend;
+        }
+        catch (err) {
+            console.error(err);
+            return [];
+        }
+    }
+    create(attendanceId, studentId) {
+        try {
+            const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const newId = jsonData.length > 0 ? jsonData.length + 1 : 1;
+            const attendanceCheckStudentEntity = new attendanceCheck_Student_1.AttendanceCheckStudentEntity(newId, attendanceId, "", studentId, "");
+            jsonData.push(attendanceCheckStudentEntity);
+            fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
         }
         catch (err) {
             console.error(err);

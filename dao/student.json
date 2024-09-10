@@ -151,14 +151,5 @@
     "address": "Hue",
     "phone": "0345678901",
     "grade_id": ""
-  },
-  {
-    "id": 20,
-    "name": "Sam",
-    "dob": "2005-06-14",
-    "gender": "MALE",
-    "address": "Can Tho",
-    "phone": "0456789012",
-    "grade_id": ""
   }
 ]

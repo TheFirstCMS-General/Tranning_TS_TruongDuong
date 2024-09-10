@@ -5,11 +5,17 @@ import {AttendanceCheckDto} from "../../dto/attendanceCheckDto";
 import {StudentDto} from "../../dto/studentDto";
 import IGradeServiceImpl from "./IGradeServiceImpl";
 import {IGradeService} from "../IGradeService";
+import {IStudentService} from "../IStudentService";
+import IStudentServiceImpl from "./IStudentServiceImpl";
+import {IAttendanceCheck_StudentService} from "../IAttendanceCheck_StudentService";
+import {IAttendanceCheck_StudentServiceImpl} from "./IAttendanceCheck_StudentServiceImpl";
 
 const pathJson = path.join(__dirname, "../../../dao/attendanceCheck.json");
 
 export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
     private IGradeService: IGradeService = new IGradeServiceImpl();
+    private IStudent: IStudentService = new IStudentServiceImpl();
+    private IAttendanceCheckStudentService: IAttendanceCheck_StudentService = new IAttendanceCheck_StudentServiceImpl();
 
     showAll(): Array<AttendanceCheckDto> {
         try {
@@ -39,15 +45,14 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
         const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data: AttendanceCheckDto) => data.id)) + 1 : 1;
         attendanceCheckDto.id = newId;
         attendanceCheckDto.gradeId = gradeId;
-
-        const idGrade = jsonData.find((grade: AttendanceCheckDto) => grade.gradeId === gradeId);
-        if (!idGrade) {
-            console.log("Lỗi: Không tìm thấy gradeId");
-            return null;
-        }
-
         jsonData.push(attendanceCheckDto);
         fs.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
+        const listStudent = this.IStudent.showAll(gradeId);
+        if (listStudent != null) {
+            for (const item of listStudent) {
+                this.IAttendanceCheckStudentService.create(newId,item.id)
+            }
+        }
 
         return attendanceCheckDto;
     }

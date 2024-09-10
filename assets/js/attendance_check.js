@@ -15,7 +15,7 @@ function renderAttendanceCheck() {
                       <td>${formatDateTime(createdAtDate)}</td>
                       <td>${attend._section}</td>
                       <td>
-                        <a href="../attendance/detail_attendance.html" type="button" class="btn btn-secondary">Chi tiết</a>
+                        <a href="../attendance/detail_attendance.html?id=${attend._id}" type="button" class="btn btn-secondary">Chi tiết</a>
                       </td>
                     </tr>`;
                 tableData.innerHTML += row;

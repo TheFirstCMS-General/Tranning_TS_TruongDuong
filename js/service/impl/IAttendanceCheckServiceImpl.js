@@ -8,10 +8,14 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const attendanceCheckDto_1 = require("../../dto/attendanceCheckDto");
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
+const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
+const IAttendanceCheck_StudentServiceImpl_1 = require("./IAttendanceCheck_StudentServiceImpl");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck.json");
 class IAttendanceCheckServiceImpl {
     constructor() {
         this.IGradeService = new IGradeServiceImpl_1.default();
+        this.IStudent = new IStudentServiceImpl_1.default();
+        this.IAttendanceCheckStudentService = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
     }
     showAll() {
         try {
@@ -38,13 +42,14 @@ class IAttendanceCheckServiceImpl {
         const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data) => data.id)) + 1 : 1;
         attendanceCheckDto.id = newId;
         attendanceCheckDto.gradeId = gradeId;
-        const idGrade = jsonData.find((grade) => grade.gradeId === gradeId);
-        if (!idGrade) {
-            console.log("Lỗi: Không tìm thấy gradeId");
-            return null;
-        }
         jsonData.push(attendanceCheckDto);
         fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
+        const listStudent = this.IStudent.showAll(gradeId);
+        if (listStudent != null) {
+            for (const item of listStudent) {
+                this.IAttendanceCheckStudentService.create(newId, item.id);
+            }
+        }
         return attendanceCheckDto;
     }
 }

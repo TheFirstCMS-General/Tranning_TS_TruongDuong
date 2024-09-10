@@ -20,10 +20,7 @@ app.use(bodyParser.json());
 const gradeService = new IGradeServiceImpl_1.default();
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
 const studentService = new IStudentServiceImpl_1.default();
-<<<<<<< HEAD
-=======
 const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
->>>>>>> 75511c177be150b2e76b934d8c726a20211e6534
 app.get('/grade/showAll', (req, res) => {
     try {
         const grades = gradeService.showAll();

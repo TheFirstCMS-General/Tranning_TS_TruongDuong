@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -141,61 +140,7 @@
             <th scope="col">Lý do</th>
           </tr>
         </thead>
-        <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Nguyễn Văn A</td>
-              <td>01/01/2000</td>
-              <td>Nam</td>
-              <td>
-                <select class="form-control" id="gender" name="gender">
-                    <option>Có mặt</option>
-                    <option>Có phép</option>
-                    <option>Muộn</option>
-                    <option>Không phép</option>
-                  </select>
-              </td>
-              <td>
-                <input type="text"  class="form-control">
-              </td>
-        
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Trần Thị B</td>
-              <td>15/05/2001</td>
-              <td>Nữ</td>
-              <td>
-                <select class="form-control" id="gender" name="gender">
-                    <option>Có mặt</option>
-                    <option>Có phép</option>
-                    <option>Muộn</option>
-                    <option>Không phép</option>
-                  </select>
-              </td>
-              <td>
-                <input type="text"  class="form-control">
-              </td>
-             
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Phạm Văn C</td>
-              <td>20/10/2002</td>
-              <td>Nam</td>
-              <td>
-                <select class="form-control" id="gender" name="gender">
-                    <option>Có mặt</option>
-                    <option>Có phép</option>
-                    <option>Muộn</option>
-                    <option>Không phép</option>
-                  </select>
-              </td>
-              <td>
-                <input type="text"  class="form-control">
-              </td>
-             
-            </tr>
+        <tbody id="listTable">
           </tbody>
       </table>
    </div>
@@ -203,7 +148,6 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
   <script src="../../assets/js/sidebar.js"></script>
-
-  
+  <script type="module" src="../../assets/js/attendanceCheck_Student.js"> </script>
 </body>
 </html>
