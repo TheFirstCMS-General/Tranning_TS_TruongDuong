@@ -29,20 +29,20 @@ export class IStudentServiceImpl implements IStudentService {
 
         return listStudent;
     }
-    // update(id: number, updatedStudent: StudentDto): StudentDto {
-    //     const fileData = fs.readFileSync(pathJson, 'utf-8');
-    //     const students: Array<StudentDto> = JSON.parse(fileData);
-    //     const studentIndex = students.findIndex(student => student.id === id);
-    //     if (studentIndex !== -1) {
-    //         students[studentIndex] = updatedStudent;
-    //         fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
-    //         console.log("Cập nhật thành công")
-    //         return students[studentIndex];
-    //     } else {
-    //         console.error('Lỗi không tìm thấy học sinh với id = ?');
-    //         throw new Error('Lỗi');
-    //     }
-    // }
+    update(id: number, updatedStudent: StudentDto): StudentDto {
+        const fileData = fs.readFileSync(pathJson, 'utf-8');
+        const students: Array<StudentDto> = JSON.parse(fileData);
+        const studentIndex = students.findIndex(student => student.id === id);
+        if (studentIndex !== -1) {
+            students[studentIndex] = updatedStudent;
+            fs.writeFileSync(pathJson, JSON.stringify(students, null, 2), 'utf-8');
+            console.log("Cập nhật thành công")
+            return students[studentIndex];
+        } else {
+            console.error('Lỗi không tìm thấy học sinh với id = ?');
+            throw new Error('Lỗi');
+        }
+    }
     // delete(id: number): StudentDto {
     //     const fileData = fs.readFileSync(pathJson, 'utf-8');
     //     const students: Array<StudentDto> = JSON.parse(fileData);

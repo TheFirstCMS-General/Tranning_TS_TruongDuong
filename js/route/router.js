@@ -62,21 +62,23 @@ app.get('/student/showAll/:gradeId', (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching students.' });
     }
 });
-// app.put('/updateStudent/:id', (req: any, res: any) => {
-//     try {
-//         const updatedStudent = req.body;
-//         const id = parseInt(req.params.id, 10);
-//         const updated = studentService.update(id, updatedStudent);
-//         if (updated) {
-//             res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
-//         } else {
-//             res.status(404).send('Học sinh không tồn tại.');
-//         }
-//     } catch (err) {
-//         console.error('Error updating student:', err);
-//         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
-//     }
-// });
+app.put('/updateStudent/:id', (req, res) => {
+    try {
+        const updatedStudent = req.body;
+        const id = parseInt(req.params.id, 10);
+        const updated = studentService.update(id, updatedStudent);
+        if (updated) {
+            res.status(200).json({ message: 'Cập nhật thành công!', student: updated });
+        }
+        else {
+            res.status(404).send('Học sinh không tồn tại.');
+        }
+    }
+    catch (err) {
+        console.error('Error updating student:', err);
+        res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
+    }
+});
 // app.delete('/deleteStudent/:id', (req:any, res:any) => {
 //     try {
 //         const id = parseInt(req.params.id, 10);

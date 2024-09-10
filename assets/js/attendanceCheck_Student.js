@@ -13,11 +13,11 @@ function renderData(attendanceId) {
         .then(data => {
             const tableData = document.getElementById('listTable');
             tableData.innerHTML = '';
-
+            let index = 1;
             for (const checkStudent of data) {
                 let row = `
                 <tr>
-                    <th scope="row">${checkStudent._id}</th>
+                    <th scope="row">${index}</th>
                     <td>${checkStudent._stundentDto._name}</td>
                     <td>${checkStudent._stundentDto._dob}</td>
                     <td>${checkStudent._stundentDto._gender}</td>
@@ -37,6 +37,7 @@ function renderData(attendanceId) {
                     </td>
                 </tr>`;
                 tableData.innerHTML += row;
+                index++;
             }
         })
         .catch(error => {
