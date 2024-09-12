@@ -23,7 +23,7 @@ export class IGradeServiceImpl implements IGradeService {
     
             return listGrade;
         } catch (err) {
-            console.error('Error reading or parsing file:', err);
+            console.error(err);
             throw err; 
         }
     }
@@ -39,7 +39,7 @@ export class IGradeServiceImpl implements IGradeService {
             return null;
 
         } catch (err) {
-            console.error('Error reading or parsing file:', err);
+            console.error(err);
             throw err;
         }
     }

@@ -1,5 +1,5 @@
 
-import {formatDateTime, get, put} from "../js/api.js";
+import {formatDateTime, get, put,formatDate} from "../js/api.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 let id = JSON.parse(urlParams.get("id"))
@@ -16,11 +16,12 @@ function renderData(attendanceId) {
             tableData.innerHTML = '';
             let index = 1;
             for (const checkStudent of data) {
+                let parseDob = new Date(checkStudent._stundentDto._dob)
                 let row = `
                 <tr>
                     <th scope="row" data="${checkStudent._id}">${index}</th>
                     <td>${checkStudent._stundentDto._name}</td>
-                    <td>${checkStudent._stundentDto._dob}</td>
+                    <td>${formatDate(parseDob)}</td>
                     <td>${checkStudent._stundentDto._gender}</td>
                      <td hidden="hidden">${checkStudent._stundentDto._id}</td>
                      <td hidden="hidden">${checkStudent._attendanceCheckId}</td>
@@ -46,7 +47,7 @@ function renderData(attendanceId) {
             });
         })
         .catch(error => {
-            console.error('Error fetching attendance details:', error);
+            console.error(error);
         });
 }
 
@@ -76,7 +77,7 @@ function updateAttendance() {
                 alert('Lưu thành công!');
             })
             .catch(error => {
-                console.error('Error updating attendance details:', error);
+                console.error(error);
             });
         updateAttdendCheckStatics()
     }else {
@@ -92,10 +93,10 @@ function renderAttendanceCheckStastic(id) {
             document.getElementById("attendId").value = data._attendanceCheckDto._id
             renderData(data._attendanceCheckDto._id)
 
-
+            let parseCreatedAt = new Date(data._attendanceCheckDto._createdAt);
             document.getElementById("gradeName").innerHTML= data._attendanceCheckDto._gradeName
             document.getElementById("section").innerHTML= data._attendanceCheckDto._section
-            document.getElementById("createdAt").innerHTML= data._attendanceCheckDto._createdAt
+            document.getElementById("createdAt").innerHTML= formatDateTime(parseCreatedAt)
             document.getElementById("present-count").innerHTML= data._present
             document.getElementById("excused-count").innerHTML= data._excused
             document.getElementById("late-count").innerHTML= data._late
@@ -104,7 +105,7 @@ function renderAttendanceCheckStastic(id) {
         })
 
         .catch(error => {
-            console.error("Error fetching attendance check:", error);
+            console.error(error);
         });
 }
 
@@ -134,7 +135,7 @@ function exportToExcel() {
                 window.URL.revokeObjectURL(url);
             })
             .catch(error => {
-                console.error('Lỗi khi xuất dữ liệu:', error);
+                console.error(error);
                 alert('Có lỗi xảy ra khi xuất dữ liệu.');
             });
     }else {

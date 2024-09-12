@@ -88,8 +88,6 @@ export class IAttendanceCheck_StudentServiceImpl implements IAttendanceCheck_Stu
             const iAttendCheck: IAttendanceCheckService = new IAttendanceCheckServiceImpl();
             const workbook = new Excel.Workbook();
             const worksheet = workbook.addWorksheet('Attendance');
-
-            // Đặt các cột cho dữ liệu sinh viên
             worksheet.columns = [
                 { header: 'Họ tên', key: 'name', width: 25 },
                 { header: 'Ngày sinh', key: 'dob', width: 15 },

@@ -21,7 +21,7 @@ class IGradeServiceImpl {
             return listGrade;
         }
         catch (err) {
-            console.error('Error reading or parsing file:', err);
+            console.error(err);
             throw err;
         }
     }
@@ -36,7 +36,7 @@ class IGradeServiceImpl {
             return null;
         }
         catch (err) {
-            console.error('Error reading or parsing file:', err);
+            console.error(err);
             throw err;
         }
     }

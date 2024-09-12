@@ -89,4 +89,3 @@ export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStast
             }
     }
 }
-export default IAttendanceCheckStasticServiceImpl;

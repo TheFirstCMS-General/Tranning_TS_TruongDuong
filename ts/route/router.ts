@@ -30,7 +30,7 @@ app.get('/grade/showAll', (req:any, res:any) => {
         const grades = gradeService.showAll();
         res.json(grades);
     } catch (error) {
-        console.error('Error fetching grade data:', error);
+        console.error(error);
         res.status(500).send('Lỗi khi đọc dữ liệu JSON');
     }
 });
@@ -43,7 +43,7 @@ app.get('/grade/findById/:gradeId', (req: any, res: any) => {
 
         res.json(grade);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({error});
     }
 });
 
@@ -53,7 +53,7 @@ app.get('/student/findStudentDonHaveGrade', (req: any, res: any) => {
 
         res.json(students);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({error});
     }
 });
 app.get('/student/showAll/:gradeId', (req: any, res: any) => {
@@ -63,7 +63,7 @@ app.get('/student/showAll/:gradeId', (req: any, res: any) => {
 
         res.json(students);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({error});
     }
 });
 
@@ -78,7 +78,7 @@ app.put('/updateStudent/:id', (req: any, res: any) => {
             res.status(404).send('Học sinh không tồn tại.');
         }
     } catch (err) {
-        console.error('Error updating student:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
     }
 });
@@ -121,7 +121,7 @@ app.put('/student/updateGradeForStudent', (req: any, res: any) => {
             res.status(404).send('Học sinh không tồn tại.');
         }
     } catch (err) {
-        console.error('Error updating student:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
     }
 });
@@ -144,7 +144,7 @@ app.get('/attendanceCheck/showAll', (req: any, res: any) => {
         res.json(attendanceCheckDtos);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({error});
     }
 });
 app.post('/created/attendance/:gradeId', (req:any, res:any) => {
@@ -158,7 +158,7 @@ app.post('/created/attendance/:gradeId', (req:any, res:any) => {
             res.status(404).send('Thêm điểm danh thất bại.');
         }
     }catch (error) {
-        console.error('Error creating student:', error);
+        console.error(error);
     }
 })
 
@@ -172,7 +172,7 @@ app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req: any, res: an
 
         res.json(attendanceCheckStudentDtos);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({error});
     }
 });
 app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req: any, res: any) => {
@@ -188,7 +188,7 @@ app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req: any, res: an
             res.status(404).send('Không tìm thấy id với attendanceCheckId.');
         }
     } catch (err) {
-        console.error('Error updating students:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
     }
 });
@@ -200,7 +200,7 @@ app.get('/attendanceCheckStatics/showAll', (req :any, res :any) => {
         res.json(attendance);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({error});
     }
 });
 app.get('/attendanceCheckStatics/findById/:id', (req: any, res: any) => {
@@ -210,7 +210,7 @@ app.get('/attendanceCheckStatics/findById/:id', (req: any, res: any) => {
 
         res.json(student);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({error});
     }
 });
 app.get('/export-students/:attendanceCheckId', async (req: any, res: any) => {
@@ -242,7 +242,7 @@ app.get('/attendanceCheckStatics/update/:id', (req: any, res: any) => {
 
         res.json(student);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({error});
     }
 });
 app.put('/attendanceCheckStatics/update/:attendId', (req: any, res: any) => {
@@ -258,7 +258,7 @@ app.put('/attendanceCheckStatics/update/:attendId', (req: any, res: any) => {
             res.status(404).send('Không tìm thấy id với attendanceCheckId.');
         }
     } catch (err) {
-        console.error('Error updating students:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
     }
 });

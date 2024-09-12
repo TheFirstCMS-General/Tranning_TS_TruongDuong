@@ -78,4 +78,3 @@ class IAttendanceCheckStasticServiceImpl {
     }
 }
 exports.IAttendanceCheckStasticServiceImpl = IAttendanceCheckStasticServiceImpl;
-exports.default = IAttendanceCheckStasticServiceImpl;

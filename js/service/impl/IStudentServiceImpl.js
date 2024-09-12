@@ -89,7 +89,7 @@ class IStudentServiceImpl {
             return null;
         }
         catch (err) {
-            console.error('Error reading or parsing file:', err);
+            console.error(err);
             throw err;
         }
     }
