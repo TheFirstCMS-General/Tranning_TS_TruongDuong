@@ -29,14 +29,14 @@
   },
   {
     "id": 5,
-    "status": "Có phép",
+    "status": "Có mặt",
     "description": "",
     "studentId": 7,
     "attendanceCheckId": 2
   },
   {
     "id": 6,
-    "status": "Có mặt",
+    "status": "Muộn",
     "description": "",
     "studentId": 8,
     "attendanceCheckId": 2
@@ -50,65 +50,93 @@
   },
   {
     "id": 8,
-    "status": "Có phép",
+    "status": "Muộn",
     "description": "",
     "studentId": 10,
     "attendanceCheckId": 2
   },
   {
     "id": 9,
-    "status": "Muộn",
+    "status": "Không phép",
     "description": "",
     "studentId": 15,
     "attendanceCheckId": 2
   },
   {
     "id": 10,
-    "status": "Không phép",
+    "status": "Có mặt",
     "description": "",
     "studentId": 20,
     "attendanceCheckId": 2
   },
   {
     "id": 11,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 7,
-    "description": ""
+    "attendanceCheckId": 3
   },
   {
     "id": 12,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 8,
-    "description": ""
+    "attendanceCheckId": 3
   },
   {
     "id": 13,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 9,
-    "description": ""
+    "attendanceCheckId": 3
   },
   {
     "id": 14,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có phép",
+    "description": "",
     "studentId": 10,
-    "description": ""
+    "attendanceCheckId": 3
   },
   {
     "id": 15,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có mặt",
+    "description": "",
     "studentId": 15,
-    "description": ""
+    "attendanceCheckId": 3
   },
   {
     "id": 16,
-    "attendanceCheckId": 3,
-    "status": "",
+    "status": "Có phép",
+    "description": "ốm",
     "studentId": 20,
-    "description": ""
+    "attendanceCheckId": 3
+  },
+  {
+    "id": 17,
+    "status": "Có mặt",
+    "description": "",
+    "studentId": 4,
+    "attendanceCheckId": 4
+  },
+  {
+    "id": 18,
+    "status": "Muộn",
+    "description": "",
+    "studentId": 5,
+    "attendanceCheckId": 4
+  },
+  {
+    "id": 19,
+    "status": "Có mặt",
+    "description": "",
+    "studentId": 17,
+    "attendanceCheckId": 4
+  },
+  {
+    "id": 20,
+    "status": "Có phép",
+    "description": "ốm",
+    "studentId": 19,
+    "attendanceCheckId": 4
   }
 ]

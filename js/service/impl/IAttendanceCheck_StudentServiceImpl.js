@@ -13,6 +13,7 @@ const IStudentServiceImpl_1 = require("./IStudentServiceImpl");
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
 const IAttendanceCheckServiceImpl_1 = require("./IAttendanceCheckServiceImpl");
+const IAttendanceCheckStasticServiceImpl_1 = require("./IAttendanceCheckStasticServiceImpl");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
@@ -81,32 +82,58 @@ class IAttendanceCheck_StudentServiceImpl {
         }
     }
     exportExcel(attendanceCheckId, attendanceCheckStudentDtos) {
+        const iAttendanceStasticService = new IAttendanceCheckStasticServiceImpl_1.IAttendanceCheckStasticServiceImpl();
         try {
             const iAttendCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
             const workbook = new exceljs_1.default.Workbook();
             const worksheet = workbook.addWorksheet('Attendance');
+            // Đặt các cột cho dữ liệu sinh viên
             worksheet.columns = [
-                { header: 'Lớp', key: 'className', width: 15 },
                 { header: 'Họ tên', key: 'name', width: 25 },
                 { header: 'Ngày sinh', key: 'dob', width: 15 },
                 { header: 'Giới tính', key: 'gender', width: 10 },
                 { header: 'Trạng thái', key: 'status', width: 10 },
                 { header: 'Lý do', key: 'description', width: 30 },
-                { header: 'Phiên', key: 'section', width: 30 },
-                { header: 'Ngày', key: 'createdAt', width: 30 },
             ];
             const idAttend = iAttendCheck.findById(attendanceCheckId);
-            if (idAttend != null) {
-                attendanceCheckStudentDtos.forEach(dto => {
+            const idAttendanceCheckId = iAttendanceStasticService.findById(attendanceCheckId);
+            if (idAttend != null && idAttendanceCheckId != null) {
+                let currentClassName = '';
+                attendanceCheckStudentDtos.forEach((dto, index) => {
+                    if (dto.stundentDto.grade_name !== currentClassName) {
+                        currentClassName = dto.stundentDto.grade_name;
+                        const classRow = worksheet.addRow([`Lớp: ${currentClassName}`]);
+                        const sectionRow = worksheet.addRow([`Phiên: ${idAttend.section}`]);
+                        const dateRow = worksheet.addRow([`Ngày: ${idAttend.createdAt}`]);
+                        const totalStudents = worksheet.addRow([`Sĩ số: ${idAttendanceCheckId.totalStudents}`]);
+                        const present = worksheet.addRow([`Có mặt: ${idAttendanceCheckId.present}`]);
+                        const excused = worksheet.addRow([`Có phép: ${idAttendanceCheckId.excused}`]);
+                        const late = worksheet.addRow([`Muộn : ${idAttendanceCheckId.late}`]);
+                        const unexcused = worksheet.addRow([`Không phép: ${idAttendanceCheckId.unexcused}`]);
+                        if (worksheet.lastRow) {
+                            worksheet.mergeCells(`A${classRow.number}:E${classRow.number}`);
+                            worksheet.mergeCells(`A${sectionRow.number}:E${sectionRow.number}`);
+                            worksheet.mergeCells(`A${dateRow.number}:E${dateRow.number}`);
+                            worksheet.mergeCells(`A${totalStudents.number}:E${totalStudents.number}`);
+                            worksheet.mergeCells(`A${present.number}:E${present.number}`);
+                            worksheet.mergeCells(`A${excused.number}:E${excused.number}`);
+                            worksheet.mergeCells(`A${late.number}:E${late.number}`);
+                            worksheet.mergeCells(`A${unexcused.number}:E${unexcused.number}`);
+                        }
+                        worksheet.addRow({
+                            name: 'Họ tên',
+                            dob: 'Ngày sinh',
+                            gender: 'Giới tính',
+                            status: 'Trạng thái',
+                            description: 'Lý do',
+                        }).font = { bold: true };
+                    }
                     worksheet.addRow({
-                        className: dto.stundentDto.grade_name,
                         name: dto.stundentDto.name,
                         dob: dto.stundentDto.dob,
                         gender: dto.stundentDto.gender,
                         status: dto.status,
                         description: dto.description,
-                        section: idAttend.section,
-                        createdAt: idAttend.createdAt,
                     });
                 });
             }

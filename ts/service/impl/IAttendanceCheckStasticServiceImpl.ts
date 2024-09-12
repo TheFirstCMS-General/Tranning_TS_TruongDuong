@@ -9,6 +9,7 @@ import {AttendanceCheckEntity} from "../../model/attendanceCheckEntity";
 import {AttendanceCheckStasticsEntity} from "../../model/attendanceCheckStasticsEntity";
 import {AttendanceCheck_StudentDto} from "../../dto/attendanceCheck_StudentDto";
 import {StudentDto} from "../../dto/studentDto";
+import IGradeServiceImpl from "./IGradeServiceImpl";
 const pathJson = path.join(__dirname, "../../../dao/attendaneCheckStastics.json");
 
 export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStasticService {
@@ -88,3 +89,4 @@ export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStast
             }
     }
 }
+export default IAttendanceCheckStasticServiceImpl;
