@@ -6,10 +6,13 @@ import {StudentDto} from "../../dto/studentDto";
 import IGradeServiceImpl from "./IGradeServiceImpl";
 import {IGradeService} from "../IGradeService";
 import {IStudentService} from "../IStudentService";
-import IStudentServiceImpl from "./IStudentServiceImpl";
+import {IStudentServiceImpl} from "./IStudentServiceImpl";
 import {IAttendanceCheck_StudentService} from "../IAttendanceCheck_StudentService";
 import {IAttendanceCheck_StudentServiceImpl} from "./IAttendanceCheck_StudentServiceImpl";
 import {AttendanceCheckEntity} from "../../model/attendanceCheckEntity";
+import {AttendanceCheckStasticsDto} from "../../dto/attendaneCheckStasticsDto";
+import {IAttendanceCheckStasticServiceImpl} from "./IAttendanceCheckStasticServiceImpl";
+import {IAttendanceCheckStasticService} from "../IAttendanceCheckStasticService";
 
 const pathJson = path.join(__dirname, "../../../dao/attendanceCheck.json");
 
@@ -17,6 +20,7 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
     private IGradeService: IGradeService = new IGradeServiceImpl();
     private IStudent: IStudentService = new IStudentServiceImpl();
     private IAttendanceCheckStudentService: IAttendanceCheck_StudentService = new IAttendanceCheck_StudentServiceImpl();
+    private IAttendanceCheckStasticsService: IAttendanceCheckStasticService = new IAttendanceCheckStasticServiceImpl();
 
     showAll(): Array<AttendanceCheckDto> {
         try {
@@ -51,10 +55,12 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
         const listStudent = this.IStudent.showAll(gradeId);
         if (listStudent != null) {
             for (const item of listStudent) {
-                this.IAttendanceCheckStudentService.create(newId,item.id)
+                this.IAttendanceCheckStudentService.create(newId,item.id);
             }
         }
 
+        const attendanceCheckStasticsDto :AttendanceCheckStasticsDto = new AttendanceCheckStasticsDto(1,listStudent.length,0,0,0,0,attendanceCheckDto);
+        this.IAttendanceCheckStasticsService.create(attendanceCheckStasticsDto);
         return attendanceCheckDto;
     }
     findById(id: number): AttendanceCheckDto | null {
@@ -63,9 +69,9 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
             const jsonData = JSON.parse(fileData);
             const attendanceCheckEntity : AttendanceCheckEntity = jsonData.find((attendanceCheck : AttendanceCheckEntity) => attendanceCheck.id === id);
             if (attendanceCheckEntity != null) {
-                const gradeDto = this.IGradeService.findById(id);
+                const gradeDto = this.IGradeService.findById(attendanceCheckEntity.gradeId);
                 if (gradeDto != null) {
-                    const attendanceCheckDto: AttendanceCheckDto = new AttendanceCheckDto(attendanceCheckEntity.id,attendanceCheckEntity.createdAt,attendanceCheckEntity.section,attendanceCheckEntity.grade_Id,gradeDto.name)
+                    const attendanceCheckDto: AttendanceCheckDto = new AttendanceCheckDto(attendanceCheckEntity.id,attendanceCheckEntity.createdAt,attendanceCheckEntity.section,attendanceCheckEntity.gradeId,gradeDto.name)
                     return attendanceCheckDto;
                 }
             }

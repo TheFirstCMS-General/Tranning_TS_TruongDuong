@@ -119,4 +119,4 @@ export class IStudentServiceImpl implements IStudentService {
     }
 }
 
-export default IStudentServiceImpl;
+

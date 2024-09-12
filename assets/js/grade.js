@@ -6,6 +6,7 @@ function renderGrade(){
     get('http://localhost:3000/grade/showAll').
     then(data => {
         const tableData = document.getElementById('listTable');
+        console.log(data)
         tableData.innerHTML = ''; 
         for (const grade of data) {
           let row =`<tr>

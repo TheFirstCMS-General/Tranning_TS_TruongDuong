@@ -109,4 +109,3 @@ class IStudentServiceImpl {
     }
 }
 exports.IStudentServiceImpl = IStudentServiceImpl;
-exports.default = IStudentServiceImpl;

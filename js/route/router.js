@@ -8,12 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const IGradeServiceImpl_1 = __importDefault(require("../service/impl/IGradeServiceImpl"));
-const IStudentServiceImpl_1 = __importDefault(require("../service/impl/IStudentServiceImpl"));
+const IGradeServiceImpl_1 = require("../service/impl/IGradeServiceImpl");
+const IStudentServiceImpl_1 = require("../service/impl/IStudentServiceImpl");
 const IAttendanceCheckServiceImpl_1 = require("../service/impl/IAttendanceCheckServiceImpl");
 const IAttendanceCheck_StudentServiceImpl_1 = require("../service/impl/IAttendanceCheck_StudentServiceImpl");
 const IAttendanceCheckStasticServiceImpl_1 = require("../service/impl/IAttendanceCheckStasticServiceImpl");
@@ -27,9 +24,9 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-const gradeService = new IGradeServiceImpl_1.default();
+const gradeService = new IGradeServiceImpl_1.IGradeServiceImpl();
 const iAttendanceCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
-const studentService = new IStudentServiceImpl_1.default();
+const studentService = new IStudentServiceImpl_1.IStudentServiceImpl();
 const iAttendanceCheck_Student = new IAttendanceCheck_StudentServiceImpl_1.IAttendanceCheck_StudentServiceImpl();
 const iAttendanceCheckStatics = new IAttendanceCheckStasticServiceImpl_1.IAttendanceCheckStasticServiceImpl();
 app.get('/grade/showAll', (req, res) => {
@@ -240,6 +237,33 @@ app.get('/export-students/:attendanceCheckId', (req, res) => __awaiter(void 0, v
         console.error(error);
     }
 }));
+app.get('/attendanceCheckStatics/update/:id', (req, res) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const student = iAttendanceCheckStatics.findById(id);
+        res.json(student);
+    }
+    catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.put('/attendanceCheckStatics/update/:attendId', (req, res) => {
+    try {
+        const attendanceCheckStastic = req.body;
+        const attendId = parseInt(req.params.attendId, 10);
+        const updated = iAttendanceCheckStatics.countAttendanceCheck(attendId, attendanceCheckStastic);
+        if (updated) {
+            res.status(200).json({ message: 'Cập nhật thành công!', stastics: updated });
+        }
+        else {
+            res.status(404).send('Không tìm thấy id với attendanceCheckId.');
+        }
+    }
+    catch (err) {
+        console.error('Error updating students:', err);
+        res.status(500).send('Có lỗi xảy ra khi cập nhật.');
+    }
+});
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

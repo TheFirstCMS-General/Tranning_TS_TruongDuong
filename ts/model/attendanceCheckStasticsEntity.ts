@@ -73,4 +73,16 @@ export class AttendanceCheckStasticsEntity {
     set attendanceCheck_id(value: number) {
         this._attendanceCheck_id = value;
     }
+
+    toJSON() {
+        return {
+            id: this._id,
+            totalStudents: this._totalStudents,
+            present: this._present,
+            excused: this._excused,
+            late: this._late,
+            unexcused: this._unexcused,
+            attendanceCheck_id: this._attendanceCheck_id
+        };
+    }
 }

@@ -18,7 +18,7 @@ function renderData(attendanceId) {
             for (const checkStudent of data) {
                 let row = `
                 <tr>
-                    <th scope="row">${index}</th>
+                    <th scope="row" data="${checkStudent._id}">${index}</th>
                     <td>${checkStudent._stundentDto._name}</td>
                     <td>${checkStudent._stundentDto._dob}</td>
                     <td>${checkStudent._stundentDto._gender}</td>
@@ -26,11 +26,11 @@ function renderData(attendanceId) {
                      <td hidden="hidden">${checkStudent._attendanceCheckId}</td>
                     <td>
                         <select class="form-control" id="status-${checkStudent._id}" name="status">
-                            <option ${checkStudent._status === '' ? 'selected' : ''}></option>
-                            <option ${checkStudent._status === 'Có mặt' ? 'selected' : ''}>Có mặt</option>
-                            <option ${checkStudent._status === 'Có phép' ? 'selected' : ''}>Có phép</option>
-                            <option ${checkStudent._status === 'Muộn' ? 'selected' : ''}>Muộn</option>
-                            <option ${checkStudent._status === 'Không phép' ? 'selected' : ''}>Không phép</option>
+                            <option ${checkStudent._status === '' ? 'selected' : ''} class="selectStatus"></option>
+                            <option ${checkStudent._status === 'Có mặt' ? 'selected' : ''} class="selectStatus">Có mặt</option>
+                            <option ${checkStudent._status === 'Có phép' ? 'selected' : ''} class="selectStatus">Có phép</option>
+                            <option ${checkStudent._status === 'Muộn' ? 'selected' : ''} class="selectStatus">Muộn</option>
+                            <option ${checkStudent._status === 'Không phép' ? 'selected' : ''} class="selectStatus">Không phép</option>
                         </select>
                     </td>
                     <td>
@@ -40,6 +40,10 @@ function renderData(attendanceId) {
                 tableData.innerHTML += row;
                 index++;
             }
+            data.forEach(checkStudent => {
+                const selectElement = document.getElementById(`status-${checkStudent._id}`);
+                selectElement.addEventListener('change', countAttendanceCheck);
+            });
         })
         .catch(error => {
             console.error('Error fetching attendance details:', error);
@@ -51,8 +55,8 @@ function updateAttendance() {
     const updates = [];
 
     rows.forEach(row => {
-        const id = row.querySelector('th').textContent;
-        const status = row.querySelector(`#status-${id}`).value;
+        const id = row.querySelector('th').getAttribute("data");
+        const status = document.querySelector(`#status-${id}`).value;
         const description = row.querySelector(`#description-${id}`).value;
         const studentId = parseInt(row.querySelector('td:nth-child(5)').textContent.trim(), 10);
         const attendanceCheckId = parseInt(row.querySelector('td:nth-child(6)').textContent.trim(), 10);
@@ -74,6 +78,7 @@ function updateAttendance() {
             .catch(error => {
                 console.error('Error updating attendance details:', error);
             });
+        updateAttdendCheckStatics()
     }else {
         alert('Xác nhận bị huỷ')
     }
@@ -97,6 +102,7 @@ function renderAttendanceCheckStastic(id) {
             document.getElementById("absent-count").innerHTML= data._unexcused
             document.getElementById("total-students").innerHTML= data._totalStudents
         })
+
         .catch(error => {
             console.error("Error fetching attendance check:", error);
         });
@@ -134,6 +140,44 @@ function exportToExcel() {
     }else {
         alert('Xác nhận bị huỷ')
     }
+
+}
+
+
+function countAttendanceCheck() {
+    const rows = document.querySelectorAll('#listTable tr');
+    let present = 0;
+    let excused = 0;
+    let absent = 0;
+    let late = 0
+
+    rows.forEach(row => {
+        const id = row.querySelector('th').getAttribute("data");
+        const status = document.querySelector(`#status-${id}`).value;
+
+        switch (status) {
+            case "Có mặt": present+=1;break;
+            case "Có phép": excused+=1;break;
+            case "Muộn": late+=1;break;
+            case "Không phép": absent+=1;break;
+        }
+    })
+    document.getElementById("present-count").innerHTML= present
+    document.getElementById("excused-count").innerHTML= excused
+    document.getElementById("late-count").innerHTML= late
+    document.getElementById("absent-count").innerHTML= absent
+}
+
+
+function updateAttdendCheckStatics(){
+    let attendId=  document.getElementById("attendId").value;
+        let formValue ={
+        present: document.getElementById("present-count").innerHTML,
+        excused: document.getElementById("excused-count").innerHTML,
+        late: document.getElementById("late-count").innerHTML,
+        unexcused: document.getElementById("absent-count").innerHTML
+    }
+    put(`http://localhost:3000/attendanceCheckStatics/update/${attendId}`,formValue)
 
 }
 

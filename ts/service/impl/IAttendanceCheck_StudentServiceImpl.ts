@@ -6,7 +6,7 @@ import xlsx from "xlsx";
 import Excel from 'exceljs';
 import {IAttendanceCheck_StudentService} from "../IAttendanceCheck_StudentService";
 import {IStudentService} from "../IStudentService";
-import IStudentServiceImpl from "./IStudentServiceImpl";
+import {IStudentServiceImpl} from "./IStudentServiceImpl";
 import IGradeServiceImpl from "./IGradeServiceImpl";
 import {IGradeService} from "../IGradeService";
 import {AttendanceCheckStudentEntity} from "../../model/attendanceCheck_Student";

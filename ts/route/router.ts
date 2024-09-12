@@ -1,5 +1,5 @@
-import IGradeServiceImpl from "../service/impl/IGradeServiceImpl";
-import IStudentServiceImpl from "../service/impl/IStudentServiceImpl";
+import {IGradeServiceImpl} from "../service/impl/IGradeServiceImpl";
+import {IStudentServiceImpl} from "../service/impl/IStudentServiceImpl";
 import {IAttendanceCheckServiceImpl} from "../service/impl/IAttendanceCheckServiceImpl";
 import {IAttendanceCheck_StudentServiceImpl} from "../service/impl/IAttendanceCheck_StudentServiceImpl";
 import {IAttendanceCheckStasticServiceImpl} from "../service/impl/IAttendanceCheckStasticServiceImpl";
@@ -232,6 +232,34 @@ app.get('/export-students/:attendanceCheckId', async (req: any, res: any) => {
         }
     } catch (error) {
         console.error(error);
+    }
+});
+
+app.get('/attendanceCheckStatics/update/:id', (req: any, res: any) => {
+    try {
+        const id = parseInt(req.params.id, 10);
+        const student = iAttendanceCheckStatics.findById(id);
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: 'An error occurred while fetching.' });
+    }
+});
+app.put('/attendanceCheckStatics/update/:attendId', (req: any, res: any) => {
+    try {
+        const attendanceCheckStastic = req.body;
+        const attendId = parseInt(req.params.attendId, 10);
+
+        const updated = iAttendanceCheckStatics.countAttendanceCheck(attendId,attendanceCheckStastic);
+
+        if (updated) {
+            res.status(200).json({ message: 'Cập nhật thành công!', stastics: updated });
+        } else {
+            res.status(404).send('Không tìm thấy id với attendanceCheckId.');
+        }
+    } catch (err) {
+        console.error('Error updating students:', err);
+        res.status(500).send('Có lỗi xảy ra khi cập nhật.');
     }
 });
 

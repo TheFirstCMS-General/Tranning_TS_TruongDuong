@@ -14,10 +14,10 @@ class AttendanceCheckEntity {
     set id(value) {
         this._id = value;
     }
-    get grade_Id() {
+    get gradeId() {
         return this._grade_Id;
     }
-    set grade_Id(value) {
+    set gradeId(value) {
         this._grade_Id = value;
     }
     get createdAt() {

@@ -9,14 +9,14 @@ const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const xlsx_1 = __importDefault(require("xlsx"));
 const exceljs_1 = __importDefault(require("exceljs"));
-const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
+const IStudentServiceImpl_1 = require("./IStudentServiceImpl");
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
 const IAttendanceCheckServiceImpl_1 = require("./IAttendanceCheckServiceImpl");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
-        this.iStudent = new IStudentServiceImpl_1.default();
+        this.iStudent = new IStudentServiceImpl_1.IStudentServiceImpl();
         this.IGradeService = new IGradeServiceImpl_1.default();
     }
     showAll(attendaceId) {
