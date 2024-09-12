@@ -86,8 +86,8 @@ class IAttendanceCheck_StudentServiceImpl {
         try {
             const iAttendCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
             const workbook = new exceljs_1.default.Workbook();
-            const worksheet = workbook.addWorksheet('Attendance');
-            // Đặt các cột cho dữ liệu sinh viên
+            const worksheet = workbook.addWorksheet('điểm danh');
+            const worksheetStacstic = workbook.addWorksheet('thống kê');
             worksheet.columns = [
                 { header: 'Họ tên', key: 'name', width: 25 },
                 { header: 'Ngày sinh', key: 'dob', width: 15 },
@@ -102,31 +102,24 @@ class IAttendanceCheck_StudentServiceImpl {
                 attendanceCheckStudentDtos.forEach((dto, index) => {
                     if (dto.stundentDto.grade_name !== currentClassName) {
                         currentClassName = dto.stundentDto.grade_name;
-                        const classRow = worksheet.addRow([`Lớp: ${currentClassName}`]);
-                        const sectionRow = worksheet.addRow([`Phiên: ${idAttend.section}`]);
-                        const dateRow = worksheet.addRow([`Ngày: ${idAttend.createdAt}`]);
-                        const totalStudents = worksheet.addRow([`Sĩ số: ${idAttendanceCheckId.totalStudents}`]);
-                        const present = worksheet.addRow([`Có mặt: ${idAttendanceCheckId.present}`]);
-                        const excused = worksheet.addRow([`Có phép: ${idAttendanceCheckId.excused}`]);
-                        const late = worksheet.addRow([`Muộn : ${idAttendanceCheckId.late}`]);
-                        const unexcused = worksheet.addRow([`Không phép: ${idAttendanceCheckId.unexcused}`]);
+                        const classRow = worksheetStacstic.addRow([`Lớp: ${currentClassName}`]);
+                        const sectionRow = worksheetStacstic.addRow([`Phiên: ${idAttend.section}`]);
+                        const dateRow = worksheetStacstic.addRow([`Ngày: ${this.formatDate(idAttend.createdAt)}`]);
+                        const totalStudents = worksheetStacstic.addRow([`Sĩ số: ${idAttendanceCheckId.totalStudents}`]);
+                        const present = worksheetStacstic.addRow([`Có mặt: ${idAttendanceCheckId.present}`]);
+                        const excused = worksheetStacstic.addRow([`Có phép: ${idAttendanceCheckId.excused}`]);
+                        const late = worksheetStacstic.addRow([`Muộn : ${idAttendanceCheckId.late}`]);
+                        const unexcused = worksheetStacstic.addRow([`Không phép: ${idAttendanceCheckId.unexcused}`]);
                         if (worksheet.lastRow) {
-                            worksheet.mergeCells(`A${classRow.number}:E${classRow.number}`);
-                            worksheet.mergeCells(`A${sectionRow.number}:E${sectionRow.number}`);
-                            worksheet.mergeCells(`A${dateRow.number}:E${dateRow.number}`);
-                            worksheet.mergeCells(`A${totalStudents.number}:E${totalStudents.number}`);
-                            worksheet.mergeCells(`A${present.number}:E${present.number}`);
-                            worksheet.mergeCells(`A${excused.number}:E${excused.number}`);
-                            worksheet.mergeCells(`A${late.number}:E${late.number}`);
-                            worksheet.mergeCells(`A${unexcused.number}:E${unexcused.number}`);
+                            worksheetStacstic.mergeCells(`A${classRow.number}:E${classRow.number}`);
+                            worksheetStacstic.mergeCells(`A${sectionRow.number}:E${sectionRow.number}`);
+                            worksheetStacstic.mergeCells(`A${dateRow.number}:E${dateRow.number}`);
+                            worksheetStacstic.mergeCells(`A${totalStudents.number}:E${totalStudents.number}`);
+                            worksheetStacstic.mergeCells(`A${present.number}:E${present.number}`);
+                            worksheetStacstic.mergeCells(`A${excused.number}:E${excused.number}`);
+                            worksheetStacstic.mergeCells(`A${late.number}:E${late.number}`);
+                            worksheetStacstic.mergeCells(`A${unexcused.number}:E${unexcused.number}`);
                         }
-                        worksheet.addRow({
-                            name: 'Họ tên',
-                            dob: 'Ngày sinh',
-                            gender: 'Giới tính',
-                            status: 'Trạng thái',
-                            description: 'Lý do',
-                        }).font = { bold: true };
                     }
                     worksheet.addRow({
                         name: dto.stundentDto.name,
@@ -147,6 +140,22 @@ class IAttendanceCheck_StudentServiceImpl {
             return null;
         }
     }
+    formatDate(date) {
+        // Convert string to Date if necessary
+        const parsedDate = typeof date === 'string' ? new Date(date) : date;
+        // Check if parsedDate is a valid Date object
+        if (parsedDate instanceof Date && !isNaN(parsedDate.getTime())) {
+            return parsedDate.toLocaleDateString('vi-VN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+        else {
+            console.error('Invalid date:', date);
+            return null; // Handle invalid date appropriately
+        }
+    }
     importExcel(filePath) {
         try {
             const workbook = xlsx_1.default.readFile(filePath);
@@ -156,17 +165,26 @@ class IAttendanceCheck_StudentServiceImpl {
             return data;
         }
         catch (error) {
-            console.error('Lỗi đọc file:', error);
+            console.error('Error importing data:', error);
             throw error;
         }
     }
     importData(filePath) {
         try {
-            console.log('Thành công');
+            const newData = this.importExcel(filePath);
+            let array = [];
+            for (let i = 0; i < newData.length; i++) {
+                let data = newData[i];
+                // data.price = parseInt(data.price)
+                array.push(data);
+            }
+            // const currentData = this.showAll(1);
+            // const updatedData = currentData.concat(array);
+            // fs_1.default.writeFileSync(pathJson, JSON.stringify(updatedData, null, 2), "utf-8");
+            // console.log('Thành công');
         }
-        catch (error) {
-            console.error('Error importing data:', error);
-            throw error;
+        catch (e) {
+            console.log("err");
         }
     }
 }

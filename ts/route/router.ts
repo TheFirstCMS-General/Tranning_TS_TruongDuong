@@ -6,6 +6,8 @@ import {IAttendanceCheckStasticServiceImpl} from "../service/impl/IAttendanceChe
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const fs = require('fs-extra');
 
 const {IGradeService} = require('../service/IGradeService')
 const path = require('path');
@@ -13,6 +15,7 @@ const app = express();
 const PORT = 3000;
 
 
+const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
 app.use(cors());
 app.use(express.json());
@@ -234,7 +237,21 @@ app.get('/export-students/:attendanceCheckId', async (req: any, res: any) => {
         console.error(error);
     }
 });
+app.post("/import_student",upload.single("file"), (req: any, res: any) => {
+    try {
+        if (!req.file || !req.file.filename) {
+            return res.status(400).json('khong có file upload');
+        }
+        const filePath = path.join(__dirname, 'uploads', req.file.filename);
+        fs.access(filePath);
 
+        iAttendanceCheck_Student.importData(filePath);
+        fs.unlink(filePath);
+        res.status(200).json('import thành công');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+})
 app.get('/attendanceCheckStatics/update/:id', (req: any, res: any) => {
     try {
         const id = parseInt(req.params.id, 10);

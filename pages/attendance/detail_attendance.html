@@ -95,9 +95,14 @@
       </div>
     <button class="btn btn-primary" id="confirmSave" style="margin-bottom: 20px;">Xác nhận</button>
        <button class="btn btn-primary" id="exportExcelButton" style="margin-bottom: 20px;">Xuất Excel</button>
-       <button class="btn btn-primary" style="margin-bottom: 20px;">Nhập excel</button>
+       <button type="button" class="btn btn-primary" id="importExcel" >Import Excel</button>
+       <input type="file" id="fileInput" accept=".xlsx" hidden />
        <input id="attendId" hidden="hidden">
-    <table class="table table-striped">
+       <input id="gradeNameInput" hidden="hidden">
+       <input id="created_atInput" hidden="hidden">
+       <input id="sectionInput" hidden="hidden">
+
+       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">STT</th>

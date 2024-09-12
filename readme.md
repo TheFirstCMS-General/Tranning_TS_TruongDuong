@@ -6,3 +6,7 @@ technical: oop,Generics, InterfacesType Assertion, Type Assertion, Type Inferenc
 cmd install lib:
 - npm install express
 - npm install cors
+-  npm install exceljs
+-  npm install  fs-extra
+-  npm install --save @types/multer
+

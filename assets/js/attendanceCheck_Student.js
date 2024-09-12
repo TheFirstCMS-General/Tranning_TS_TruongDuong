@@ -125,10 +125,14 @@ function exportToExcel() {
                 return response.blob();
             })
             .then(blob => {
+                let gradeName =   document.getElementById("gradeName").innerHTML
+                let section = document.getElementById("section").innerHTML
+                let createdAt =  formatDate(new Date(document.getElementById("createdAt").innerHTML))
+
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `attendance_${attendanceId}.xlsx`;
+                a.download = `Điểm danh ${gradeName} ${section} ${createdAt}.xlsx`;
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
@@ -169,19 +173,54 @@ function countAttendanceCheck() {
     document.getElementById("absent-count").innerHTML= absent
 }
 
-
-function updateAttdendCheckStatics(){
-    let attendId=  document.getElementById("attendId").value;
-        let formValue ={
+function updateAttdendCheckStatics() {
+    const attendId = document.getElementById("attendId").value;
+    const formValue = {
         present: document.getElementById("present-count").innerHTML,
         excused: document.getElementById("excused-count").innerHTML,
         late: document.getElementById("late-count").innerHTML,
         unexcused: document.getElementById("absent-count").innerHTML
-    }
-    put(`http://localhost:3000/attendanceCheckStatics/update/${attendId}`,formValue)
-
+    };
+    put(`http://localhost:3000/attendanceCheckStatics/update/${attendId}`, formValue)
+        .then(response => {
+            console.log('Attendance statistics updated successfully.');
+        })
+        .catch(error => {
+            console.error('Error updating attendance statistics:', error);
+        });
 }
 
+// function importExcel() {
+//     const fileInput = document.getElementById('fileInput');
+//     fileInput.addEventListener('change', async () => {
+//         const file = fileInput.files[0];
+//         if (file) {
+//             const formData = new FormData();
+//             formData.append('file', file);
+//
+//             try {
+//                 const response = await fetch('http://localhost:3000/import_student', {
+//                     method: 'POST',
+//                     body: formData
+//                 });
+//
+//                 if (response.ok) {
+//                     const data = await response.json();
+//                     console.log('Import successful:', data);
+//                     alert('Import thành công!');
+//                 } else {
+//                     console.error('Error importing file:', await response.text());
+//                     alert('Có lỗi xảy ra khi import file.');
+//                 }
+//             } catch (error) {
+//                 console.error('Error:', error);
+//                 alert('Có lỗi xảy ra khi import file.');
+//             }
+//         }
+//     });
+//     fileInput.click();
+// }
+// document.getElementById("importExcel").addEventListener("click", importExcel);
 window.onload = function () {
     renderAttendanceCheckStastic(id);
     document.querySelector('#confirmSave').addEventListener('click', updateAttendance);

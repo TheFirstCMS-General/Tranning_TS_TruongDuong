@@ -17,10 +17,13 @@ const IAttendanceCheckStasticServiceImpl_1 = require("../service/impl/IAttendanc
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const fs = require('fs-extra');
 const { IGradeService } = require('../service/IGradeService');
 const path = require('path');
 const app = express();
 const PORT = 3000;
+const upload = multer({ dest: path.join(__dirname, 'uploads') });
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
@@ -35,7 +38,7 @@ app.get('/grade/showAll', (req, res) => {
         res.json(grades);
     }
     catch (error) {
-        console.error('Error fetching grade data:', error);
+        console.error(error);
         res.status(500).send('Lỗi khi đọc dữ liệu JSON');
     }
 });
@@ -46,7 +49,7 @@ app.get('/grade/findById/:gradeId', (req, res) => {
         res.json(grade);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({ error });
     }
 });
 app.get('/student/findStudentDonHaveGrade', (req, res) => {
@@ -55,7 +58,7 @@ app.get('/student/findStudentDonHaveGrade', (req, res) => {
         res.json(students);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({ error });
     }
 });
 app.get('/student/showAll/:gradeId', (req, res) => {
@@ -65,7 +68,7 @@ app.get('/student/showAll/:gradeId', (req, res) => {
         res.json(students);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({ error });
     }
 });
 app.put('/updateStudent/:id', (req, res) => {
@@ -81,7 +84,7 @@ app.put('/updateStudent/:id', (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error updating student:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
     }
 });
@@ -125,7 +128,7 @@ app.put('/student/updateGradeForStudent', (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error updating student:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật sinh viên.');
     }
 });
@@ -147,7 +150,7 @@ app.get('/attendanceCheck/showAll', (req, res) => {
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({ error });
     }
 });
 app.post('/created/attendance/:gradeId', (req, res) => {
@@ -163,7 +166,7 @@ app.post('/created/attendance/:gradeId', (req, res) => {
         }
     }
     catch (error) {
-        console.error('Error creating student:', error);
+        console.error(error);
     }
 });
 //IAttendanceCheck_Student
@@ -174,7 +177,7 @@ app.get('/attendanceCheck_Student/showAll/:attendaceCheckId', (req, res) => {
         res.json(attendanceCheckStudentDtos);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching students.' });
+        res.status(500).json({ error });
     }
 });
 app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req, res) => {
@@ -190,7 +193,7 @@ app.put('/attendanceCheck_Student/update/:attendanceCheckId', (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error updating students:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
     }
 });
@@ -201,7 +204,7 @@ app.get('/attendanceCheckStatics/showAll', (req, res) => {
         res.json(attendance);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({ error });
     }
 });
 app.get('/attendanceCheckStatics/findById/:id', (req, res) => {
@@ -211,7 +214,7 @@ app.get('/attendanceCheckStatics/findById/:id', (req, res) => {
         res.json(student);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({ error });
     }
 });
 app.get('/export-students/:attendanceCheckId', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -237,6 +240,21 @@ app.get('/export-students/:attendanceCheckId', (req, res) => __awaiter(void 0, v
         console.error(error);
     }
 }));
+app.post("/import_student", upload.single("file"), (req, res) => {
+    try {
+        if (!req.file || !req.file.filename) {
+            return res.status(400).json('khong có file upload');
+        }
+        const filePath = path.join(__dirname, 'uploads', req.file.filename);
+        fs.access(filePath);
+        iAttendanceCheck_Student.importData(filePath);
+        fs.unlink(filePath);
+        res.status(200).json('import thành công');
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+});
 app.get('/attendanceCheckStatics/update/:id', (req, res) => {
     try {
         const id = parseInt(req.params.id, 10);
@@ -244,7 +262,7 @@ app.get('/attendanceCheckStatics/update/:id', (req, res) => {
         res.json(student);
     }
     catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({ error });
     }
 });
 app.put('/attendanceCheckStatics/update/:attendId', (req, res) => {
@@ -260,7 +278,7 @@ app.put('/attendanceCheckStatics/update/:attendId', (req, res) => {
         }
     }
     catch (err) {
-        console.error('Error updating students:', err);
+        console.error(err);
         res.status(500).send('Có lỗi xảy ra khi cập nhật.');
     }
 });
