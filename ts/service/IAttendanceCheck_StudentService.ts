@@ -5,4 +5,7 @@ export interface IAttendanceCheck_StudentService {
 
     create(attendanceId:number,studentId:number):any
     updateByAttendanceCheckId(attendanceCheckId: number, attendanceCheckStudentDtos: AttendanceCheck_StudentDto[]): any
+
+    exportExcel(attendanceCheckId: number,attendanceCheckStudentDtos: AttendanceCheck_StudentDto[]):any;
+    importData(filePath:string):any
 }

@@ -213,6 +213,27 @@ app.get('/attendanceCheckStatics/findById/:id', (req: any, res: any) => {
         res.status(500).json({ error: 'An error occurred while fetching.' });
     }
 });
+app.get('/export-students/:attendanceCheckId', async (req: any, res: any) => {
+    try {
+        const attendanceCheckId = parseInt(req.params.attendanceCheckId);
+        const attendanceCheckStudentDtos = await iAttendanceCheck_Student.showAll(attendanceCheckId);
+        if (attendanceCheckStudentDtos.length === 0) {
+            return res.status(404).send('Không tìm thấy dữ liệu');
+        }
+        const filePath = await iAttendanceCheck_Student.exportExcel(attendanceCheckId, attendanceCheckStudentDtos);
+        if (filePath) {
+            res.download(filePath, `attendance_${attendanceCheckId}.xlsx`, (err: any) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+        } else {
+            res.status(500).send('Lỗi trong quá trình xuất file Excel.');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

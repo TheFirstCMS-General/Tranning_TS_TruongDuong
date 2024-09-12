@@ -83,7 +83,9 @@
   </div>
   <section class="home-section">
    <div class="container-fluid">
-    <h1>Điểm danh lớp: <span id="gradeName">hi</span></h1>
+    <h1>Điểm danh lớp : <span id="gradeName"></span></h1>
+       <h6>Phiên : <span id="section"></span></h6>
+       <h6>Ngày :<span id="createdAt"></span></h6>
     <div class="row mb-4">
         <div class="col-md-2">
           <div class="card text-white bg-primary mb-3">
@@ -127,8 +129,8 @@
         </div>
       </div>
     <button class="btn btn-primary" id="confirmSave" style="margin-bottom: 20px;">Xác nhận</button>
-    <button class="btn btn-primary" style="margin-bottom: 20px;">Xuất excel</button>
-    <button class="btn btn-primary" style="margin-bottom: 20px;">Nhập excel</button>
+       <button class="btn btn-primary" id="exportExcelButton" style="margin-bottom: 20px;">Xuất Excel</button>
+       <button class="btn btn-primary" style="margin-bottom: 20px;">Nhập excel</button>
        <input id="attendId" hidden="hidden">
     <table class="table table-striped">
         <thead>

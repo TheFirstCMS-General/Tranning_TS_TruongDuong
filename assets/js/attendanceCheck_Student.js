@@ -89,6 +89,8 @@ function renderAttendanceCheckStastic(id) {
 
 
             document.getElementById("gradeName").innerHTML= data._attendanceCheckDto._gradeName
+            document.getElementById("section").innerHTML= data._attendanceCheckDto._section
+            document.getElementById("createdAt").innerHTML= data._attendanceCheckDto._createdAt
             document.getElementById("present-count").innerHTML= data._present
             document.getElementById("excused-count").innerHTML= data._excused
             document.getElementById("late-count").innerHTML= data._late
@@ -100,7 +102,43 @@ function renderAttendanceCheckStastic(id) {
         });
 }
 
+function exportToExcel() {
+    const attendanceId = document.getElementById("attendId").value;
+    if (!attendanceId) {
+        alert('Không tìm thấy mã điểm danh.');
+        return;
+    }
+    const confirms = confirm('Xác nhận tải xuống?');
+    if (confirms) {
+        fetch(`http://localhost:3000/export-students/${attendanceId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Lỗi khi tải file');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `attendance_${attendanceId}.xlsx`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => {
+                console.error('Lỗi khi xuất dữ liệu:', error);
+                alert('Có lỗi xảy ra khi xuất dữ liệu.');
+            });
+    }else {
+        alert('Xác nhận bị huỷ')
+    }
+
+}
+
 window.onload = function () {
     renderAttendanceCheckStastic(id);
     document.querySelector('#confirmSave').addEventListener('click', updateAttendance);
+    document.querySelector('#exportExcelButton').addEventListener('click', exportToExcel);
 };

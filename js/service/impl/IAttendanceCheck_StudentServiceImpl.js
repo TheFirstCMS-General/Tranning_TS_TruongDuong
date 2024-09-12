@@ -7,9 +7,12 @@ exports.IAttendanceCheck_StudentServiceImpl = void 0;
 const attendanceCheck_StudentDto_1 = require("../../dto/attendanceCheck_StudentDto");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
+const xlsx_1 = __importDefault(require("xlsx"));
+const exceljs_1 = __importDefault(require("exceljs"));
 const IStudentServiceImpl_1 = __importDefault(require("./IStudentServiceImpl"));
 const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
+const IAttendanceCheckServiceImpl_1 = require("./IAttendanceCheckServiceImpl");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
@@ -75,6 +78,68 @@ class IAttendanceCheck_StudentServiceImpl {
         catch (e) {
             console.error(e);
             return null;
+        }
+    }
+    exportExcel(attendanceCheckId, attendanceCheckStudentDtos) {
+        try {
+            const iAttendCheck = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl();
+            const workbook = new exceljs_1.default.Workbook();
+            const worksheet = workbook.addWorksheet('Attendance');
+            worksheet.columns = [
+                { header: 'Lớp', key: 'className', width: 15 },
+                { header: 'Họ tên', key: 'name', width: 25 },
+                { header: 'Ngày sinh', key: 'dob', width: 15 },
+                { header: 'Giới tính', key: 'gender', width: 10 },
+                { header: 'Trạng thái', key: 'status', width: 10 },
+                { header: 'Lý do', key: 'description', width: 30 },
+                { header: 'Phiên', key: 'section', width: 30 },
+                { header: 'Ngày', key: 'createdAt', width: 30 },
+            ];
+            const idAttend = iAttendCheck.findById(attendanceCheckId);
+            if (idAttend != null) {
+                attendanceCheckStudentDtos.forEach(dto => {
+                    worksheet.addRow({
+                        className: dto.stundentDto.grade_name,
+                        name: dto.stundentDto.name,
+                        dob: dto.stundentDto.dob,
+                        gender: dto.stundentDto.gender,
+                        status: dto.status,
+                        description: dto.description,
+                        section: idAttend.section,
+                        createdAt: idAttend.createdAt,
+                    });
+                });
+            }
+            const exportPath = path_1.default.join(__dirname, 'students_list.xlsx');
+            return workbook.xlsx.writeFile(exportPath).then(() => {
+                return exportPath;
+            });
+        }
+        catch (err) {
+            console.error(err);
+            return null;
+        }
+    }
+    importExcel(filePath) {
+        try {
+            const workbook = xlsx_1.default.readFile(filePath);
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const data = xlsx_1.default.utils.sheet_to_json(worksheet);
+            return data;
+        }
+        catch (error) {
+            console.error('Lỗi đọc file:', error);
+            throw error;
+        }
+    }
+    importData(filePath) {
+        try {
+            console.log('Thành công');
+        }
+        catch (error) {
+            console.error('Error importing data:', error);
+            throw error;
         }
     }
 }

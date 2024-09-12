@@ -1,29 +1,29 @@
 [
   {
     "id": 1,
-    "status": "Có mặt",
-    "description": "",
+    "status": "Muộn",
+    "description": "ốm",
     "studentId": 4,
     "attendanceCheckId": 1
   },
   {
     "id": 2,
-    "status": "Có phép",
-    "description": "",
+    "status": "Muộn",
+    "description": "tắc",
     "studentId": 5,
     "attendanceCheckId": 1
   },
   {
     "id": 3,
     "status": "Muộn",
-    "description": "",
+    "description": "lụt",
     "studentId": 17,
     "attendanceCheckId": 1
   },
   {
     "id": 4,
-    "status": "Không phép",
-    "description": "",
+    "status": "Muộn",
+    "description": "uuu",
     "studentId": 19,
     "attendanceCheckId": 1
   }
