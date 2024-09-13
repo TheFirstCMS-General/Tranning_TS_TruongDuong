@@ -30,7 +30,37 @@ function renderAttendanceCheck() {
             console.error("Error fetching attendance check:", error);
         });
 }
+function importExcel() {
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file);
 
+            try {
+                const response = await fetch('http://localhost:3000/import_student', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Import successful:', data);
+                    alert('Import thành công!');
+                } else {
+                    console.error('Error importing file:', await response.text());
+                    alert('Có lỗi xảy ra khi import file.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi import file.');
+            }
+        }
+    });
+    fileInput.click();
+}
+document.getElementById("importExcel").addEventListener("click", importExcel);
 window.onload = function() {
     renderAttendanceCheck();
 };

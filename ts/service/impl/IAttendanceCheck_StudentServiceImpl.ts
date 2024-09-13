@@ -185,20 +185,14 @@ export class IAttendanceCheck_StudentServiceImpl implements IAttendanceCheck_Stu
         }
     }
     formatDate(date: Date | string): string | null {
-        // Convert string to Date if necessary
-        const parsedDate = typeof date === 'string' ? new Date(date) : date;
-
-        // Check if parsedDate is a valid Date object
-        if (parsedDate instanceof Date && !isNaN(parsedDate.getTime())) {
-            return parsedDate.toLocaleDateString('vi-VN', {
+            return date.toLocaleString('vi-VN', {
                 day: '2-digit',
                 month: '2-digit',
-                year: 'numeric'
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
             });
-        } else {
-            console.error('Invalid date:', date);
-            return null; // Handle invalid date appropriately
-        }
     }
 
     importExcel(filePath: string): any {
