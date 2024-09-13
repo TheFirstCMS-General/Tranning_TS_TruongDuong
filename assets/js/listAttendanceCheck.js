@@ -27,7 +27,7 @@ function renderAttendanceCheck() {
             }
         })
         .catch(error => {
-            console.error("Error fetching attendance check:", error);
+            console.error(error);
         });
 }
 function importExcel() {
@@ -47,6 +47,7 @@ function importExcel() {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Import successful:', data);
+                    window.location.reload()
                     alert('Import thành công!');
                 } else {
                     console.error('Error importing file:', await response.text());

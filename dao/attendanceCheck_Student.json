@@ -1,142 +1,51 @@
 [
   {
     "id": 1,
-    "attendanceCheckId": 1,
-    "status": "",
-    "studentId": 4,
-    "description": ""
+    "status": "Có mặt",
+    "description": "",
+    "studentId": 1,
+    "attendanceCheckId": 1
   },
   {
     "id": 2,
-    "attendanceCheckId": 1,
-    "status": "",
-    "studentId": 5,
-    "description": ""
+    "status": "Có mặt",
+    "description": "",
+    "studentId": 2,
+    "attendanceCheckId": 1
   },
   {
     "id": 3,
-    "attendanceCheckId": 1,
-    "status": "",
-    "studentId": 17,
-    "description": ""
+    "status": "Có phép",
+    "description": "ốm",
+    "studentId": 3,
+    "attendanceCheckId": 1
   },
   {
     "id": 4,
-    "attendanceCheckId": 1,
-    "status": "",
-    "studentId": 19,
-    "description": ""
+    "status": "Muộn",
+    "description": "",
+    "studentId": 4,
+    "attendanceCheckId": 1
   },
   {
     "id": 5,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 4,
-    "description": ""
+    "status": "Có mặt",
+    "description": "",
+    "studentId": 5,
+    "attendanceCheckId": 1
   },
   {
     "id": 6,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 5,
-    "description": ""
+    "status": "Không phép",
+    "description": "",
+    "studentId": 26,
+    "attendanceCheckId": 1
   },
   {
     "id": 7,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 17,
-    "description": ""
-  },
-  {
-    "id": 8,
-    "attendanceCheckId": 2,
-    "status": "",
-    "studentId": 19,
-    "description": ""
-  },
-  {
-    "id": 9,
-    "attendanceCheckId": 3,
     "status": "Có mặt",
-    "studentId": 7,
-    "description": "sada"
-  },
-  {
-    "id": 10,
-    "attendanceCheckId": 3,
-    "status": "Muộn",
-    "studentId": 8,
-    "description": ""
-  },
-  {
-    "id": 11,
-    "attendanceCheckId": 3,
-    "status": "Có mặt",
-    "studentId": 9,
-    "description": ""
-  },
-  {
-    "id": 12,
-    "attendanceCheckId": 3,
-    "status": "Muộn",
-    "studentId": 10,
-    "description": ""
-  },
-  {
-    "id": 13,
-    "attendanceCheckId": 3,
-    "status": "Không phép",
-    "studentId": 15,
-    "description": ""
-  },
-  {
-    "id": 14,
-    "attendanceCheckId": 3,
-    "status": "Có mặt",
-    "studentId": 20,
-    "description": ""
-  },
-  {
-    "id": 15,
-    "attendanceCheckId": 4,
-    "status": "Có mặt",
-    "studentId": 7,
-    "description": "sada"
-  },
-  {
-    "id": 16,
-    "attendanceCheckId": 4,
-    "status": "Muộn",
-    "studentId": 8,
-    "description": ""
-  },
-  {
-    "id": 17,
-    "attendanceCheckId": 4,
-    "status": "Có mặt",
-    "studentId": 9,
-    "description": ""
-  },
-  {
-    "id": 18,
-    "attendanceCheckId": 4,
-    "status": "Muộn",
-    "studentId": 10,
-    "description": ""
-  },
-  {
-    "id": 19,
-    "attendanceCheckId": 4,
-    "status": "Không phép",
-    "studentId": 15,
-    "description": ""
-  },
-  {
-    "id": 20,
-    "attendanceCheckId": 4,
-    "status": "Có mặt",
-    "studentId": 20,
-    "description": ""
+    "description": "",
+    "studentId": 29,
+    "attendanceCheckId": 1
   }
 ]

@@ -1,13 +1,18 @@
 [
   {
     "id": 1,
-    "code": "G01",
-    "name": "Grade 1"
+    "code": "C01",
+    "name": "DH11C10"
   },
   {
     "id": 2,
-    "code": "G02",
-    "name": "Grade 2"
+    "code": "C02",
+    "name": "DH11C9"
+  },
+  {
+    "id": 3,
+    "code": "M01",
+    "name": "DH10MK1"
   }
 ]
   

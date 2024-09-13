@@ -1,38 +1,11 @@
 [
   {
     "id": 1,
-    "totalStudents": 4,
-    "present": 0,
-    "excused": 0,
-    "late": 0,
-    "unexcused": 0,
+    "totalStudents": 7,
+    "present": 4,
+    "excused": 1,
+    "late": 1,
+    "unexcused": 1,
     "attendanceCheck_id": 1
-  },
-  {
-    "id": 2,
-    "totalStudents": 4,
-    "present": 0,
-    "excused": 0,
-    "late": 0,
-    "unexcused": 0,
-    "attendanceCheck_id": 2
-  },
-  {
-    "id": 3,
-    "totalStudents": 6,
-    "present": 3,
-    "excused": 0,
-    "late": 2,
-    "unexcused": 1,
-    "attendanceCheck_id": 3
-  },
-  {
-    "id": 4,
-    "totalStudents": 6,
-    "present": 3,
-    "excused": 0,
-    "late": 2,
-    "unexcused": 1,
-    "attendanceCheck_id": 4
   }
 ]

@@ -1,5 +1,5 @@
 
-import {formatDateTime, get, put} from "../js/api.js";
+import {formatDateTime, get, put,formatDate} from "../js/api.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 let id = JSON.parse(urlParams.get("id"))
@@ -21,7 +21,7 @@ function renderData(attendanceId) {
                 <tr>
                     <th scope="row" data="${checkStudent._id}">${index}</th>
                     <td>${checkStudent._stundentDto._name}</td>
-                    <td>${formatDateTime(parseDob)}</td>
+                    <td>${formatDate(parseDob)}</td>
                     <td>${checkStudent._stundentDto._gender}</td>
                      <td hidden="hidden">${checkStudent._stundentDto._id}</td>
                      <td hidden="hidden">${checkStudent._attendanceCheckId}</td>
@@ -183,10 +183,10 @@ function updateAttdendCheckStatics() {
     };
     put(`http://localhost:3000/attendanceCheckStatics/update/${attendId}`, formValue)
         .then(response => {
-            console.log('Attendance statistics updated successfully.');
+            console.log('Thành công.');
         })
         .catch(error => {
-            console.error('Error updating attendance statistics:', error);
+            console.error(error);
         });
 }
 

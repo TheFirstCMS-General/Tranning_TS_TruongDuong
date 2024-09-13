@@ -41,7 +41,7 @@ function updateStudent() {
             window.location.href=`./student_class.html?grade_id=${data.student.grade_id}&&grade_name=${encodeURI(grade_name)}`
         })
         .catch(error => {
-            console.error('Error updating student:', error);
+            console.error(error);
         });
 
 }
@@ -56,8 +56,7 @@ window.onload = function () {
             getStudent(data);
         })
             .catch(error => {
-                console.error('Error fetching student data:', error);
-                alert('Failed to load student information.');
+                console.error(error);
             });
     }
 

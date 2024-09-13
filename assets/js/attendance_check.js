@@ -34,7 +34,7 @@ function renderGrade() {
             }
         })
         .catch(error => {
-            console.error("Error fetching grades:", error);
+            console.error(error);
         });
 }
 window.onload = function() {

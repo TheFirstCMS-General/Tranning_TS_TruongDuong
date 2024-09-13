@@ -136,7 +136,7 @@ app.get('/student/findById/:studentId', (req: any, res: any) => {
 
         res.json(student);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching.' });
+        res.status(500).json({ error});
     }
 });
 // attendanceCheck
