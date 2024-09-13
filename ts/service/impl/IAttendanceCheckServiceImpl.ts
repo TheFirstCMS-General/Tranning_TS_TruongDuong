@@ -44,13 +44,20 @@ export class IAttendanceCheckServiceImpl implements IAttendanceCheckService {
 
     create(gradeId: number, attendanceCheckDto: AttendanceCheckDto): AttendanceCheckDto | null {
         const fileData = fs.readFileSync(pathJson, 'utf-8');
-        const jsonData: AttendanceCheckDto[] = JSON.parse(fileData);
+        const jsonData: any = JSON.parse(fileData);
 
 
         const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data: AttendanceCheckDto) => data.id)) + 1 : 1;
         attendanceCheckDto.id = newId;
         attendanceCheckDto.gradeId = gradeId;
-        jsonData.push(attendanceCheckDto);
+
+        const obj = {
+            id: attendanceCheckDto.id,
+            createdAt: attendanceCheckDto.createdAt,
+            section: attendanceCheckDto.section,
+            gradeId: attendanceCheckDto.gradeId,
+        }
+        jsonData.push(obj);
         fs.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
         const listStudent = this.IStudent.showAll(gradeId);
         if (listStudent != null) {

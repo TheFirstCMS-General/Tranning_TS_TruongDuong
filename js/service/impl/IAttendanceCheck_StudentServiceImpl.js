@@ -14,6 +14,10 @@ const IGradeServiceImpl_1 = __importDefault(require("./IGradeServiceImpl"));
 const attendanceCheck_Student_1 = require("../../model/attendanceCheck_Student");
 const IAttendanceCheckServiceImpl_1 = require("./IAttendanceCheckServiceImpl");
 const IAttendanceCheckStasticServiceImpl_1 = require("./IAttendanceCheckStasticServiceImpl");
+const attendanceCheckDto_1 = require("../../dto/attendanceCheckDto");
+const studentDto_1 = require("../../dto/studentDto");
+const gender_enum_1 = require("../../model/enum/gender_enum");
+const attendaneCheckStasticsDto_1 = require("../../dto/attendaneCheckStasticsDto");
 const pathJson = path_1.default.join(__dirname, "../../../dao/attendanceCheck_Student.json");
 class IAttendanceCheck_StudentServiceImpl {
     constructor() {
@@ -88,12 +92,29 @@ class IAttendanceCheck_StudentServiceImpl {
             const workbook = new exceljs_1.default.Workbook();
             const worksheet = workbook.addWorksheet('điểm danh');
             const worksheetStacstic = workbook.addWorksheet('thống kê');
+            const worksheetEng = workbook.addWorksheet('attend');
+            const worksheetStacsticEng = workbook.addWorksheet('stastic');
             worksheet.columns = [
                 { header: 'Họ tên', key: 'name', width: 25 },
                 { header: 'Ngày sinh', key: 'dob', width: 15 },
                 { header: 'Giới tính', key: 'gender', width: 10 },
                 { header: 'Trạng thái', key: 'status', width: 10 },
                 { header: 'Lý do', key: 'description', width: 30 },
+            ];
+            worksheetEng.columns = [
+                { header: 'id', key: 'id', width: 25 },
+                { header: 'status', key: 'status', width: 10 },
+                { header: 'description', key: 'description', width: 30 },
+            ];
+            worksheetStacsticEng.columns = [
+                { header: 'gradeId', key: 'gradeId', width: 10 },
+                { header: 'section', key: 'section', width: 10 },
+                { header: 'createdAt', key: 'createdAt', width: 10 },
+                { header: 'totalStudents', key: 'totalStudents', width: 25 },
+                { header: 'present', key: 'present', width: 10 },
+                { header: 'excused', key: 'excused', width: 10 },
+                { header: 'late', key: 'late', width: 10 },
+                { header: 'unexcused', key: 'unexcused', width: 10 },
             ];
             const idAttend = iAttendCheck.findById(attendanceCheckId);
             const idAttendanceCheckId = iAttendanceStasticService.findById(attendanceCheckId);
@@ -110,6 +131,16 @@ class IAttendanceCheck_StudentServiceImpl {
                         const excused = worksheetStacstic.addRow([`Có phép: ${idAttendanceCheckId.excused}`]);
                         const late = worksheetStacstic.addRow([`Muộn : ${idAttendanceCheckId.late}`]);
                         const unexcused = worksheetStacstic.addRow([`Không phép: ${idAttendanceCheckId.unexcused}`]);
+                        worksheetStacsticEng.addRow({
+                            gradeId: dto.stundentDto.grade_id,
+                            section: idAttend.section,
+                            createdAt: this.formatDate(idAttend.createdAt),
+                            totalStudents: idAttendanceCheckId.totalStudents,
+                            present: idAttendanceCheckId.present,
+                            excused: idAttendanceCheckId.excused,
+                            late: idAttendanceCheckId.late,
+                            unexcused: idAttendanceCheckId.unexcused,
+                        });
                         if (worksheet.lastRow) {
                             worksheetStacstic.mergeCells(`A${classRow.number}:E${classRow.number}`);
                             worksheetStacstic.mergeCells(`A${sectionRow.number}:E${sectionRow.number}`);
@@ -125,6 +156,11 @@ class IAttendanceCheck_StudentServiceImpl {
                         name: dto.stundentDto.name,
                         dob: dto.stundentDto.dob,
                         gender: dto.stundentDto.gender,
+                        status: dto.status,
+                        description: dto.description,
+                    });
+                    worksheetEng.addRow({
+                        id: dto.stundentDto.id,
                         status: dto.status,
                         description: dto.description,
                     });
@@ -159,9 +195,9 @@ class IAttendanceCheck_StudentServiceImpl {
     importExcel(filePath) {
         try {
             const workbook = xlsx_1.default.readFile(filePath);
-            const sheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[sheetName];
-            const data = xlsx_1.default.utils.sheet_to_json(worksheet);
+            const worksheetStudent = workbook.Sheets["attend"];
+            const worksheetAttend = workbook.Sheets["stastic"];
+            const data = [xlsx_1.default.utils.sheet_to_json(worksheetStudent), xlsx_1.default.utils.sheet_to_json(worksheetAttend)];
             return data;
         }
         catch (error) {
@@ -172,19 +208,61 @@ class IAttendanceCheck_StudentServiceImpl {
     importData(filePath) {
         try {
             const newData = this.importExcel(filePath);
-            let array = [];
-            for (let i = 0; i < newData.length; i++) {
-                let data = newData[i];
-                // data.price = parseInt(data.price)
-                array.push(data);
+            const attendCheckService = new IAttendanceCheckServiceImpl_1.IAttendanceCheckServiceImpl;
+            const gradeId = newData[1][0].gradeId;
+            const createdAt = newData[1][0].createdAt;
+            const present = parseInt(newData[1][0].present);
+            const excused = parseInt(newData[1][0].excused);
+            const late = parseInt(newData[1][0].late);
+            const unexcused = parseInt(newData[1][0].unexcused);
+            const section = newData[1][0].section;
+            const attendanceCheckDto = attendCheckService.create(gradeId, new attendanceCheckDto_1.AttendanceCheckDto(0, createdAt, section, 0, ""));
+            const attendCheckStasticService = new IAttendanceCheckStasticServiceImpl_1.IAttendanceCheckStasticServiceImpl();
+            if (attendanceCheckDto !== null) {
+                let arrAttendaceCheckStudent = [];
+                for (const student of newData[0]) {
+                    let studentId = student.id;
+                    let status = student.status;
+                    let description = student.description;
+                    const attendaceCheckStudentDto = new attendanceCheck_StudentDto_1.AttendanceCheck_StudentDto(0, attendanceCheckDto.id, status, description, new studentDto_1.StudentDto(studentId, "", new Date("1/1/1111"), gender_enum_1.Gender.Female, "", "", 0, ""));
+                    arrAttendaceCheckStudent.push(attendaceCheckStudentDto);
+                }
+                this.updateByStudentId(attendanceCheckDto.id, arrAttendaceCheckStudent);
+                attendCheckStasticService.countAttendanceCheck(attendanceCheckDto.id, new attendaneCheckStasticsDto_1.AttendanceCheckStasticsDto(0, 0, present, excused, late, unexcused, new attendanceCheckDto_1.AttendanceCheckDto(0, new Date("1/1/1111"), "", 0, "")));
             }
-            // const currentData = this.showAll(1);
-            // const updatedData = currentData.concat(array);
-            // fs_1.default.writeFileSync(pathJson, JSON.stringify(updatedData, null, 2), "utf-8");
-            // console.log('Thành công');
+            console.log('Thành công');
         }
         catch (e) {
             console.log("err");
+        }
+    }
+    updateByStudentId(attendanceCheckId, attendanceCheckStudentDtos) {
+        try {
+            const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
+            const jsonData = JSON.parse(fileData);
+            const filterData = jsonData.filter((attend) => attend.attendanceCheckId === attendanceCheckId);
+            if (filterData.length > 0) {
+                const updatedItems = [];
+                attendanceCheckStudentDtos.forEach(dto => {
+                    const index = jsonData.findIndex((attend) => attend.studentId === dto.stundentDto.id && attend.attendanceCheckId === attendanceCheckId);
+                    if (index !== -1) {
+                        jsonData[index].status = dto.status;
+                        jsonData[index].description = dto.description;
+                        updatedItems.push(jsonData[index]);
+                    }
+                });
+                fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2), 'utf-8');
+                console.log("Cập nhật thành công");
+                return updatedItems;
+            }
+            else {
+                console.error('Không tìm thấy id của attendanceCheckId = ' + attendanceCheckId);
+                throw new Error('Lỗi');
+            }
+        }
+        catch (e) {
+            console.error(e);
+            return null;
         }
     }
 }

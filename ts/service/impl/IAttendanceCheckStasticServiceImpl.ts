@@ -74,7 +74,8 @@ export class IAttendanceCheckStasticServiceImpl implements IAttendanceCheckStast
     countAttendanceCheck(attendId:number,data : AttendanceCheckStasticsDto):any {
             const fileData = fs.readFileSync(pathJson, 'utf-8');
             const jsonData = JSON.parse(fileData);
-            const attendIndex = jsonData.findIndex((attend :AttendanceCheckEntity) => attend.id === attendId);
+            const attendIndex = jsonData.findIndex((attend :AttendanceCheckStasticsEntity) => attend.attendanceCheck_id === attendId );
+
             if (attendIndex !== -1) {
                 jsonData[attendIndex].present = data.present;
                 jsonData[attendIndex].excused = data.excused;

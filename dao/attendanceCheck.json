@@ -1,26 +1,8 @@
 [
   {
-    "createdAt": "2024-09-10T10:16:09.986Z",
+    "id": 1,
+    "createdAt": "2024-09-13T09:02:40.943Z",
     "section": "Buổi sáng",
-    "gradeId": 1,
-    "id": 1
-  },
-  {
-    "createdAt": "2024-09-10T11:19:10.640Z",
-    "section": "Buổi sáng",
-    "gradeId": 2,
-    "id": 2
-  },
-  {
-    "createdAt": "2024-09-10T11:30:37.591Z",
-    "section": "Buổi chiều",
-    "gradeId": 2,
-    "id": 3
-  },
-  {
-    "createdAt": "2024-09-12T08:10:50.788Z",
-    "section": "Buổi sáng",
-    "gradeId": 1,
-    "id": 4
+    "gradeId": 1
   }
 ]

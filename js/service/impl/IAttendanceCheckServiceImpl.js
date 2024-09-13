@@ -45,7 +45,13 @@ class IAttendanceCheckServiceImpl {
         const newId = jsonData.length > 0 ? Math.max(...jsonData.map((data) => data.id)) + 1 : 1;
         attendanceCheckDto.id = newId;
         attendanceCheckDto.gradeId = gradeId;
-        jsonData.push(attendanceCheckDto);
+        const obj = {
+            id: attendanceCheckDto.id,
+            createdAt: attendanceCheckDto.createdAt,
+            section: attendanceCheckDto.section,
+            gradeId: attendanceCheckDto.gradeId,
+        };
+        jsonData.push(obj);
         fs_1.default.writeFileSync(pathJson, JSON.stringify(jsonData, null, 2));
         const listStudent = this.IStudent.showAll(gradeId);
         if (listStudent != null) {

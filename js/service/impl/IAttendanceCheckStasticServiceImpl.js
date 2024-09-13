@@ -62,7 +62,7 @@ class IAttendanceCheckStasticServiceImpl {
     countAttendanceCheck(attendId, data) {
         const fileData = fs_1.default.readFileSync(pathJson, 'utf-8');
         const jsonData = JSON.parse(fileData);
-        const attendIndex = jsonData.findIndex((attend) => attend.id === attendId);
+        const attendIndex = jsonData.findIndex((attend) => attend.attendanceCheck_id === attendId);
         if (attendIndex !== -1) {
             jsonData[attendIndex].present = data.present;
             jsonData[attendIndex].excused = data.excused;
